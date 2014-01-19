@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6EA395EE-1695-4935-9B13-8E15731D6FCE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>mapkep</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>98369C05-C76C-4CB7-A675-9CF8AF99C365</key>
+		<string>https://github.com/lrcrews/mapkep.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>mapkep.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>98369C05-C76C-4CB7-A675-9CF8AF99C365</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/lrcrews/mapkep.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>98369C05-C76C-4CB7-A675-9CF8AF99C365</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>98369C05-C76C-4CB7-A675-9CF8AF99C365</string>
+			<key>IDESourceControlWCCName</key>
+			<string>mapkep</string>
+		</dict>
+	</array>
+</dict>
+</plist>
