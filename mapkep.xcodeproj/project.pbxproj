@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94B8D2B7188BA4BB002E52A1 /* mapkep.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2B6188BA4BB002E52A1 /* mapkep.m */; };
+		94B8D2B8188BA4BB002E52A1 /* mapkep.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2B6188BA4BB002E52A1 /* mapkep.m */; };
+		94B8D2BB188C91FA002E52A1 /* UIColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2BA188C91FA002E52A1 /* UIColorPickerView.m */; };
+		94B8D2BC188C91FA002E52A1 /* UIColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2BA188C91FA002E52A1 /* UIColorPickerView.m */; };
+		94B8D2C3188CA0DD002E52A1 /* NSObject+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2C2188CA0DD002E52A1 /* NSObject+utils.m */; };
+		94B8D2C4188CA0DD002E52A1 /* NSObject+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2C2188CA0DD002E52A1 /* NSObject+utils.m */; };
+		94B8D2CB188CA21B002E52A1 /* NSString+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2CA188CA21B002E52A1 /* NSString+utils.m */; };
+		94B8D2CC188CA21B002E52A1 /* NSString+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2CA188CA21B002E52A1 /* NSString+utils.m */; };
 		94B9C5BB188B20FA00FD317A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B9C5BA188B20FA00FD317A /* Foundation.framework */; };
 		94B9C5BD188B20FA00FD317A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B9C5BC188B20FA00FD317A /* CoreGraphics.framework */; };
 		94B9C5BF188B20FA00FD317A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B9C5BE188B20FA00FD317A /* UIKit.framework */; };
@@ -14,7 +22,7 @@
 		94B9C5C7188B20FA00FD317A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B9C5C6188B20FA00FD317A /* main.m */; };
 		94B9C5CB188B20FA00FD317A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B9C5CA188B20FA00FD317A /* AppDelegate.m */; };
 		94B9C5CE188B20FA00FD317A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B9C5CC188B20FA00FD317A /* Main.storyboard */; };
-		94B9C5D1188B20FA00FD317A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B9C5D0188B20FA00FD317A /* ViewController.m */; };
+		94B9C5D1188B20FA00FD317A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B9C5D0188B20FA00FD317A /* HomeViewController.m */; };
 		94B9C5D3188B20FA00FD317A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94B9C5D2188B20FA00FD317A /* Images.xcassets */; };
 		94B9C5DA188B20FA00FD317A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B9C5D9188B20FA00FD317A /* XCTest.framework */; };
 		94B9C5DB188B20FA00FD317A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B9C5BA188B20FA00FD317A /* Foundation.framework */; };
@@ -34,6 +42,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		94B8D2B5188BA4BB002E52A1 /* mapkep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapkep.h; sourceTree = "<group>"; };
+		94B8D2B6188BA4BB002E52A1 /* mapkep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapkep.m; sourceTree = "<group>"; };
+		94B8D2B9188C91FA002E52A1 /* UIColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorPickerView.h; sourceTree = "<group>"; };
+		94B8D2BA188C91FA002E52A1 /* UIColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorPickerView.m; sourceTree = "<group>"; };
+		94B8D2C1188CA0DD002E52A1 /* NSObject+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+utils.h"; sourceTree = "<group>"; };
+		94B8D2C2188CA0DD002E52A1 /* NSObject+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+utils.m"; sourceTree = "<group>"; };
+		94B8D2C5188CA15F002E52A1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		94B8D2C9188CA21B002E52A1 /* NSString+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+utils.h"; sourceTree = "<group>"; };
+		94B8D2CA188CA21B002E52A1 /* NSString+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+utils.m"; sourceTree = "<group>"; };
 		94B9C5B7188B20FA00FD317A /* mapkep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapkep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B9C5BA188B20FA00FD317A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94B9C5BC188B20FA00FD317A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -45,8 +62,8 @@
 		94B9C5C9188B20FA00FD317A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		94B9C5CA188B20FA00FD317A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		94B9C5CD188B20FA00FD317A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		94B9C5CF188B20FA00FD317A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		94B9C5D0188B20FA00FD317A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		94B9C5CF188B20FA00FD317A /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		94B9C5D0188B20FA00FD317A /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		94B9C5D2188B20FA00FD317A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		94B9C5D8188B20FA00FD317A /* mapkepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mapkepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B9C5D9188B20FA00FD317A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -79,6 +96,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		94B8D2C0188CA0AF002E52A1 /* categories and extensions */ = {
+			isa = PBXGroup;
+			children = (
+				94B8D2C1188CA0DD002E52A1 /* NSObject+utils.h */,
+				94B8D2C2188CA0DD002E52A1 /* NSObject+utils.m */,
+				94B8D2C9188CA21B002E52A1 /* NSString+utils.h */,
+				94B8D2CA188CA21B002E52A1 /* NSString+utils.m */,
+			);
+			name = "categories and extensions";
+			sourceTree = "<group>";
+		};
 		94B9C5AE188B20FA00FD317A = {
 			isa = PBXGroup;
 			children = (
@@ -112,12 +140,14 @@
 		94B9C5C0188B20FA00FD317A /* mapkep */ = {
 			isa = PBXGroup;
 			children = (
+				94B8D2C0188CA0AF002E52A1 /* categories and extensions */,
 				94B9C5EF188B21EA00FD317A /* controllers */,
 				94B9C5F0188B220700FD317A /* models */,
 				94B9C5F2188B223B00FD317A /* modules */,
 				94B9C5F1188B222E00FD317A /* views */,
 				94B9C5C9188B20FA00FD317A /* AppDelegate.h */,
 				94B9C5CA188B20FA00FD317A /* AppDelegate.m */,
+				94B8D2C5188CA15F002E52A1 /* Constants.h */,
 				94B9C5CC188B20FA00FD317A /* Main.storyboard */,
 				94B9C5D2188B20FA00FD317A /* Images.xcassets */,
 				94B9C5C1188B20FA00FD317A /* Supporting Files */,
@@ -157,8 +187,8 @@
 		94B9C5EF188B21EA00FD317A /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				94B9C5CF188B20FA00FD317A /* ViewController.h */,
-				94B9C5D0188B20FA00FD317A /* ViewController.m */,
+				94B9C5CF188B20FA00FD317A /* HomeViewController.h */,
+				94B9C5D0188B20FA00FD317A /* HomeViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -166,6 +196,8 @@
 		94B9C5F0188B220700FD317A /* models */ = {
 			isa = PBXGroup;
 			children = (
+				94B8D2B5188BA4BB002E52A1 /* mapkep.h */,
+				94B8D2B6188BA4BB002E52A1 /* mapkep.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -173,6 +205,8 @@
 		94B9C5F1188B222E00FD317A /* views */ = {
 			isa = PBXGroup;
 			children = (
+				94B8D2B9188C91FA002E52A1 /* UIColorPickerView.h */,
+				94B8D2BA188C91FA002E52A1 /* UIColorPickerView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -281,9 +315,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94B9C5D1188B20FA00FD317A /* ViewController.m in Sources */,
+				94B8D2BB188C91FA002E52A1 /* UIColorPickerView.m in Sources */,
+				94B8D2CB188CA21B002E52A1 /* NSString+utils.m in Sources */,
+				94B9C5D1188B20FA00FD317A /* HomeViewController.m in Sources */,
+				94B8D2B7188BA4BB002E52A1 /* mapkep.m in Sources */,
 				94B9C5CB188B20FA00FD317A /* AppDelegate.m in Sources */,
 				94B9C5C7188B20FA00FD317A /* main.m in Sources */,
+				94B8D2C3188CA0DD002E52A1 /* NSObject+utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +330,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				94B9C5E6188B20FA00FD317A /* mapkepTests.m in Sources */,
+				94B8D2B8188BA4BB002E52A1 /* mapkep.m in Sources */,
+				94B8D2CC188CA21B002E52A1 /* NSString+utils.m in Sources */,
+				94B8D2BC188C91FA002E52A1 /* UIColorPickerView.m in Sources */,
+				94B8D2C4188CA0DD002E52A1 /* NSObject+utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +534,7 @@
 				94B9C5EB188B20FA00FD317A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		94B9C5EC188B20FA00FD317A /* Build configuration list for PBXNativeTarget "mapkepTests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +543,7 @@
 				94B9C5EE188B20FA00FD317A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
