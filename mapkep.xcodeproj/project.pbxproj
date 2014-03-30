@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		94B8D2B7188BA4BB002E52A1 /* mapkep.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2B6188BA4BB002E52A1 /* mapkep.m */; };
-		94B8D2B8188BA4BB002E52A1 /* mapkep.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2B6188BA4BB002E52A1 /* mapkep.m */; };
+		9412D66418A706E400EED4B4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9412D66318A706E400EED4B4 /* CoreData.framework */; };
+		9412D66718A7075A00EED4B4 /* MapkepModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9412D66518A7075A00EED4B4 /* MapkepModel.xcdatamodeld */; };
+		9412D66A18A70F8B00EED4B4 /* Occurance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412D66918A70F8B00EED4B4 /* Occurance.m */; };
+		9412D66D18A70F8C00EED4B4 /* Mapkep.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412D66C18A70F8C00EED4B4 /* Mapkep.m */; };
+		94155C2018CFE5F3004279FC /* StatsOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */; };
+		94155C2118CFE5F3004279FC /* StatsOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */; };
 		94B8D2BB188C91FA002E52A1 /* UIColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2BA188C91FA002E52A1 /* UIColorPickerView.m */; };
 		94B8D2BC188C91FA002E52A1 /* UIColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2BA188C91FA002E52A1 /* UIColorPickerView.m */; };
 		94B8D2C3188CA0DD002E52A1 /* NSObject+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2C2188CA0DD002E52A1 /* NSObject+utils.m */; };
@@ -29,6 +33,9 @@
 		94B9C5DC188B20FA00FD317A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B9C5BE188B20FA00FD317A /* UIKit.framework */; };
 		94B9C5E4188B20FA00FD317A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94B9C5E2188B20FA00FD317A /* InfoPlist.strings */; };
 		94B9C5E6188B20FA00FD317A /* mapkepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B9C5E5188B20FA00FD317A /* mapkepTests.m */; };
+		94FE788D18B04F3D00D2C295 /* AddMapkepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE788C18B04F3D00D2C295 /* AddMapkepViewController.m */; };
+		94FE789018B0768400D2C295 /* UIColor+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE788F18B0768400D2C295 /* UIColor+utils.m */; };
+		94FE789318B9CE9A00D2C295 /* MapkepButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE789218B9CE9A00D2C295 /* MapkepButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +49,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		94B8D2B5188BA4BB002E52A1 /* mapkep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapkep.h; sourceTree = "<group>"; };
-		94B8D2B6188BA4BB002E52A1 /* mapkep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapkep.m; sourceTree = "<group>"; };
+		9412D66318A706E400EED4B4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9412D66618A7075A00EED4B4 /* MapkepModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MapkepModel.xcdatamodel; sourceTree = "<group>"; };
+		9412D66818A70F8B00EED4B4 /* Occurance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Occurance.h; sourceTree = "<group>"; };
+		9412D66918A70F8B00EED4B4 /* Occurance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Occurance.m; sourceTree = "<group>"; };
+		9412D66B18A70F8C00EED4B4 /* Mapkep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mapkep.h; sourceTree = "<group>"; };
+		9412D66C18A70F8C00EED4B4 /* Mapkep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mapkep.m; sourceTree = "<group>"; };
+		94155C1E18CFE5F3004279FC /* StatsOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsOverviewViewController.h; sourceTree = "<group>"; };
+		94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsOverviewViewController.m; sourceTree = "<group>"; };
 		94B8D2B9188C91FA002E52A1 /* UIColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorPickerView.h; sourceTree = "<group>"; };
 		94B8D2BA188C91FA002E52A1 /* UIColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorPickerView.m; sourceTree = "<group>"; };
 		94B8D2C1188CA0DD002E52A1 /* NSObject+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+utils.h"; sourceTree = "<group>"; };
@@ -70,6 +83,12 @@
 		94B9C5E1188B20FA00FD317A /* mapkepTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mapkepTests-Info.plist"; sourceTree = "<group>"; };
 		94B9C5E3188B20FA00FD317A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94B9C5E5188B20FA00FD317A /* mapkepTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mapkepTests.m; sourceTree = "<group>"; };
+		94FE788B18B04F3C00D2C295 /* AddMapkepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMapkepViewController.h; sourceTree = "<group>"; };
+		94FE788C18B04F3D00D2C295 /* AddMapkepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMapkepViewController.m; sourceTree = "<group>"; };
+		94FE788E18B0768400D2C295 /* UIColor+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+utils.h"; sourceTree = "<group>"; };
+		94FE788F18B0768400D2C295 /* UIColor+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+utils.m"; sourceTree = "<group>"; };
+		94FE789118B9CE9A00D2C295 /* MapkepButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkepButton.h; sourceTree = "<group>"; };
+		94FE789218B9CE9A00D2C295 /* MapkepButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkepButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9412D66418A706E400EED4B4 /* CoreData.framework in Frameworks */,
 				94B9C5BD188B20FA00FD317A /* CoreGraphics.framework in Frameworks */,
 				94B9C5BF188B20FA00FD317A /* UIKit.framework in Frameworks */,
 				94B9C5BB188B20FA00FD317A /* Foundation.framework in Frameworks */,
@@ -103,6 +123,8 @@
 				94B8D2C2188CA0DD002E52A1 /* NSObject+utils.m */,
 				94B8D2C9188CA21B002E52A1 /* NSString+utils.h */,
 				94B8D2CA188CA21B002E52A1 /* NSString+utils.m */,
+				94FE788E18B0768400D2C295 /* UIColor+utils.h */,
+				94FE788F18B0768400D2C295 /* UIColor+utils.m */,
 			);
 			name = "categories and extensions";
 			sourceTree = "<group>";
@@ -129,6 +151,7 @@
 		94B9C5B9188B20FA00FD317A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9412D66318A706E400EED4B4 /* CoreData.framework */,
 				94B9C5BA188B20FA00FD317A /* Foundation.framework */,
 				94B9C5BC188B20FA00FD317A /* CoreGraphics.framework */,
 				94B9C5BE188B20FA00FD317A /* UIKit.framework */,
@@ -148,6 +171,7 @@
 				94B9C5C9188B20FA00FD317A /* AppDelegate.h */,
 				94B9C5CA188B20FA00FD317A /* AppDelegate.m */,
 				94B8D2C5188CA15F002E52A1 /* Constants.h */,
+				9412D66518A7075A00EED4B4 /* MapkepModel.xcdatamodeld */,
 				94B9C5CC188B20FA00FD317A /* Main.storyboard */,
 				94B9C5D2188B20FA00FD317A /* Images.xcassets */,
 				94B9C5C1188B20FA00FD317A /* Supporting Files */,
@@ -187,8 +211,12 @@
 		94B9C5EF188B21EA00FD317A /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				94FE788B18B04F3C00D2C295 /* AddMapkepViewController.h */,
+				94FE788C18B04F3D00D2C295 /* AddMapkepViewController.m */,
 				94B9C5CF188B20FA00FD317A /* HomeViewController.h */,
 				94B9C5D0188B20FA00FD317A /* HomeViewController.m */,
+				94155C1E18CFE5F3004279FC /* StatsOverviewViewController.h */,
+				94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -196,8 +224,10 @@
 		94B9C5F0188B220700FD317A /* models */ = {
 			isa = PBXGroup;
 			children = (
-				94B8D2B5188BA4BB002E52A1 /* mapkep.h */,
-				94B8D2B6188BA4BB002E52A1 /* mapkep.m */,
+				9412D66B18A70F8C00EED4B4 /* Mapkep.h */,
+				9412D66C18A70F8C00EED4B4 /* Mapkep.m */,
+				9412D66818A70F8B00EED4B4 /* Occurance.h */,
+				9412D66918A70F8B00EED4B4 /* Occurance.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -207,6 +237,8 @@
 			children = (
 				94B8D2B9188C91FA002E52A1 /* UIColorPickerView.h */,
 				94B8D2BA188C91FA002E52A1 /* UIColorPickerView.m */,
+				94FE789118B9CE9A00D2C295 /* MapkepButton.h */,
+				94FE789218B9CE9A00D2C295 /* MapkepButton.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -262,7 +294,7 @@
 		94B9C5AF188B20FA00FD317A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = lrcrews;
 				TargetAttributes = {
 					94B9C5D7188B20FA00FD317A = {
@@ -315,13 +347,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94FE788D18B04F3D00D2C295 /* AddMapkepViewController.m in Sources */,
+				9412D66D18A70F8C00EED4B4 /* Mapkep.m in Sources */,
 				94B8D2BB188C91FA002E52A1 /* UIColorPickerView.m in Sources */,
+				9412D66A18A70F8B00EED4B4 /* Occurance.m in Sources */,
 				94B8D2CB188CA21B002E52A1 /* NSString+utils.m in Sources */,
+				94FE789018B0768400D2C295 /* UIColor+utils.m in Sources */,
 				94B9C5D1188B20FA00FD317A /* HomeViewController.m in Sources */,
-				94B8D2B7188BA4BB002E52A1 /* mapkep.m in Sources */,
+				94FE789318B9CE9A00D2C295 /* MapkepButton.m in Sources */,
+				94155C2018CFE5F3004279FC /* StatsOverviewViewController.m in Sources */,
 				94B9C5CB188B20FA00FD317A /* AppDelegate.m in Sources */,
 				94B9C5C7188B20FA00FD317A /* main.m in Sources */,
 				94B8D2C3188CA0DD002E52A1 /* NSObject+utils.m in Sources */,
+				9412D66718A7075A00EED4B4 /* MapkepModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,10 +368,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				94B9C5E6188B20FA00FD317A /* mapkepTests.m in Sources */,
-				94B8D2B8188BA4BB002E52A1 /* mapkep.m in Sources */,
 				94B8D2CC188CA21B002E52A1 /* NSString+utils.m in Sources */,
 				94B8D2BC188C91FA002E52A1 /* UIColorPickerView.m in Sources */,
 				94B8D2C4188CA0DD002E52A1 /* NSObject+utils.m in Sources */,
+				94155C2118CFE5F3004279FC /* StatsOverviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +417,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -418,7 +455,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -476,7 +512,6 @@
 		94B9C5ED188B20FA00FD317A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/mapkep.app/mapkep";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -499,7 +534,6 @@
 		94B9C5EE188B20FA00FD317A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/mapkep.app/mapkep";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -546,6 +580,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9412D66518A7075A00EED4B4 /* MapkepModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9412D66618A7075A00EED4B4 /* MapkepModel.xcdatamodel */,
+			);
+			currentVersion = 9412D66618A7075A00EED4B4 /* MapkepModel.xcdatamodel */;
+			path = MapkepModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 94B9C5AF188B20FA00FD317A /* Project object */;
 }
