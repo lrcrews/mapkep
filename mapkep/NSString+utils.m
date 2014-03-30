@@ -31,6 +31,12 @@
 //
 - (UIColor *)toUIColor;
 {
+    //  Safety first, a lesson from Men Without Hats
+    //
+    if (self.length == 0) return [UIColor clearColor];
+    
+    //  The actual greatness
+    //
     unsigned int c;
     
     if ([self characterAtIndex:0] == '#')

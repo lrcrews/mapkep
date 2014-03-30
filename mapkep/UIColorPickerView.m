@@ -11,9 +11,10 @@
 
 #import "UIColorPickerView.h"
 
-#import "NSString+utils.h"
-
 #import "Constants.h"
+#import "MapkepButton.h"
+#import "NSString+utils.h"
+#import "UIColor+utils.h"
 
 
 #pragma mark -
@@ -27,16 +28,7 @@
 #define DEFAULT_BUTTON_STARTING_X   20.0f
 #define DEFAULT_BUTTON_STARTING_Y   5.0f
 
-//  There was a study (well there's a bunch of them) about the 'perfect' size for
-//  primary action buttons on mobile devices, afterall, we're not using a mouse or
-//  a stylus (and if you are using one of those please stop, you're being silly).
-//  While there is no one answer you'll be doing your user's a favor if they're larger.
-//  If you can get your smallest diminsion between 40 and 55 you're doing well.
-//
-#define BUTTON_HEIGHT           55.0f
-#define BUTTON_WIDTH            55.0f
-#define BUTTON_GUTTER           20.0f
-#define BUTTON_CORNER_RADIUS    20.0f
+#define BUTTON_GUTTER               20.0f
 
 //  Well that's a lot of colors.  Surely I spent hours debating the perfect chioces.
 //  Surely I researched what colors are statistically favored.
@@ -55,7 +47,25 @@
 //
 //  tldr; No, no I did not.
 //
-#define DEFAULT_UICOLORS @[ [UIColor blackColor], [UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor darkGrayColor], [UIColor grayColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor whiteColor], [UIColor yellowColor] ]
+//
+//  We meet again DEFAULT_COLORS.  After writing the above much has happened.  It's
+//  important to remember that form follow function.  It's also important to actually
+//  follow your successfull function with form.  With that in mind I now have a color
+//  scheme for the base app, black(ish) and white(ish), colors that should allow for
+//  any other color to pop up and say "hey, I'm the focus here, press me!".  You hear
+//  voices from your UI too... right?  Regardless, the next question is how to decide
+//  on button colors that go well together, and for that I will apply the cunning use
+//  of flags.
+//
+//  Old empires may have used flags to conquer far away lands, I will use them becuase
+//  I know people put a lot of thought into the colors in them.  Why should I spend
+//  time debating color theory when I can just use the wonderful work of those who
+//  know more than me?  Eventually I'll likely have one of my designer friends give
+//  this app a once over, but until then... flags.
+//
+//  To Wikipedia!
+//
+#define DEFAULT_UICOLORS @[ [UIColor blackColor], [UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor darkGrayColor], [UIColor grayColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor yellowColor] ]
 
 
 @implementation UIColorPickerView
@@ -107,21 +117,10 @@
         //  than 15 colors.  But for now...
         
         //  Let's add some UI to this UI
-        NSInteger tag = 0;
         for (UIColor * color in uicolors)
         {
-            UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-            
-            //  Let's make it pretty
-            button.frame = CGRectMake(currentX_, currentY_, BUTTON_WIDTH, BUTTON_HEIGHT);
-            button.backgroundColor = color;
-            button.layer.cornerRadius = BUTTON_CORNER_RADIUS;
-            button.layer.borderColor = UIColor.darkGrayColor.CGColor;
-            button.layer.borderWidth = 1.0f;
-            
-            //  We'll grab the tag in the IBAction so we know which color was chosen.
-            button.tag = tag;
-            tag++;
+            MapkepButton * button = [[MapkepButton alloc] initWithFrame:CGRectMake(currentX_, currentY_, BUTTON_WIDTH, BUTTON_HEIGHT)
+                                                                  color:color];
             
             //  What we want to do and when we want to do it.
             [button addTarget:self
@@ -150,11 +149,52 @@
 
 - (IBAction)colorChosen:(id)sender
 {
-    DebugLog(@"color chosen is at index: %d", [(UIButton *)sender tag]);
+    //  Let's get the button's color
+    //
+    UIColor * chosenColor = [(UIButton *)sender backgroundColor];
+    
+    //  This log statement and simple code saved me (possibly) hours.
+    //
+    //  The app was working great, I had several buttons in there and
+    //  functioning, well, functioning as much as I expected them to at
+    //  this point.  Then I added a black colored button.  Crashed.  Fine.
+    //  Fair.  Let me add a safety check to handle that (in this case a
+    //  check in 'toUIColor').  But why did it crash?  The immediate
+    //  answer is given by the console, it crashed becuase 'toUIColor'
+    //  was trying to get character at index 0 to an empty string.  So then,
+    //  why was the input string empty?  It shouldn't be, it should have
+    //  saved the hex version of the UIColor set to the button's background
+    //  color.  This means the issue should be on the saving side of things,
+    //  the side of things where a UIColor is translated to a hex value,
+    //  the side of things where something got lost in translation (and sadly
+    //  ScarJo isn't here to help).
+    //
+    //  Thanks to the simplicity of the code there's only one place to look,
+    //  'toHexValue' in UIColor+utils.  This method, though slightly edited
+    //  by me for formatting and clearer comments, is from stackoverflow.
+    //  A place where the upvoted answers are almost always well written and
+    //  explained.  Part of that explanition for this method is that it only
+    //  works for RGB colors, which are UIColors whose number of color
+    //  components is four (the extra is alpha, so really they're RGBA colors).
+    //  This log statement's chosenColor.description shows only two color
+    //  components and even states it's in the "UIDeviceWhiteColorSpace".
+    //
+    //  The bug is now obvious.  So what's the solution?  Easy.  I chant "MVP"
+    //  in my head and make an executive decision, 'eff all grayscale colors.
+    //  I just won't have any in this app for now (and possibly not ever) becuase
+    //  it's just not worth it.
+    //
+    //  Happiness.  Victory.  I'm off to press the green button.
+    //
+    DebugLog(@"\"%@\" chosen, hex value is \"%@\".", chosenColor.description, chosenColor.toHexValue);
+    
+    //  Let's tell anybody who may care about this wonderful happening
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_ColorChosen
+                                                        object:chosenColor];
 }
 
 
-#pragma mark - 
+#pragma mark -
 #pragma mark Helper McHelperson
 
 - (BOOL)defaultVersion
@@ -174,20 +214,6 @@
 //  WHAT?  NO, I MEAN, FOOTER LINKS!!
 //
 //
-//  Button sizes.  There's a nice 16px playground in there between 40
-//  and 55 (inclusive), so do what feels right.  If you're interested
-//  as to why this size range is the sweet spot you should check out
-//  Fitt's law:
-//      http://en.wikipedia.org/wiki/Fitts%27s_law
-//
-//  and the ways it's been applied in a three-dimential space:
-//      http://stackoverflow.com/questions/2843744/fitts-law-applying-it-to-touch-screens
-//
-//  or you could ask a UX designer their thoughts, I'm curious as to how
-//  many caveats they'll give before the answer.
-//
-//
-//  --------------------------------------------------------------------
 //  You can generate words such as "SPOON!!!!" in one of many different
 //  ASCII styles too:
 //      http://www.network-science.de/ascii/
@@ -212,4 +238,36 @@
 //  When you think that feature 'foo' and feature 'bar' are both needed in
 //  your first release, they aren't.  Find that core thing you think your app,
 //  site, system, whatever does, and just do it.  And then, just do it.
+//
+//
+//  --------------------------------------------------------------------
+//  Flags.  Eddie Izzard in his stand-up special 'Dressed To Kill' explained
+//  the cunning use of flags.  The English would just sail around the world
+//  planting flags in the ground.  "I claim this land for England", then
+//  *plod*, a flag has been planted, meanwhile a crowd has gathered, "You
+//  can't claim us, this is India, there's a half a billion of us living
+//  here".  "Well, do you have a flag?".  "What?  A flag?  No, what, no, we
+//  we don't need a flag, we live here!".  "Too bad, no flag no country,
+//  those are the rules!"
+//
+//  Ok, I'm going to stop paraphrasing that joke now, you should watch it
+//  though, stands up to time well, not something a lot of stand-up acts
+//  can claim.
+//
+//
+//  --------------------------------------------------------------------
+//  Simple.  "Thanks to the simplicity of the code".  Not, "thanks to the
+//  easyness of this project".  Simple and easy are often interchanged, but
+//  they really shouldn't be, especially not when talking about code.  Simple
+//  code is code that does not rely on knowledge that isn't actually needed
+//  for it's task.  It has nothing to do with how involved you're code base
+//  is.  It shouldn't matter if your project is hard or easy, it should be
+//  simple either way.
+//
+//  Semantics, right?  I'm not so sure.  Check out this fantastic video of
+//  Closure's author, , talking at a conference.  It is by far the best
+//  description of the differences between simple, easy, complex, and hard
+//  there is, and it'll make you slightly better at being an awesome software
+//  engineer.
+//      http://www.infoq.com/presentations/Simple-Made-Easy
 //
