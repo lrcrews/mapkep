@@ -18,6 +18,7 @@
 
 @interface HomeViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
+@property (nonatomic, strong) IBOutlet UICollectionView * mapkepCollectionView;
 @property (nonatomic, strong) NSArray * mapkepObjects;
 
 @end
@@ -29,7 +30,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshUI)
+                                                 name:kNotification_MapkepAdded
+                                               object:nil];
 }
 
 
@@ -41,6 +46,15 @@
     NSManagedObjectContext * context = [appDelegate managedObjectContext];
     
     [self setMapkepObjects:[Mapkep allWithManagedObjectContext:context]];
+}
+
+
+- (void)viewWillUnload:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    //  Mos Def
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -85,6 +99,15 @@
 }
 
 
+#pragma mark -
+#pragma mark Twain
+
+- (void)refreshUI
+{
+    [self.mapkepCollectionView reloadData];
+}
+
+
 #pragma mark - 
 #pragma mark UICollectionView Datasource
 
@@ -111,27 +134,46 @@
     //
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MapkepButtonCell" forIndexPath:indexPath];
     
+    DebugLog(@"the cell has %lu subviews", cell.contentView.subviews.count);
+    
+    //  Get the two subview we need from the cell
+    //
+    MapkepButton * button = nil;
+    UILabel * label = nil;
+    
+    for (UIView * view in cell.contentView.subviews)
+    {
+        if ([view isKindOfClass:MapkepButton.class])
+        {
+            button = (MapkepButton *)view;
+        }
+        else if ([view isKindOfClass:UILabel.class])
+        {
+            label = (UILabel *)view;
+        }
+    }
+    
+    //  Get the backing object for this UI
+    //
     Mapkep * mapkep = (Mapkep *)self.mapkepObjects[indexPath.row];
     
-    DebugLog(@"mapkep occurences: %lu", (unsigned long)mapkep.has_many_occurances.count);
-    
-    MapkepButton * button = [[MapkepButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, BUTTON_WIDTH, BUTTON_HEIGHT)
-                                                          color:[mapkep.hexColorCode toUIColor]];
-    
-    //  What we want to do and when we want to do it.
+    //  Get the two things together
     //
-    [button addTarget:self
-               action:@selector(buttonPressed:)
-     forControlEvents:UIControlEventTouchUpInside];
+    [button setBackgroundColor:[mapkep.hexColorCode toUIColor]];
+    [button setTag:indexPath.row];
     
-    //  How we know which mapkep to add an event to.
+    if ([button actionsForTarget:self
+                 forControlEvent:UIControlEventTouchUpInside] == NULL)
+    {
+        [button addTarget:self
+                   action:@selector(buttonPressed:)
+         forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    [label setText:[mapkep name]];
+    
+    //  Give the people what they want
     //
-    button.tag = indexPath.row;
-    
-    //  Seeing it is always nice.
-    //
-    [cell addSubview:button];
-    
     return cell;
 }
 

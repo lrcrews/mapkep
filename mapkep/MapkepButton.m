@@ -28,4 +28,17 @@
 }
 
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self)
+    {
+        self.layer.cornerRadius = BUTTON_CORNER_RADIUS;
+        self.layer.borderColor = UIColor.darkGrayColor.CGColor;
+        self.layer.borderWidth = 1.0f;
+    }
+    return self;
+}
+
+
 @end

@@ -89,6 +89,12 @@
         AlwaysLog(@"Danger Will Robinson, mapkep creation failed.");
     }
     
+    //  ... tell others what we saw here today, which
+    //  means all that's left is to...
+    //
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_MapkepAdded
+                                                        object:nil];
+    
     //  ...transition away.  Hooray!
     //
     [self dismissViewControllerAnimated:YES completion:nil];
