@@ -30,6 +30,6 @@
 @property (nonatomic, retain) Mapkep * belongs_to_mapkep;
 
 - (BOOL)save:(NSError *)error;
-- (NSString *)timeSinceLastOccerence;
+- (NSString *)relativeTimeSinceLastOccerence;
 
 @end

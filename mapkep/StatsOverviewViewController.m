@@ -109,7 +109,7 @@
     Occurance * lastOccurence = (mapkep.has_many_occurances != nil) ?
                                     mapkep.has_many_occurances.lastObject :
                                     nil;
-    NSString * occurenceText = (lastOccurence != nil) ? [lastOccurence timeSinceLastOccerence] : @"never";
+    NSString * occurenceText = (lastOccurence != nil) ? [lastOccurence relativeTimeSinceLastOccerence] : @"never";
     [(UILabel *)[cell viewWithTag:tag_LastOccurence] setText:occurenceText];
     
     
