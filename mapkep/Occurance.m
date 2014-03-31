@@ -32,5 +32,20 @@
     return true;
 }
 
+#pragma mark -
+#pragma mark Time Helpers
+
+- (NSString *)timeSinceLastOccerence;
+{
+    if (self.createdAt == nil)
+    {
+        return @"never";
+    }
+    else
+    {
+        return @"fdasf";
+    }
+}
+
 
 @end

@@ -134,7 +134,6 @@
     //
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MapkepButtonCell" forIndexPath:indexPath];
     
-    DebugLog(@"the cell has %lu subviews", cell.contentView.subviews.count);
     
     //  Get the two subview we need from the cell
     //
@@ -153,9 +152,11 @@
         }
     }
     
+    
     //  Get the backing object for this UI
     //
     Mapkep * mapkep = (Mapkep *)self.mapkepObjects[indexPath.row];
+    
     
     //  Get the two things together
     //
@@ -163,7 +164,7 @@
     [button setTag:indexPath.row];
     
     if ([button actionsForTarget:self
-                 forControlEvent:UIControlEventTouchUpInside] == NULL)
+                 forControlEvent:UIControlEventTouchUpInside] == nil)
     {
         [button addTarget:self
                    action:@selector(buttonPressed:)
@@ -171,6 +172,7 @@
     }
     
     [label setText:[mapkep name]];
+    
     
     //  Give the people what they want
     //

@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "Mapkep.h"
 #import "NSString+utils.h"
+#import "Occurance.h"
 
 
 @interface StatsOverviewViewController () <UITableViewDelegate>
@@ -88,12 +89,29 @@
     [[cell viewWithTag:tag_MapKepColor] setBackgroundColor:[mapkep.hexColorCode toUIColor]];
     
     
+    //  The Name
+    //
+    UILabel * nameLabel = (UILabel *)[cell viewWithTag:tag_MapKepTitle];
+    [nameLabel setText:[mapkep name]];
+    
+    
+    
     //  The Total
     //
     NSString * total = (mapkep.has_many_occurances != nil) ?
                             [NSString stringWithFormat:@"%lu", (unsigned long)mapkep.has_many_occurances.count] :
                             @"0";
     [(UILabel *)[cell viewWithTag:tag_TotalCount] setText:total];
+    
+    
+    //  The Last Occurence
+    //
+    Occurance * lastOccurence = (mapkep.has_many_occurances != nil) ?
+                                    mapkep.has_many_occurances.lastObject :
+                                    nil;
+    NSString * occurenceText = (lastOccurence != nil) ? [lastOccurence timeSinceLastOccerence] : @"never";
+    [(UILabel *)[cell viewWithTag:tag_LastOccurence] setText:occurenceText];
+    
     
     
     return cell;
