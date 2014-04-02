@@ -15,9 +15,9 @@
 //  While there is no one answer you'll be doing your user's a favor if they're larger.
 //  If you can get your smallest diminsion between 40 and 55 you're doing well.
 //
-#define BUTTON_CORNER_RADIUS    20.0f
-#define BUTTON_HEIGHT           55.0f
-#define BUTTON_WIDTH            55.0f
+#define BUTTON_CORNER_RADIUS    30.0f
+#define BUTTON_HEIGHT           75.0f
+#define BUTTON_WIDTH            75.0f
 
 
 @interface MapkepButton : UIButton

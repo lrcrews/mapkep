@@ -196,11 +196,11 @@
 //  good writers, directors, actors, and others.  Imagine that
 //  House of Cards talking to the camera style and general direction
 //  (from a slue of fantastic directors [I think Contact/Twister lady
-//  directed one extremely well]) with a looser action thats funny
+//  directed one extremely well]) with a looser action-that's-funny
 //  style, like a Kiss Kiss Bang Bang, for Hawkeye (as currently
 //  written by Mark Waid).  Are you imagining it?  Now add bacon.
-//  That's how good it culd be, better than ballons, kittens, babies,
-//  and others.
+//  That's how good it could be, better than ballons, kittens, babies,
+//  and other such examples.
 //
 //  So, ya, "CrossFade".
 //
@@ -213,22 +213,30 @@
 //  success label, but that's just a preference I have because I want
 //  the user to be able to read what's being shown to them.
 //
+//  I'm adding a little something to this now that I've used the app
+//  for serveral days.  This was just too subtle, I find I really
+//  want to know, for certain, that I hit the button.
+//
+//  So now the label background changes color.  It does this immediately
+//  then fades back to the normal label after a second.  Now I know
+//  I hit the button for sure.
+//
 - (void)displaySuccessMessageWithColor:(UIColor *)tappedColor
 {
+    self.successLabel.backgroundColor = tappedColor;
+    
+    self.mapkepLabel.alpha = 0.0f;
+    self.successLabel.alpha = 1.0f;
+    
     [UIView animateWithDuration:1.0
-                          delay:0
-                        options:( UIViewAnimationOptionAutoreverse | UIViewAnimationCurveEaseOut )
+                          delay:1.0
+                        options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                         self.mapkepLabel.alpha = 0.0f;
-                         self.successLabel.textColor = tappedColor;
-                         self.successLabel.alpha = 1.0f;
-                     }
-                     completion:^(BOOL finished) {
                          // Reset it
                          self.mapkepLabel.alpha = 1.0f;
                          self.successLabel.alpha = 0.0f;
-                         self.successLabel.textColor = [FONT_MAIN toUIColor];
-                     }];
+                     }
+                     completion:nil];
 }
 
 

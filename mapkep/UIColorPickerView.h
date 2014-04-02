@@ -27,7 +27,9 @@
 //  lay the ground work for that now?
 //
 - (id)initWithFrame:(CGRect)frame
-       withUIColors:(NSArray *)uicolors;
+       withUIColors:(NSArray *)uicolors
+    withButtonWidth:(CGFloat)buttonWidth
+    andButtonHeight:(CGFloat)buttonHeight;
 
 
 @end

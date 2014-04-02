@@ -36,7 +36,7 @@
                            action:@selector(textFieldFinished:)
                  forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    self.uicolorPickerView = [[UIColorPickerView alloc] initDefaultUIColorPickerAtYPoint:100.0f];
+    self.uicolorPickerView = [[UIColorPickerView alloc] initDefaultUIColorPickerAtYPoint:120.0f];
     [self.view addSubview:self.uicolorPickerView];
 }
 

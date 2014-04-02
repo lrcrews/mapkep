@@ -3,9 +3,19 @@
 //  mapkep
 //
 //  4
-//  Welcome to a picker that will consist of 50x50 buttons
+//  Welcome to a picker that will consist of buttons!
+//
+//  They're... big?  The buttons.  They're probably big.
+//  All I really know is their measurement:
+//
+//      BUTTON_WIDTH x BUTTON_HEIGHT
+//
+//  ...everytime I write something like that I question
+//  if I did it in the correct order.
 //
 //  Created by L Ryan Crews on 1/19/14.
+//                              ^
+//                              |_that's my mom's birthday.  Hi Mom!
 //  Copyright (c) 2014 lrcrews. All rights reserved.
 //
 
@@ -23,7 +33,7 @@
 //  I just played around in the story board for a minute to get the dimensions
 //  of something that feels good (or at least good enough for v1).
 //
-#define DEFAULT_HEIGHT              300.0f
+#define DEFAULT_HEIGHT              210.0f
 #define DEFAULT_WIDTH               320.0f
 #define DEFAULT_BUTTON_STARTING_X   20.0f
 #define DEFAULT_BUTTON_STARTING_Y   5.0f
@@ -49,7 +59,7 @@
 //
 //
 //  We meet again DEFAULT_COLORS.  After writing the above much has happened.  It's
-//  important to remember that form follow function.  It's also important to actually
+//  important to remember that form follows function.  It's also important to actually
 //  follow your successfull function with form.  With that in mind I now have a color
 //  scheme for the base app, black(ish) and white(ish), colors that should allow for
 //  any other color to pop up and say "hey, I'm the focus here, press me!".  You hear
@@ -65,7 +75,18 @@
 //
 //  To Wikipedia!
 //
-#define DEFAULT_UICOLORS @[ [UIColor blackColor], [UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor darkGrayColor], [UIColor grayColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor yellowColor] ]
+#define DEFAULT_UICOLORS @[ [UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor yellowColor], [UIColor brownColor], [UIColor redColor] ]
+
+
+//  TODO: v2.x?, when varying stat pages require a display in a smaller
+//          size use these.  You have the sketch somewhere.  Well I do.
+//
+#define BUTTON_HIEGHT_NORML 55.0f
+#define BUTTON_WIDTH_NORML  55.0f
+#define BUTTON_HIEGHT_SMALL 40.0f
+#define BUTTON_WIDTH_SMALL  40.0f
+#define BUTTON_HIEGHT_TINY  20.0f
+#define BUTTON_WIDTH_TINY   20.0f
 
 
 @implementation UIColorPickerView
@@ -95,15 +116,29 @@
 //  Just a float value for the y point, so I would assume the component takes
 //  up the entire width of the screen
 //
+//  Go on.
+//
+//  ...     I dunno.   ...  Fuck you.
+//
 - (id)initDefaultUIColorPickerAtYPoint:(CGFloat)y;
 {
     return [self initWithFrame:CGRectMake(0.0f, y, DEFAULT_WIDTH, DEFAULT_HEIGHT)
-                  withUIColors:DEFAULT_UICOLORS];
+                  withUIColors:DEFAULT_UICOLORS
+               withButtonWidth:BUTTON_WIDTH_NORML
+               andButtonHeight:BUTTON_HIEGHT_NORML];
 }
 
 
+//  Hmm, that note up there may be edited out later.  But I
+//  hope not.  It's always important to remember that Watson
+//  avoids saying that despite everything.  I mean really,
+//  I certainly would have cursed out Sherlock by now.  Maybe
+//  I'm just a bad person...  Hmm.
+//
 - (id)initWithFrame:(CGRect)frame
-       withUIColors:(NSArray *)uicolors;
+       withUIColors:(NSArray *)uicolors
+    withButtonWidth:(CGFloat)buttonWidth
+    andButtonHeight:(CGFloat)buttonHeight;
 {
     self = [super initWithFrame:frame];
     
@@ -114,12 +149,12 @@
         currentY_ = [self defaultVersion] ? DEFAULT_BUTTON_STARTING_Y : 8.0f;
         
         //  In V1x I might add a scroll view and a page control to allow for more
-        //  than 15 colors.  But for now...
+        //  than 14 colors.  But for now...
         
         //  Let's add some UI to this UI
         for (UIColor * color in uicolors)
         {
-            MapkepButton * button = [[MapkepButton alloc] initWithFrame:CGRectMake(currentX_, currentY_, BUTTON_WIDTH, BUTTON_HEIGHT)
+            MapkepButton * button = [[MapkepButton alloc] initWithFrame:CGRectMake(currentX_, currentY_, buttonWidth, buttonHeight)
                                                                   color:color];
             
             //  What we want to do and when we want to do it.
@@ -132,11 +167,11 @@
             
             //  Top to bottom, lbah blah hiaku, blah blah, future scrolling
             //  therefore set up for that logically now.  plus it looks cooler.
-            currentY_ += BUTTON_HEIGHT + BUTTON_GUTTER;
+            currentY_ += buttonHeight + BUTTON_GUTTER;
             if (currentY_ >= frame.size.height)
             {
                 currentY_ = [self defaultVersion] ? DEFAULT_BUTTON_STARTING_Y : 8.0f;
-                currentX_ += BUTTON_WIDTH + BUTTON_GUTTER;
+                currentX_ += buttonWidth + BUTTON_GUTTER;
             }
         }
     }
