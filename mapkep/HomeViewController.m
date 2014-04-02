@@ -224,6 +224,7 @@
 - (void)displaySuccessMessageWithColor:(UIColor *)tappedColor
 {
     self.successLabel.backgroundColor = tappedColor;
+    self.successLabel.text = [self randomAwesomeThingOneCouldEnjoy];
     
     self.mapkepLabel.alpha = 0.0f;
     self.successLabel.alpha = 1.0f;
@@ -237,6 +238,29 @@
                          self.successLabel.alpha = 0.0f;
                      }
                      completion:nil];
+}
+
+
+//  Boredom.  Apparently I have some of that.
+//
+- (NSString *)randomAwesomeThingOneCouldEnjoy
+{
+    NSArray * things = @[
+        @"chew",
+        @"galaxy quest",
+        @"firefly",
+        @"runaways",
+        @"saga",
+        @"sandman",
+        @"sherlock",
+        @"the fifth element",
+        @"top gear",
+        @"transmetropolitan",
+        @"velvet",
+        @"y the last man"
+    ];
+    
+    return things[arc4random_uniform((uint32_t)things.count)];
 }
 
 
