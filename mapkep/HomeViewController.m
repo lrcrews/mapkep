@@ -246,18 +246,41 @@
 - (NSString *)randomAwesomeThingOneCouldEnjoy
 {
     NSArray * things = @[
+        @"archer",
+        @"blackalicious",
+        @"breaking bad",
+        @"cake",
+        @"castle",
         @"chew",
-        @"galaxy quest",
+        @"death cab for cutie",
+        @"digital fortress",
+        @"doctor who",
+        @"electric six",
         @"firefly",
+        @"galaxy quest",
+        @"i, lucifer",
+        @"john dies at the end",
+        @"kate nash",
+        @"lamb",
+        @"psych",
+        @"public enemies: dueling writers",
+        @"raiders of the lost ark",
         @"runaways",
         @"saga",
         @"sandman",
         @"sherlock",
+        @"smoke & mirrors",
+        @"the dead weather",
         @"the fifth element",
+        @"the features",
+        @"the fratellis",
         @"top gear",
+        @"the phenomenauts",
+        @"the pragmatic programmer",
         @"transmetropolitan",
         @"velvet",
-        @"y the last man"
+        @"y the last man",
+        @"yeah yeah yeahs"
     ];
     
     return things[arc4random_uniform((uint32_t)things.count)];

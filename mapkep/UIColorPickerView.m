@@ -75,7 +75,12 @@
 //
 //  To Wikipedia!
 //
-#define DEFAULT_UICOLORS @[ [UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor yellowColor], [UIColor brownColor], [UIColor redColor] ]
+//#define DEFAULT_UICOLORS @[ [@"AF001D" toUIColor], [@"012498" toUIColor], [@"FCC915" toUIColor], [@"DF5E07" toUIColor], [@"278301" toUIColor], [@"FB0006" toUIColor], [@"FEF70B" toUIColor], [@"379DD6" toUIColor], [@"26A503" toUIColor], [@"000000" toUIColor], [@"FEA820" toUIColor], [@"0300A0" toUIColor] ]
+
+//  But then I thought, "shit."  There was more: "I like the normal colors better."
+//  Soooo, ya, I'm using this again, but without the duplicate colors.
+//  (always fun when you catch yourself spending time on some non-MVP aspect)
+#define DEFAULT_UICOLORS @[ [UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor greenColor], [@"696969" toUIColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor yellowColor], [@"012498" toUIColor], [@"000000" toUIColor] ]
 
 
 //  TODO: v2.x?, when varying stat pages require a display in a smaller
