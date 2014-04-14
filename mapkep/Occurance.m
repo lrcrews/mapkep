@@ -114,7 +114,7 @@
         if (hoursBetween > 2)       return @"a couple of hours ago";
         if (hoursBetween > 1.75)    return @"almost two hours ago";
         if (hoursBetween > 1.5)     return @"more than a hour and a half ago";
-        if (hoursBetween > 1.15)    return @"over a hout ago";
+        if (hoursBetween > 1.15)    return @"over a hour ago";
         if (hoursBetween > 0.85)    return @"about a hour ago";
         
         

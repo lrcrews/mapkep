@@ -17,7 +17,9 @@
 
 @interface StatsOverviewViewController () <UITableViewDelegate>
 
+@property (nonatomic, strong) NSDate * lastDataLoad;
 @property (nonatomic, strong) NSArray * mapkepObjects;
+@property (nonatomic, strong) IBOutlet UITableView * mapkepTable;
 
 @end
 
@@ -29,10 +31,42 @@
 {
     [super viewDidLoad];
 	
-    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext * context = [appDelegate managedObjectContext];
+    [self loadData];
     
-    [self setMapkepObjects:[Mapkep allWithManagedObjectContext:context]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadData)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+}
+
+
+#pragma mark -
+#pragma mark Brent Spiner
+
+//  I find myself opening the app when it's already
+//  on the stats page and wishing the 'last occurence'
+//  times were accurate.  So now they shall be damnit.
+//
+//  By the way...
+//
+//  The app is live now!  Hooray app!
+//
+//  Hey look, there's beer!  Hooray beer!
+//
+- (void)loadData
+{
+    if (self.lastDataLoad == nil
+     || [self.lastDataLoad timeIntervalSinceNow] < -300.0f)
+    {
+        AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext * context = [appDelegate managedObjectContext];
+        
+        [self setMapkepObjects:[Mapkep allWithManagedObjectContext:context]];
+        
+        self.lastDataLoad = [[NSDate alloc] init];
+        
+        [self.mapkepTable reloadData];
+    }
 }
 
 
