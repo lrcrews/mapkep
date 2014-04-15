@@ -18,7 +18,7 @@
 @interface StatsOverviewViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) NSDate * lastDataLoad;
-@property (nonatomic, strong) NSArray * mapkepObjects;
+@property (nonatomic, strong) NSMutableArray * mapkepObjects;
 @property (nonatomic, strong) IBOutlet UITableView * mapkepTable;
 
 @end
@@ -61,7 +61,7 @@
         AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
         NSManagedObjectContext * context = [appDelegate managedObjectContext];
         
-        [self setMapkepObjects:[Mapkep allWithManagedObjectContext:context]];
+        [self setMapkepObjects:[[Mapkep allWithManagedObjectContext:context] mutableCopy]];
         
         self.lastDataLoad = [[NSDate alloc] init];
         
@@ -149,6 +149,30 @@
     
     
     return cell;
+}
+
+
+//  You mean to tell me it's this easy to delete something?
+//  Shut the front door!
+//
+-  (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+ forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        Mapkep * mapkep = (Mapkep *)self.mapkepObjects[indexPath.row];
+        NSError * error;
+        if (![mapkep deleteSelf:error])
+        {
+            AlwaysLog(@"I'm a mog, half man, half dog.  I'm my own best friend!");
+        }
+        
+        [self.mapkepObjects removeObjectAtIndex:indexPath.row];
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                         withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 

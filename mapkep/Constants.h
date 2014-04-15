@@ -84,8 +84,8 @@
 
 // NOTIFICATIONS
 
-#define kNotification_ColorChosen   (@"notification_colorChosen")
-#define kNotification_MapkepAdded   (@"notification_mapkepAdded")
+#define kNotification_ColorChosen           (@"notification_colorChosen")
+#define kNotification_MapkepContextUpdated  (@"notification_mapkepContextUpdated")
 
 
 // VIEW TAGS

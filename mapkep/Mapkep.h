@@ -22,6 +22,7 @@
 
 
 - (BOOL)save:(NSError *)error;
+- (BOOL)deleteSelf:(NSError *)error;
 
 + (NSArray *)allWithManagedObjectContext:(NSManagedObjectContext *)context;
 

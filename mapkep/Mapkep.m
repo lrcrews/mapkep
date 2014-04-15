@@ -33,6 +33,26 @@
         return false;
     }
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_MapkepContextUpdated
+                                                        object:nil];
+    
+    return true;
+}
+
+
+- (BOOL)deleteSelf:(NSError *)error;
+{
+    NSManagedObjectContext * context = [self managedObjectContext];
+    [context deleteObject:self];
+    if (![context save:&error])
+    {
+        AlwaysLog(@"Delete failed: %@", [error localizedDescription]);
+        return false;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_MapkepContextUpdated
+                                                        object:nil];
+    
     return true;
 }
 

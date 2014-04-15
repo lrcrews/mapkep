@@ -33,7 +33,7 @@
 	
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refreshUI)
-                                                 name:kNotification_MapkepAdded
+                                                 name:kNotification_MapkepContextUpdated
                                                object:nil];
 }
 
