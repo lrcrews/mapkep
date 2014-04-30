@@ -11,7 +11,5 @@
 
 @interface HomeViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UILabel * mapkepLabel;
-@property (nonatomic, strong) IBOutlet UILabel * successLabel;
 
 @end

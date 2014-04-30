@@ -68,6 +68,26 @@
 //
 #define kKey_OccurenceEntityName (@"Occurance")
 
+//  You know, I really do like underscores better
+//  than camelcase.  You can read it so much quicker.
+//  I might go through and update all my stuff.  Plus,
+//  if I do all these macros and variable names with
+//  underscores and leave methods as camelcaes (as is
+//  the objective c convention) I'll be able to add
+//  more meaning to the already verbose code since the
+//  different styles will immediately point out everything
+//  as either a method or a variable.  Well maybe not
+//  cases where it could be a variable or method, but
+//  it's only one word.  There's a chance I shouldn't be
+//  coding right now...
+//
+//  Hey!  This!  It's the name to use for any segue
+//  going to the detail page of a Mapkep so we can hook
+//  into the detail controller with prepare for segue
+//  and set the Mapkep it's going to be detailing.
+//
+#define kSegue_ToMapkepDetail (@"segue_to_mapkep_detail")
+
 
 
 // LOGGING MACROS
@@ -86,22 +106,6 @@
 
 #define kNotification_ColorChosen           (@"notification_colorChosen")
 #define kNotification_MapkepContextUpdated  (@"notification_mapkepContextUpdated")
-
-
-// VIEW TAGS
-
-//  Even if I only ever reference these once there is
-//  benefit in having them defined here.  Namely, it gives
-//  us a quick place to see all the tags currently being
-//  used and, if we keep this up to date, it tells us
-//  the files they're being used in.  So, if we find we're
-//  adding new UI that needs a unique tag we can glance here
-//  and pick a number accordingly.
-
-#define tag_LastOccurence   (1337)  // StatsOverviewViewController
-#define tag_MapKepColor     (1338)  // StatsOverviewViewController
-#define tag_MapKepTitle     (1339)  // StatsOverviewViewController
-#define tag_TotalCount      (1340)  // StatsOverviewViewController
 
 
 

@@ -19,7 +19,9 @@
 @interface HomeViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) IBOutlet UICollectionView * mapkepCollectionView;
+@property (nonatomic, strong) IBOutlet UILabel * mapkepLabel;
 @property (nonatomic, strong) NSArray * mapkepObjects;
+@property (nonatomic, strong) IBOutlet UILabel * successLabel;
 
 @end
 
@@ -247,7 +249,7 @@
 {
     NSArray * things = @[
         @"archer",
-        @"blackalicious",
+        @"blackalicious - the craft",
         @"breaking bad",
         @"cake",
         @"castle",
@@ -262,6 +264,7 @@
         @"john dies at the end",
         @"kate nash",
         @"lamb",
+        @"mos def - the new danger",
         @"psych",
         @"public enemies: dueling writers",
         @"raiders of the lost ark",

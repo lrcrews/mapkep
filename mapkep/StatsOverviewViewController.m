@@ -13,6 +13,22 @@
 #import "Mapkep.h"
 #import "NSString+utils.h"
 #import "Occurance.h"
+#import "StatDetailViewController.h"
+
+
+//  I read this on the Internet, it must be true.
+//
+#define RADIAN_VALUE_FOR_45_DEGREES (0.785398163f)
+
+//  Tag values for elements in the storyboard
+//
+static int tag_DisclosureArrow = 1342;
+static int tag_LastOccurence   = 1337;
+static int tag_MapKepColorH    = 1338;
+static int tag_MapKepColorH2   = 1343;
+static int tag_MapKepColorV    = 1341;
+static int tag_MapKepTitle     = 1339;
+static int tag_TotalCount      = 1340;
 
 
 @interface StatsOverviewViewController () <UITableViewDelegate>
@@ -37,6 +53,17 @@
                                              selector:@selector(loadData)
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
+}
+
+
+//  Taking a page from UITableViewController's book
+//  and un-highlighting the selected row here.
+//
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.mapkepTable deselectRowAtIndexPath:[self.mapkepTable indexPathForSelectedRow]
+                                    animated:YES];
 }
 
 
@@ -107,7 +134,9 @@
     //  reuse identifier in our story board or else... it won't work.
     //
 	UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MapKepStatCell"];
-	
+	cell.tag = indexPath.row;
+    
+    
     Mapkep * mapkep = (Mapkep *)self.mapkepObjects[indexPath.row];
     
     
@@ -118,15 +147,26 @@
     //  may quickly see the tags already in use.
     
     
-    //  The (Color) Header
+    //  The (Color) Header/Side/Footer
     //
-    [[cell viewWithTag:tag_MapKepColor] setBackgroundColor:[mapkep.hexColorCode toUIColor]];
+    [[cell viewWithTag:tag_MapKepColorH] setBackgroundColor:[mapkep.hexColorCode toUIColor]];
+    [[cell viewWithTag:tag_MapKepColorH2] setBackgroundColor:[mapkep.hexColorCode toUIColor]];
+    [[cell viewWithTag:tag_MapKepColorV] setBackgroundColor:[mapkep.hexColorCode toUIColor]];
     
     
     //  The Name
     //
     UILabel * nameLabel = (UILabel *)[cell viewWithTag:tag_MapKepTitle];
     [nameLabel setText:[mapkep name]];
+    
+    
+    //  The Last Occurence
+    //
+    Occurance * lastOccurence = (mapkep.has_many_occurances != nil) ?
+    mapkep.has_many_occurances.lastObject :
+    nil;
+    NSString * occurenceText = (lastOccurence != nil) ? [lastOccurence relativeTimeSinceLastOccerence] : @"never";
+    [(UILabel *)[cell viewWithTag:tag_LastOccurence] setText:occurenceText];
     
     
     
@@ -138,13 +178,16 @@
     [(UILabel *)[cell viewWithTag:tag_TotalCount] setText:total];
     
     
-    //  The Last Occurence
+    //  The Disclosure Arrow
     //
-    Occurance * lastOccurence = (mapkep.has_many_occurances != nil) ?
-                                    mapkep.has_many_occurances.lastObject :
-                                    nil;
-    NSString * occurenceText = (lastOccurence != nil) ? [lastOccurence relativeTimeSinceLastOccerence] : @"never";
-    [(UILabel *)[cell viewWithTag:tag_LastOccurence] setText:occurenceText];
+    if ([cell viewWithTag:tag_DisclosureArrow] == nil)
+    {
+        UIView * disclosureArrow = [[UIView alloc] initWithFrame:CGRectMake(291.0f, 48.0f, 10.0f, 10.0f)];
+        disclosureArrow.tag = tag_DisclosureArrow;
+        disclosureArrow.backgroundColor = [UIColor whiteColor];
+        disclosureArrow.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIAN_VALUE_FOR_45_DEGREES);
+        [cell addSubview:disclosureArrow];
+    }
     
     
     
@@ -172,6 +215,28 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+
+#pragma mark -
+#pragma mark Daniel Tosh
+
+//  Seriously, he has really good segues.
+//
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
+{
+    //  So we just set up the identifier in the storyboard
+    //
+    if ([segue.identifier isEqualToString:kSegue_ToMapkepDetail])
+    {
+        //  If we're seguing b/c of it we then get the controller
+        //  it's going to and set the Mapkep it needs to display
+        //  the data.
+        //
+        StatDetailViewController * controller = (StatDetailViewController *)segue.destinationViewController;
+        controller.primaryMapkep = (Mapkep *)self.mapkepObjects[ [(UIView *)sender tag] ];
     }
 }
 

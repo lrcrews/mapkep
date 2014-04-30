@@ -24,6 +24,8 @@
 //
 //
 //  TODO: Add stat details page next, just all dates/times
+//      whelp.. I didn't stick to this for this TODO.  I got
+//          carried away with creating this GitHub-esque view
 //
 //
 //  Created by L Ryan Crews on 3/11/14.
