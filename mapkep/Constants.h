@@ -51,7 +51,7 @@
 //      this is the font used for all titles and buttons
 
 
-// Secondary Font - Helvetica(?)
+// Secondary Font - Helvetica
 //
 //      this is the font used for sentences and stats
 
@@ -86,7 +86,8 @@
 //  into the detail controller with prepare for segue
 //  and set the Mapkep it's going to be detailing.
 //
-#define kSegue_ToMapkepDetail (@"segue_to_mapkep_detail")
+#define kSegue_ToMapkepDetail   (@"segue_to_mapkep_detail")
+#define k_segue_to_history_table (@"segue_to_history_table")
 
 
 

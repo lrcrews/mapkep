@@ -10,6 +10,7 @@
 
 #import "Constants.h"
 #import "Mapkep.h"
+#import "MapkepOccurencesTableViewController.h"
 #import "NSString+utils.h"
 #import "Occurance.h"
 
@@ -25,6 +26,7 @@ static int tag_z_legend = 2337;
 @interface StatDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) NSDateFormatter * dateFormatter;
+@property (nonatomic, strong) IBOutlet UILabel * daysWithOccurencesInLast30;
 @property (nonatomic, strong) IBOutlet UICollectionView * historyCollectionView;
 @property (nonatomic, strong) IBOutlet UIScrollView * mainScrollView;
 @property (nonatomic, strong) NSMutableDictionary * occurencesByDay;
@@ -44,7 +46,10 @@ static int tag_z_legend = 2337;
     [self.view viewWithTag:tag_z_legend].backgroundColor = [self.primaryMapkep.hexColorCode toUIColor];
     
     [self createOccurencesByDayHash];
+    
+    self.daysWithOccurencesInLast30.text = [self daysWithOccurenceInPreviousX:30];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -57,6 +62,15 @@ static int tag_z_legend = 2337;
 }
 
 
+//  Create it when you need it!  ~ "Lazy Initialization"
+//
+//  This is a pattern where the creation (and in this case
+//  a configuration) isn't done until it is needed.  After
+//  the first call '_dateFormatter', the wonderful instance
+//  variable of our property dateFormatter, will be created,
+//  then every subsequent call will simply return what was
+//  made in that first call.
+//
 - (NSDateFormatter *)dateFormatter
 {
     if (_dateFormatter == nil)
@@ -121,6 +135,63 @@ static int tag_z_legend = 2337;
     int currentCount = [(NSNumber *)occurenceHours[ index ] intValue];
     currentCount++;
     occurenceHours[ index ] = [NSNumber numberWithInt:currentCount];
+}
+
+
+#pragma mark -
+#pragma mark And A Big Red Button
+
+//  This relies on self.occurencesByDay existing
+//  (so, you know, don't call it before that's built)
+//
+- (NSString *)daysWithOccurenceInPreviousX:(NSInteger)days
+{
+    BOOL dailyActivity = NO;
+    
+    NSDate * currentDate = [NSDate date];
+    NSDateComponents * dateComponents = [[NSDateComponents alloc] init];
+    
+    // We're going to say 7 days in a row out of the
+    // last 8 (counting today, but not requiring it)
+    // or 25 days total out of the last 30 is a daily
+    // habbit.
+    //
+    NSInteger days_with_occurence_count = 0;
+    for (int i = 0; i < days; i++)
+    {
+        // Update the date component's day offset
+        //
+        [dateComponents setDay:-i];
+        
+        // Make our test date so we can make a key
+        //
+        NSDate * testDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents
+                                                                          toDate:currentDate
+                                                                         options:0];
+        NSString * testKey = [self.dateFormatter stringFromDate:testDate];
+        
+        // Increment our count (if we should)
+        //
+        if (self.occurencesByDay[ testKey ] != nil)
+        {
+            days_with_occurence_count++;
+        }
+        
+        // See if it passes our critia
+        //
+        if ( (i == 6 || i == 7) && days_with_occurence_count == 7)  dailyActivity = YES;
+        if (days_with_occurence_count >= 25)                        dailyActivity = YES;
+    }
+    
+    // Let's write something
+    //
+    //  It's a daily thing
+    //
+    if (dailyActivity) return [NSString stringWithFormat:@"You've tapped this %ld different days over the previous %ld days, it's looking like a daily thing.", (long)days_with_occurence_count, (long)days];
+    
+    //  It's a 'not a daily thing' thing
+    //
+    return [NSString stringWithFormat:@"You tapped this little button %ld different days in the last %ld day.", (long)days_with_occurence_count, (long)days];
 }
 
 
@@ -219,18 +290,40 @@ static int tag_z_legend = 2337;
                                                 fromDate:date];
     //  day
     UILabel * dayLabel = (UILabel *)[cell viewWithTag:tag_day];
-    dayLabel.text = [NSString stringWithFormat:@"%d", components.day];
+    dayLabel.text = [NSString stringWithFormat:@"%ld", (long)components.day];
     //  month
     UILabel * monthLabel = (UILabel *)[cell viewWithTag:tag_month];
-    monthLabel.text = [NSString stringWithFormat:@"%d", components.month];
+    monthLabel.text = [NSString stringWithFormat:@"%ld", (long)components.month];
     //  year
     UILabel * yearLabel = (UILabel *)[cell viewWithTag:tag_year];
-    yearLabel.text = [NSString stringWithFormat:@"%d", components.year];
+    yearLabel.text = [NSString stringWithFormat:@"%ld", (long)components.year];
     
     
     // Always groups of five.
     //
     return cell;
+}
+
+
+#pragma mark - 
+#pragma mark Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
+{
+    //  So we just set up the identifier in the storyboard
+    //
+    //  ahhh.... I just copy pasted this from somewhere else
+    //  read this note while highlighting it to replace it,
+    //  and realized 'hah, I need to do that'.
+    //
+    if ([segue.identifier isEqualToString:k_segue_to_history_table])
+    {
+        //  I aim to misbehave
+        //
+        MapkepOccurencesTableViewController * controller = (MapkepOccurencesTableViewController *)segue.destinationViewController;
+        controller.occurences = [self.primaryMapkep.has_many_occurances array];
+    }
 }
 
 

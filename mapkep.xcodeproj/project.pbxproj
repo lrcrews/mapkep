@@ -13,6 +13,15 @@
 		9412D66D18A70F8C00EED4B4 /* Mapkep.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412D66C18A70F8C00EED4B4 /* Mapkep.m */; };
 		94155C2018CFE5F3004279FC /* StatsOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */; };
 		94155C2118CFE5F3004279FC /* StatsOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */; };
+		9491EE8919173F1800B89CDD /* MapkepOccurencesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9491EE8819173F1800B89CDD /* MapkepOccurencesTableViewController.m */; };
+		9491EE9619176D5E00B89CDD /* config_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9491EE9419176D5E00B89CDD /* config_button.png */; };
+		9491EE9719176D5E00B89CDD /* config_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9491EE9519176D5E00B89CDD /* config_button@2x.png */; };
+		9491EE9A191771B300B89CDD /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9491EE98191771B300B89CDD /* back_button.png */; };
+		9491EE9B191771B300B89CDD /* back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9491EE99191771B300B89CDD /* back_button@2x.png */; };
+		9491EE9E1917731000B89CDD /* back_button_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9491EE9C1917731000B89CDD /* back_button_dark.png */; };
+		9491EE9F1917731000B89CDD /* back_button_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9491EE9D1917731000B89CDD /* back_button_dark@2x.png */; };
+		9491EEA21917764300B89CDD /* history_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9491EEA01917764300B89CDD /* history_button.png */; };
+		9491EEA31917764300B89CDD /* history_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9491EEA11917764300B89CDD /* history_button@2x.png */; };
 		9498AC391904EAF2009ECDE1 /* StatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9498AC381904EAF2009ECDE1 /* StatDetailViewController.m */; };
 		94B8D2BB188C91FA002E52A1 /* UIColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2BA188C91FA002E52A1 /* UIColorPickerView.m */; };
 		94B8D2BC188C91FA002E52A1 /* UIColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D2BA188C91FA002E52A1 /* UIColorPickerView.m */; };
@@ -58,6 +67,16 @@
 		9412D66C18A70F8C00EED4B4 /* Mapkep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mapkep.m; sourceTree = "<group>"; };
 		94155C1E18CFE5F3004279FC /* StatsOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsOverviewViewController.h; sourceTree = "<group>"; };
 		94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsOverviewViewController.m; sourceTree = "<group>"; };
+		9491EE8719173F1800B89CDD /* MapkepOccurencesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkepOccurencesTableViewController.h; sourceTree = "<group>"; };
+		9491EE8819173F1800B89CDD /* MapkepOccurencesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkepOccurencesTableViewController.m; sourceTree = "<group>"; };
+		9491EE9419176D5E00B89CDD /* config_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = config_button.png; sourceTree = "<group>"; };
+		9491EE9519176D5E00B89CDD /* config_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "config_button@2x.png"; sourceTree = "<group>"; };
+		9491EE98191771B300B89CDD /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button.png; sourceTree = "<group>"; };
+		9491EE99191771B300B89CDD /* back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button@2x.png"; sourceTree = "<group>"; };
+		9491EE9C1917731000B89CDD /* back_button_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button_dark.png; sourceTree = "<group>"; };
+		9491EE9D1917731000B89CDD /* back_button_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button_dark@2x.png"; sourceTree = "<group>"; };
+		9491EEA01917764300B89CDD /* history_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history_button.png; sourceTree = "<group>"; };
+		9491EEA11917764300B89CDD /* history_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history_button@2x.png"; sourceTree = "<group>"; };
 		9498AC371904EAF2009ECDE1 /* StatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatDetailViewController.h; sourceTree = "<group>"; };
 		9498AC381904EAF2009ECDE1 /* StatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatDetailViewController.m; sourceTree = "<group>"; };
 		94B8D2B9188C91FA002E52A1 /* UIColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorPickerView.h; sourceTree = "<group>"; };
@@ -126,6 +145,29 @@
 			name = "stat detail views";
 			sourceTree = "<group>";
 		};
+		9491EE8A191769CF00B89CDD /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				9491EE8B191769DA00B89CDD /* header buttons */,
+			);
+			name = assets;
+			sourceTree = "<group>";
+		};
+		9491EE8B191769DA00B89CDD /* header buttons */ = {
+			isa = PBXGroup;
+			children = (
+				9491EE9C1917731000B89CDD /* back_button_dark.png */,
+				9491EE9D1917731000B89CDD /* back_button_dark@2x.png */,
+				9491EE98191771B300B89CDD /* back_button.png */,
+				9491EE99191771B300B89CDD /* back_button@2x.png */,
+				9491EE9419176D5E00B89CDD /* config_button.png */,
+				9491EE9519176D5E00B89CDD /* config_button@2x.png */,
+				9491EEA01917764300B89CDD /* history_button.png */,
+				9491EEA11917764300B89CDD /* history_button@2x.png */,
+			);
+			name = "header buttons";
+			sourceTree = "<group>";
+		};
 		94B8D2C0188CA0AF002E52A1 /* categories and extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +215,7 @@
 		94B9C5C0188B20FA00FD317A /* mapkep */ = {
 			isa = PBXGroup;
 			children = (
+				9491EE8A191769CF00B89CDD /* assets */,
 				94B8D2C0188CA0AF002E52A1 /* categories and extensions */,
 				94B9C5EF188B21EA00FD317A /* controllers */,
 				94B9C5F0188B220700FD317A /* models */,
@@ -225,6 +268,8 @@
 				94FE788C18B04F3D00D2C295 /* AddMapkepViewController.m */,
 				94B9C5CF188B20FA00FD317A /* HomeViewController.h */,
 				94B9C5D0188B20FA00FD317A /* HomeViewController.m */,
+				9491EE8719173F1800B89CDD /* MapkepOccurencesTableViewController.h */,
+				9491EE8819173F1800B89CDD /* MapkepOccurencesTableViewController.m */,
 				9498AC371904EAF2009ECDE1 /* StatDetailViewController.h */,
 				9498AC381904EAF2009ECDE1 /* StatDetailViewController.m */,
 				94155C1E18CFE5F3004279FC /* StatsOverviewViewController.h */,
@@ -342,8 +387,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9491EE9E1917731000B89CDD /* back_button_dark.png in Resources */,
 				94B9C5D3188B20FA00FD317A /* Images.xcassets in Resources */,
 				94B9C5C5188B20FA00FD317A /* InfoPlist.strings in Resources */,
+				9491EE9F1917731000B89CDD /* back_button_dark@2x.png in Resources */,
+				9491EE9619176D5E00B89CDD /* config_button.png in Resources */,
+				9491EE9B191771B300B89CDD /* back_button@2x.png in Resources */,
+				9491EEA21917764300B89CDD /* history_button.png in Resources */,
+				9491EE9719176D5E00B89CDD /* config_button@2x.png in Resources */,
+				9491EEA31917764300B89CDD /* history_button@2x.png in Resources */,
+				9491EE9A191771B300B89CDD /* back_button.png in Resources */,
 				94B9C5CE188B20FA00FD317A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,6 +421,7 @@
 				9412D66D18A70F8C00EED4B4 /* Mapkep.m in Sources */,
 				94B8D2BB188C91FA002E52A1 /* UIColorPickerView.m in Sources */,
 				9412D66A18A70F8B00EED4B4 /* Occurance.m in Sources */,
+				9491EE8919173F1800B89CDD /* MapkepOccurencesTableViewController.m in Sources */,
 				94B8D2CB188CA21B002E52A1 /* NSString+utils.m in Sources */,
 				94FE789018B0768400D2C295 /* UIColor+utils.m in Sources */,
 				94B9C5D1188B20FA00FD317A /* HomeViewController.m in Sources */,
@@ -511,7 +565,7 @@
 				GCC_PREFIX_HEADER = "mapkep/mapkep-Prefix.pch";
 				INFOPLIST_FILE = "mapkep/mapkep-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E15CAAB2-9001-4CFB-91F7-445285E7D7CA";
+				PROVISIONING_PROFILE = "2EE0064E-FC70-4DC5-8831-23736CDD904C";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -527,7 +581,7 @@
 				GCC_PREFIX_HEADER = "mapkep/mapkep-Prefix.pch";
 				INFOPLIST_FILE = "mapkep/mapkep-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E15CAAB2-9001-4CFB-91F7-445285E7D7CA";
+				PROVISIONING_PROFILE = "2EE0064E-FC70-4DC5-8831-23736CDD904C";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
