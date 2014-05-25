@@ -15,12 +15,27 @@
 #import "Occurance.h"
 
 
+
+// TODO:
+//  need to break out each view into a custom view to allow for
+//  easy adding / removing of stats views from the community.
+//  Along with any performance requirements they must also be
+//  implemented in such a way that they have a title label
+//  called "titleLabel" so that a single call below may set the
+//  color of that label to the MapKep color (to help the user
+//  remember which detail section they're in).
+//
+//  and you know, actually externalize your own shit down there.
+
+
+
 //  Tag values for elements in the storyboard
 //
 static int tag_day      = 1337;
 static int tag_month    = 1338;
 static int tag_year     = 1339;
 static int tag_z_legend = 2337;
+static int tag_z_title  = 2338;
 
 
 @interface StatDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -42,7 +57,7 @@ static int tag_z_legend = 2337;
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [self.primaryMapkep.hexColorCode toUIColor];
+    ((UILabel *)[self.view viewWithTag:tag_z_title]).textColor = [self.primaryMapkep.hexColorCode toUIColor];
     [self.view viewWithTag:tag_z_legend].backgroundColor = [self.primaryMapkep.hexColorCode toUIColor];
     
     [self createOccurencesByDayHash];
