@@ -1,28 +1,29 @@
 //
-//  AddMapkepViewController.m
+//  AddEditMapkepViewController.m
 //  mapkep
 //
 //  Created by L Ryan Crews on 2/15/14.
 //  Copyright (c) 2014 lrcrews. All rights reserved.
 //
 
-#import "AddMapkepViewController.h"
+#import "AddEditMapkepViewController.h"
 
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "Mapkep.h"
+#import "NSString+utils.h"
 #import "UIColorPickerView.h"
 #import "UIColor+utils.h"
 
 
-@interface AddMapkepViewController ()
+@interface AddEditMapkepViewController ()
 
 @property (nonatomic, strong) UIColorPickerView * uicolorPickerView;
 
 @end
 
 
-@implementation AddMapkepViewController
+@implementation AddEditMapkepViewController
 
 
 #pragma mark -
@@ -38,6 +39,18 @@
     
     self.uicolorPickerView = [[UIColorPickerView alloc] initDefaultUIColorPickerAtYPoint:120.0f];
     [self.view addSubview:self.uicolorPickerView];
+    
+    self.addButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    if (self.mapkep != nil)
+    {
+        self.nameTextField.text = self.mapkep.name;
+        self.addButton.titleLabel.text = @"UPDATE!";
+        self.addButton.backgroundColor = [self.mapkep.hexColorCode toUIColor];
+    }
+    else
+    {
+        self.addButton.titleLabel.text = @"ADD!";
+    }
 }
 
 
@@ -71,20 +84,23 @@
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext * context = [appDelegate managedObjectContext];
     
-    //  ...create a new instance of our object that knows how
+    //  ...create/update the instance of our object that knows how
     //  to save itself so we can...
     //
-    Mapkep * newMapkep = [NSEntityDescription insertNewObjectForEntityForName:kKey_MapkepEntityName
-                                                       inManagedObjectContext:context];
-    newMapkep.name = self.nameTextField.text;
-    newMapkep.hexColorCode = [self.addButton.backgroundColor toHexValue];
+    if (self.mapkep == nil)
+    {
+        self.mapkep = [NSEntityDescription insertNewObjectForEntityForName:kKey_MapkepEntityName
+                                                    inManagedObjectContext:context];
+    }
+    self.mapkep.name = self.nameTextField.text;
+    self.mapkep.hexColorCode = [self.addButton.backgroundColor toHexValue];
     
-    DebugLog(@"Adding mapkep with name \"%@\" and color \"%@\"", newMapkep.name, newMapkep.hexColorCode);
+    DebugLog(@"Adding/Updating mapkep with name \"%@\" and color \"%@\"", self.mapkep.name, self.mapkep.hexColorCode);
     
     //  ...you know... save it.  Then we can...
     //
     NSError * error;
-    if (![newMapkep save:error])
+    if (![self.mapkep save:error])
     {
         AlwaysLog(@"Danger Will Robinson, mapkep creation failed.");
     }
@@ -138,7 +154,7 @@
     //  it is a fantastic read with great art (from various artists).
     //  Then There's "I, Lucifer" from Glen Duncan.  A proper book.
     //  It tells the tale of the tailed fallen angel as he posses
-    //  a writer... Glen Duncan.  Fun.
+    //  as a writer... Glen Duncan.  Fun.
     
     
     //  ...transition away.  Hooray!

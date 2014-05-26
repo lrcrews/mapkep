@@ -8,6 +8,7 @@
 
 #import "StatDetailViewController.h"
 
+#import "AddEditMapkepViewController.h"
 #import "Constants.h"
 #import "Mapkep.h"
 #import "MapkepOccurencesTableViewController.h"
@@ -82,10 +83,13 @@ static int tag_z2_title = 2339;
 {
     [super viewDidAppear:animated];
     
-    [self.historyCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.occurencesByDayKeys.count - 1
-                                                                           inSection:0]
-                                       atScrollPosition:UICollectionViewScrollPositionLeft
-                                               animated:YES];
+    if (self.occurencesByDay.count > 1)
+    {
+        [self.historyCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.occurencesByDayKeys.count - 1
+                                                                               inSection:0]
+                                           atScrollPosition:UICollectionViewScrollPositionLeft
+                                                   animated:YES];
+    }
 }
 
 
@@ -386,7 +390,7 @@ static int tag_z2_title = 2339;
 {
     //  So we just set up the identifier in the storyboard
     //
-    //  ahhh.... I just copy pasted this from somewhere else
+    //  ahhh.... I just copy-pasted this from somewhere else
     //  read this note while highlighting it to replace it,
     //  and realized 'hah, I need to do that'.
     //
@@ -396,6 +400,16 @@ static int tag_z2_title = 2339;
         //
         MapkepOccurencesTableViewController * controller = (MapkepOccurencesTableViewController *)segue.destinationViewController;
         controller.occurences = [self.primaryMapkep.has_many_occurances array];
+    }
+    else if ([segue.identifier isEqualToString:k_segue_to_edit_page])
+    {
+        //  The next time you decide to stab me in the back,
+        //  have the guts to do it to my face.
+        //
+        //  ~ Cap'n Mal
+        //
+        AddEditMapkepViewController * controller = (AddEditMapkepViewController *)segue.destinationViewController;
+        controller.mapkep = self.primaryMapkep;
     }
 }
 

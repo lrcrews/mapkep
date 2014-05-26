@@ -53,6 +53,11 @@ static int tag_TotalCount      = 1340;
                                              selector:@selector(loadData)
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshUI)
+                                                 name:kNotification_MapkepContextUpdated
+                                               object:nil];
 }
 
 
@@ -64,6 +69,24 @@ static int tag_TotalCount      = 1340;
     [super viewWillAppear:animated];
     [self.mapkepTable deselectRowAtIndexPath:[self.mapkepTable indexPathForSelectedRow]
                                     animated:YES];
+}
+
+
+- (void)viewWillUnload:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    //  The New Danger
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark -
+#pragma mark Edgar Wright off of Ant Man?!?!?!!
+
+- (void)refreshUI
+{
+    [self.mapkepTable reloadData];
 }
 
 

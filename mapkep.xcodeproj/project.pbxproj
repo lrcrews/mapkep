@@ -43,7 +43,7 @@
 		94B9C5DC188B20FA00FD317A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B9C5BE188B20FA00FD317A /* UIKit.framework */; };
 		94B9C5E4188B20FA00FD317A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94B9C5E2188B20FA00FD317A /* InfoPlist.strings */; };
 		94B9C5E6188B20FA00FD317A /* mapkepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B9C5E5188B20FA00FD317A /* mapkepTests.m */; };
-		94FE788D18B04F3D00D2C295 /* AddMapkepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE788C18B04F3D00D2C295 /* AddMapkepViewController.m */; };
+		94FE788D18B04F3D00D2C295 /* AddEditMapkepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE788C18B04F3D00D2C295 /* AddEditMapkepViewController.m */; };
 		94FE789018B0768400D2C295 /* UIColor+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE788F18B0768400D2C295 /* UIColor+utils.m */; };
 		94FE789318B9CE9A00D2C295 /* MapkepButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE789218B9CE9A00D2C295 /* MapkepButton.m */; };
 /* End PBXBuildFile section */
@@ -105,8 +105,8 @@
 		94B9C5E1188B20FA00FD317A /* mapkepTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mapkepTests-Info.plist"; sourceTree = "<group>"; };
 		94B9C5E3188B20FA00FD317A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94B9C5E5188B20FA00FD317A /* mapkepTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mapkepTests.m; sourceTree = "<group>"; };
-		94FE788B18B04F3C00D2C295 /* AddMapkepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMapkepViewController.h; sourceTree = "<group>"; };
-		94FE788C18B04F3D00D2C295 /* AddMapkepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMapkepViewController.m; sourceTree = "<group>"; };
+		94FE788B18B04F3C00D2C295 /* AddEditMapkepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEditMapkepViewController.h; sourceTree = "<group>"; };
+		94FE788C18B04F3D00D2C295 /* AddEditMapkepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEditMapkepViewController.m; sourceTree = "<group>"; };
 		94FE788E18B0768400D2C295 /* UIColor+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+utils.h"; sourceTree = "<group>"; };
 		94FE788F18B0768400D2C295 /* UIColor+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+utils.m"; sourceTree = "<group>"; };
 		94FE789118B9CE9A00D2C295 /* MapkepButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkepButton.h; sourceTree = "<group>"; };
@@ -264,8 +264,8 @@
 		94B9C5EF188B21EA00FD317A /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				94FE788B18B04F3C00D2C295 /* AddMapkepViewController.h */,
-				94FE788C18B04F3D00D2C295 /* AddMapkepViewController.m */,
+				94FE788B18B04F3C00D2C295 /* AddEditMapkepViewController.h */,
+				94FE788C18B04F3D00D2C295 /* AddEditMapkepViewController.m */,
 				94B9C5CF188B20FA00FD317A /* HomeViewController.h */,
 				94B9C5D0188B20FA00FD317A /* HomeViewController.m */,
 				9491EE8719173F1800B89CDD /* MapkepOccurencesTableViewController.h */,
@@ -416,7 +416,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94FE788D18B04F3D00D2C295 /* AddMapkepViewController.m in Sources */,
+				94FE788D18B04F3D00D2C295 /* AddEditMapkepViewController.m in Sources */,
 				9498AC391904EAF2009ECDE1 /* StatDetailViewController.m in Sources */,
 				9412D66D18A70F8C00EED4B4 /* Mapkep.m in Sources */,
 				94B8D2BB188C91FA002E52A1 /* UIColorPickerView.m in Sources */,
