@@ -28,6 +28,11 @@
 //  and you know, actually externalize your own shit down there.
 
 
+// TODO:
+//  with the above done, insert a seperator between each stat
+//  view.  a 10px tall section, with a 2px tall 'black' separator.
+
+
 
 //  Tag values for elements in the storyboard
 //
@@ -36,13 +41,17 @@ static int tag_month    = 1338;
 static int tag_year     = 1339;
 static int tag_z_legend = 2337;
 static int tag_z_title  = 2338;
+static int tag_z2_title = 2339;
 
 
 @interface StatDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) NSDateFormatter * dateFormatter;
+@property (nonatomic, strong) NSDateFormatter * dateAndTimeFormatter;
 @property (nonatomic, strong) IBOutlet UILabel * daysWithOccurencesInLast30;
 @property (nonatomic, strong) IBOutlet UICollectionView * historyCollectionView;
+@property (nonatomic, strong) IBOutlet UILabel * lastLastTimeLabel;
+@property (nonatomic, strong) IBOutlet UILabel * lastTimeLabel;
 @property (nonatomic, strong) IBOutlet UIScrollView * mainScrollView;
 @property (nonatomic, strong) NSMutableDictionary * occurencesByDay;
 @property (nonatomic, strong) NSMutableArray * occurencesByDayKeys;
@@ -58,11 +67,14 @@ static int tag_z_title  = 2338;
     [super viewDidLoad];
     
     ((UILabel *)[self.view viewWithTag:tag_z_title]).textColor = [self.primaryMapkep.hexColorCode toUIColor];
+    ((UILabel *)[self.view viewWithTag:tag_z2_title]).textColor = [self.primaryMapkep.hexColorCode toUIColor];
     [self.view viewWithTag:tag_z_legend].backgroundColor = [self.primaryMapkep.hexColorCode toUIColor];
     
     [self createOccurencesByDayHash];
     
     self.daysWithOccurencesInLast30.text = [self daysWithOccurenceInPreviousX:30];
+    self.lastTimeLabel.text = [self theLastTime];
+    self.lastLastTimeLabel.text = [self theLastLastTime];
 }
 
 
@@ -77,7 +89,7 @@ static int tag_z_title  = 2338;
 }
 
 
-//  Create it when you need it!  ~ "Lazy Initialization"
+//  "Create it when you need it!"  ~ Lazy Initialization
 //
 //  This is a pattern where the creation (and in this case
 //  a configuration) isn't done until it is needed.  After
@@ -95,6 +107,18 @@ static int tag_z_title  = 2338;
     }
     
     return _dateFormatter;
+}
+
+
+- (NSDateFormatter *)dateAndTimeFormatter
+{
+    if (_dateAndTimeFormatter == nil)
+    {
+        _dateAndTimeFormatter = [[NSDateFormatter alloc] init];
+        [_dateAndTimeFormatter setDateFormat:@"MMM d, yyyy - h:mm a"];
+    }
+    
+    return _dateAndTimeFormatter;
 }
 
 
@@ -207,6 +231,40 @@ static int tag_z_title  = 2338;
     //  It's a 'not a daily thing' thing
     //
     return [NSString stringWithFormat:@"You tapped this little button %ld different days in the last %ld day.", (long)days_with_occurence_count, (long)days];
+}
+
+
+- (NSString *)theLastTime
+{
+    if (self.primaryMapkep.has_many_occurances.count > 0)
+    {
+        Occurance * lastOccurence = self.primaryMapkep.has_many_occurances.lastObject;
+        return [NSString stringWithFormat:@"The last time you tapped this button was %@", [self.dateAndTimeFormatter stringFromDate:lastOccurence.createdAt]];
+    }
+    else
+    {
+        return @"You've never tapped this button.";
+    }
+}
+
+
+- (NSString *)theLastLastTime
+{
+    NSInteger occurenceCount = self.primaryMapkep.has_many_occurances.count;
+    
+    if (occurenceCount > 1)
+    {
+        Occurance * lastLastOccurence = self.primaryMapkep.has_many_occurances[ occurenceCount - 2 ];
+        return [NSString stringWithFormat:@"The last time you tapped this, before the last time you tapped this, was %@", [self.dateAndTimeFormatter stringFromDate:lastLastOccurence.createdAt]];
+    }
+    else if (occurenceCount == 1)
+    {
+        return @"You've only tapped this button once.";
+    }
+    else
+    {
+        return @"";
+    }
 }
 
 
