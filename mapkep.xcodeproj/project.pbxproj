@@ -38,7 +38,6 @@
 		94B9C5E6188B20FA00FD317A /* mapkepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B9C5E5188B20FA00FD317A /* mapkepTests.m */; };
 		94FE788D18B04F3D00D2C295 /* AddMapkepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE788C18B04F3D00D2C295 /* AddMapkepViewController.m */; };
 		94FE789018B0768400D2C295 /* UIColor+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE788F18B0768400D2C295 /* UIColor+utils.m */; };
-		94FE789318B9CE9A00D2C295 /* MapkepButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE789218B9CE9A00D2C295 /* MapkepButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,8 +94,6 @@
 		94FE788C18B04F3D00D2C295 /* AddMapkepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMapkepViewController.m; sourceTree = "<group>"; };
 		94FE788E18B0768400D2C295 /* UIColor+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+utils.h"; sourceTree = "<group>"; };
 		94FE788F18B0768400D2C295 /* UIColor+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+utils.m"; sourceTree = "<group>"; };
-		94FE789118B9CE9A00D2C295 /* MapkepButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkepButton.h; sourceTree = "<group>"; };
-		94FE789218B9CE9A00D2C295 /* MapkepButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkepButton.m; sourceTree = "<group>"; };
 		D1ADDC5B8FC24D5C9C404D0F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -286,8 +283,6 @@
 			isa = PBXGroup;
 			children = (
 				94323108190B8B26003A918B /* stat detail views */,
-				94FE789118B9CE9A00D2C295 /* MapkepButton.h */,
-				94FE789218B9CE9A00D2C295 /* MapkepButton.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -443,7 +438,6 @@
 				94B8D2CB188CA21B002E52A1 /* NSString+utils.m in Sources */,
 				94FE789018B0768400D2C295 /* UIColor+utils.m in Sources */,
 				94B9C5D1188B20FA00FD317A /* HomeViewController.m in Sources */,
-				94FE789318B9CE9A00D2C295 /* MapkepButton.m in Sources */,
 				94155C2018CFE5F3004279FC /* StatsOverviewViewController.m in Sources */,
 				94B9C5CB188B20FA00FD317A /* AppDelegate.m in Sources */,
 				94B9C5C7188B20FA00FD317A /* main.m in Sources */,

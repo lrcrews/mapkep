@@ -11,17 +11,19 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "Mapkep.h"
-#import "MapkepButton.h"
 #import "NSString+FontAwesome.h"
 #import "NSString+utils.h"
 #import "Occurance.h"
 
 
+#define FA_ICONS_FONT   [UIFont fontWithName:@"FontAwesome" size:100.0f];
+
+
 //  Tag values for elements in the storyboard
 //
-static int tag_add              = 1337;
-static int tag_remove           = 1338;
-static int tag_stats            = 1339;
+static int tag_add      = 1337;
+static int tag_remove   = 1338;
+static int tag_stats    = 1339;
 
 
 //  Cyborgs can see who they want to see
@@ -193,14 +195,14 @@ static int tag_stats            = 1339;
     
     //  Get the two subview we need from the cell
     //
-    MapkepButton * button = nil;
+    UIButton * button = nil;
     UILabel * label = nil;
     
     for (UIView * view in cell.contentView.subviews)
     {
-        if ([view isKindOfClass:MapkepButton.class])
+        if ([view isKindOfClass:UIButton.class])
         {
-            button = (MapkepButton *)view;
+            button = (UIButton *)view;
         }
         else if ([view isKindOfClass:UILabel.class])
         {
@@ -216,7 +218,14 @@ static int tag_stats            = 1339;
     
     //  Get the two things together
     //
-    [button setBackgroundColor:[mapkep.hexColorCode toUIColor]];
+    button.titleLabel.font = FA_ICONS_FONT;
+    
+    [button setTitle:[NSString awesomeIcon:(int)mapkep.faUInt]
+            forState:UIControlStateNormal];
+    
+    [button setTitleColor:[mapkep.hexColorCode toUIColor]
+                 forState:UIControlStateNormal];
+    
     [button setTag:indexPath.row];
     
     if ([button actionsForTarget:self
@@ -228,6 +237,7 @@ static int tag_stats            = 1339;
     }
     
     [label setText:[mapkep name]];
+    [label setTextColor:[mapkep.hexColorCode toUIColor]];
     
     
     //  Give the people what they want

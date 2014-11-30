@@ -31,7 +31,7 @@
 @property (nonatomic, strong) IBOutlet UICollectionView * mapkepCollectionView;
 @property (nonatomic, strong) IBOutlet UITextField * nameTextField;
 
-@property NSUInteger chosenIconIntCode;
+@property (nonatomic) int32_t chosenIconIntCode;
 
 @end
 

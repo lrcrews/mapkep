@@ -15,7 +15,7 @@
 
 @interface Mapkep : NSManagedObject
 
-@property NSUInteger faUInt;
+@property (nonatomic) int32_t faUInt;
 @property (nonatomic, retain) NSString * hexColorCode;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * ordinal;
