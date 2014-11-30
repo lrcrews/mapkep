@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>C0489A9E-23B1-4FBD-9935-C36BE88D2411</string>
+	<string>66681460-4AF5-40E5-9E7F-48E36882AFCB</string>
 	<key>IDESourceControlProjectName</key>
 	<string>mapkep</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>https://github.com/lrcrews/mapkep.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>mapkep.xcodeproj</string>
+	<string>mapkep.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>70F0E8ED3A7B32EA4EE0227A259D1D6FECA00146</key>
-		<string>../..</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/lrcrews/mapkep.git</string>

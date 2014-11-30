@@ -12,10 +12,20 @@
 #import "Constants.h"
 #import "Mapkep.h"
 #import "MapkepButton.h"
+#import "NSString+FontAwesome.h"
 #import "NSString+utils.h"
 #import "Occurance.h"
 
 
+//  Tag values for elements in the storyboard
+//
+static int tag_add              = 1337;
+static int tag_remove           = 1338;
+static int tag_stats            = 1339;
+
+
+//  Cyborgs can see who they want to see
+//
 @interface HomeViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) IBOutlet UICollectionView * mapkepCollectionView;
@@ -26,6 +36,8 @@
 @end
 
 
+//  It's true
+//
 @implementation HomeViewController
 
 
@@ -37,6 +49,48 @@
                                              selector:@selector(refreshUI)
                                                  name:kNotification_MapkepContextUpdated
                                                object:nil];
+    
+    // Set up the non-mapkep buttons
+    
+    UIFont * fa_font = [UIFont fontWithName:@"FontAwesome"
+                                      size:36.0f];
+    
+    UIButton * add_button = (UIButton *)[self.view viewWithTag:tag_add];
+    UIButton * remove_button = (UIButton *)[self.view viewWithTag:tag_remove];
+    UIButton * stats_button = (UIButton *)[self.view viewWithTag:tag_stats];
+    
+    // the left button (remove mapkep)
+    
+    remove_button.titleLabel.font = fa_font;
+    
+    [remove_button setTitle:[NSString awesomeIcon:FaMinus]
+                   forState:UIControlStateNormal];
+    
+    CALayer * remove_layer = [remove_button layer];
+    remove_layer.borderWidth = 1.0f;
+    remove_layer.borderColor = [COLOR_1 toUIColor].CGColor;
+    
+    // the middle button (add mapkep)
+    
+    add_button.titleLabel.font = fa_font;
+    
+    [add_button setTitle:[NSString awesomeIcon:FaPlus]
+                forState:UIControlStateNormal];
+    
+    CALayer * add_layer = [add_button layer];
+    add_layer.borderWidth = 1.0f;
+    add_layer.borderColor = [COLOR_1 toUIColor].CGColor;
+    
+    // the right button (occurence stats)
+    
+    stats_button.titleLabel.font = fa_font;
+    
+    [stats_button setTitle:[NSString awesomeIcon:FaBarChartO]
+                  forState:UIControlStateNormal];
+    
+    CALayer * stats_layer = [stats_button layer];
+    stats_layer.borderWidth = 1.0f;
+    stats_layer.borderColor = [COLOR_1 toUIColor].CGColor;
 }
 
 
@@ -277,9 +331,9 @@
         @"the fifth element",
         @"the features",
         @"the fratellis",
-        @"top gear",
         @"the phenomenauts",
         @"the pragmatic programmer",
+        @"top gear",
         @"transmetropolitan",
         @"velvet",
         @"y the last man",

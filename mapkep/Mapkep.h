@@ -15,6 +15,7 @@
 
 @interface Mapkep : NSManagedObject
 
+@property NSUInteger faUInt;
 @property (nonatomic, retain) NSString * hexColorCode;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * ordinal;
@@ -25,6 +26,9 @@
 - (BOOL)deleteSelf:(NSError *)error;
 
 + (NSArray *)allWithManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (NSString *)defaultColorAsHexString;
++ (NSUInteger)defaultFAUInt;
 
 
 @end
