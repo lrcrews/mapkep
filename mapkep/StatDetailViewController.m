@@ -51,9 +51,11 @@ static int tag_z2_title = 2339;
 @property (nonatomic, strong) NSDateFormatter * dateAndTimeFormatter;
 @property (nonatomic, strong) IBOutlet UILabel * daysWithOccurencesInLast30;
 @property (nonatomic, strong) IBOutlet UICollectionView * historyCollectionView;
+@property (nonatomic, strong) IBOutlet UILabel * iconLabel;
 @property (nonatomic, strong) IBOutlet UILabel * lastLastTimeLabel;
 @property (nonatomic, strong) IBOutlet UILabel * lastTimeLabel;
 @property (nonatomic, strong) IBOutlet UIScrollView * mainScrollView;
+@property (nonatomic, strong) IBOutlet UILabel * nameLabel;
 @property (nonatomic, strong) NSMutableDictionary * occurencesByDay;
 @property (nonatomic, strong) NSMutableArray * occurencesByDayKeys;
 
@@ -79,6 +81,16 @@ static int tag_z2_title = 2339;
     self.daysWithOccurencesInLast30.text = [self daysWithOccurenceInPreviousX:30];
     self.lastTimeLabel.text = [self theLastTime];
     self.lastLastTimeLabel.text = [self theLastLastTime];
+    
+    
+    // Set the icon and the name
+    
+    self.nameLabel.text = self.primaryMapkep.name;
+    
+    UIFont * fa_font = FA_ICONS_FONT_THIRD_SIZE;
+    
+    self.iconLabel.font = fa_font;
+    self.iconLabel.text = [NSString awesomeIcon:self.primaryMapkep.faUInt];
     
     
     // Underline our back button text

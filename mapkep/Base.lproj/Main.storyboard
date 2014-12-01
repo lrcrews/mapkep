@@ -229,7 +229,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8zC-kk-0cw" userLabel="Top Stuff">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SP1-gE-Cr1" userLabel="Button - &lt; (back)">
                                         <rect key="frame" x="16" y="28" width="50" height="50"/>
@@ -259,7 +259,7 @@
                                         <rect key="frame" x="204" y="25" width="108" height="55"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
-                                                <fragment content="view all">
+                                                <fragment content="taps">
                                                     <attributes>
                                                         <color key="NSColor" red="0.066666666669999999" green="0.5450980392" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <font key="NSFont" size="32" name="Helvetica"/>
@@ -271,62 +271,69 @@
                                             <segue destination="BQm-R5-rWy" kind="modal" identifier="segue_to_history_table" modalTransitionStyle="partialCurl" id="0js-MA-ZHZ"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="=]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYe-MX-k6k">
+                                        <rect key="frame" x="262" y="75" width="50" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="i'm a hunter" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2i-4c-fqo">
+                                        <rect key="frame" x="23" y="85" width="238" height="31"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="szP-hr-UGw">
-                                <rect key="frame" x="0.0" y="86" width="320" height="500"/>
+                                <rect key="frame" x="0.0" y="124" width="320" height="444"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a4Y-vk-aVg" userLabel="History View">
-                                        <rect key="frame" x="0.0" y="-19" width="320" height="150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="49n-df-sFL" userLabel="Lgend View">
-                                                <rect key="frame" x="250" y="42" width="70" height="99"/>
+                                                <rect key="frame" x="250" y="20" width="70" height="99"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4xv-HZ-tYZ">
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <view tag="2337" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="668-ZG-x66">
+                                                        <rect key="frame" x="8" y="58" width="14" height="14"/>
+                                                        <color key="backgroundColor" red="0.33265848529999997" green="0.83992346939999996" blue="0.27590391390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vFN-fL-CAB">
+                                                        <rect key="frame" x="8" y="17" width="14" height="14"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rzr-nA-GLl">
+                                                        <rect key="frame" x="8" y="37" width="14" height="14"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="none" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcf-I3-0Yy">
-                                                        <rect key="frame" x="22" y="85" width="35" height="12"/>
+                                                        <rect key="frame" x="27" y="79" width="35" height="12"/>
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
                                                         <color key="textColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view tag="2337" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="668-ZG-x66">
-                                                        <color key="backgroundColor" red="0.33265848529999997" green="0.83992346939999996" blue="0.27590391390000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </view>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="one" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8F-AF-oAZ">
-                                                        <rect key="frame" x="22" y="65" width="35" height="12"/>
+                                                        <rect key="frame" x="27" y="59" width="35" height="12"/>
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
                                                         <color key="textColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="less" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zic-ul-3e9">
-                                                        <rect key="frame" x="22" y="44" width="35" height="12"/>
+                                                        <rect key="frame" x="27" y="38" width="35" height="12"/>
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
                                                         <color key="textColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vFN-fL-CAB">
-                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </view>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="more" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSr-Fx-nYe">
-                                                        <rect key="frame" x="22" y="4" width="35" height="12"/>
+                                                        <rect key="frame" x="27" y="18" width="35" height="12"/>
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
                                                         <color key="textColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rzr-nA-GLl">
-                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VgP-th-kSw">
-                                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             </view>
                                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2fY-yC-V90">
-                                                <rect key="frame" x="8" y="42" width="250" height="99"/>
+                                                <rect key="frame" x="0.0" y="20" width="250" height="99"/>
                                                 <color key="backgroundColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cug-Ji-Hdg">
                                                     <size key="itemSize" width="250" height="99"/>
@@ -499,8 +506,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MEP-iv-mAc" userLabel="View - HR Rule">
+                                        <color key="backgroundColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TIU-kk-5Ju" userLabel="Facts View">
-                                        <rect key="frame" x="0.0" y="141" width="320" height="347"/>
+                                        <rect key="frame" x="0.0" y="139" width="320" height="305"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You've done this a lot in the past X days, haven't you?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="PN7-yE-d1q">
                                                 <rect key="frame" x="10" y="26" width="300" height="42"/>
@@ -529,10 +539,6 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MEP-iv-mAc" userLabel="View - HR Rule">
-                                        <rect key="frame" x="-87" y="0.0" width="6" height="54"/>
-                                        <color key="backgroundColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -543,9 +549,11 @@
                         <outlet property="daysWithOccurencesInLast30" destination="PN7-yE-d1q" id="PGa-dz-dBk"/>
                         <outlet property="editButton" destination="oVv-nF-toZ" id="XDc-4D-6vI"/>
                         <outlet property="historyCollectionView" destination="2fY-yC-V90" id="Jn3-o0-85S"/>
+                        <outlet property="iconLabel" destination="UYe-MX-k6k" id="oSl-fC-aaz"/>
                         <outlet property="lastLastTimeLabel" destination="2ir-ga-0tA" id="IHn-X3-Xc2"/>
                         <outlet property="lastTimeLabel" destination="RCz-hG-ed1" id="a2V-uw-gph"/>
                         <outlet property="mainScrollView" destination="szP-hr-UGw" id="wSB-sd-c1i"/>
+                        <outlet property="nameLabel" destination="c2i-4c-fqo" id="Y97-sr-APG"/>
                         <outlet property="viewAllTapsButton" destination="RtI-2J-NHV" id="Tm3-aC-y3z"/>
                     </connections>
                 </viewController>
