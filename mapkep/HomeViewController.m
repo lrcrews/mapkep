@@ -16,13 +16,10 @@
 #import "Occurance.h"
 
 
-#define FA_ICONS_FONT   [UIFont fontWithName:@"FontAwesome" size:100.0f];
-
-
 //  Tag values for elements in the storyboard
 //
 static int tag_add      = 1337;
-static int tag_remove   = 1338;
+static int tag_git      = 1338;
 static int tag_stats    = 1339;
 
 
@@ -54,23 +51,22 @@ static int tag_stats    = 1339;
     
     // Set up the non-mapkep buttons
     
-    UIFont * fa_font = [UIFont fontWithName:@"FontAwesome"
-                                      size:36.0f];
+    UIFont * fa_font = FA_ICONS_FONT_THIRD_SIZE;
     
     UIButton * add_button = (UIButton *)[self.view viewWithTag:tag_add];
-    UIButton * remove_button = (UIButton *)[self.view viewWithTag:tag_remove];
+    UIButton * git_and_stuff_button = (UIButton *)[self.view viewWithTag:tag_git];
     UIButton * stats_button = (UIButton *)[self.view viewWithTag:tag_stats];
     
     // the left button (remove mapkep)
     
-    remove_button.titleLabel.font = fa_font;
+    git_and_stuff_button.titleLabel.font = fa_font;
     
-    [remove_button setTitle:[NSString awesomeIcon:FaMinus]
-                   forState:UIControlStateNormal];
+    [git_and_stuff_button setTitle:[NSString awesomeIcon:FaQuestion]
+                          forState:UIControlStateNormal];
     
-    CALayer * remove_layer = [remove_button layer];
-    remove_layer.borderWidth = 1.0f;
-    remove_layer.borderColor = [COLOR_1 toUIColor].CGColor;
+    CALayer * git_and_stuff_layer = [git_and_stuff_button layer];
+    git_and_stuff_layer.borderWidth = 1.0f;
+    git_and_stuff_layer.borderColor = [COLOR_1 toUIColor].CGColor;
     
     // the middle button (add mapkep)
     
@@ -189,12 +185,12 @@ static int tag_stats    = 1339;
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     //  MapkepButtonCell is the name set on the prototype cell in the storyboard.
-    //
+    
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MapkepButtonCell" forIndexPath:indexPath];
     
     
     //  Get the two subview we need from the cell
-    //
+    
     UIButton * button = nil;
     UILabel * label = nil;
     
@@ -212,12 +208,12 @@ static int tag_stats    = 1339;
     
     
     //  Get the backing object for this UI
-    //
+    
     Mapkep * mapkep = (Mapkep *)self.mapkepObjects[indexPath.row];
     
     
     //  Get the two things together
-    //
+    
     button.titleLabel.font = FA_ICONS_FONT;
     
     [button setTitle:[NSString awesomeIcon:(int)mapkep.faUInt]
@@ -241,7 +237,7 @@ static int tag_stats    = 1339;
     
     
     //  Give the people what they want
-    //
+    
     return cell;
 }
 

@@ -11,31 +11,40 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "Mapkep.h"
+#import "NSString+FontAwesome.h"
 #import "NSString+utils.h"
 #import "Occurance.h"
 #import "StatDetailViewController.h"
 
 
-//  I read this on the Internet, it must be true.
+//  Tags for the three elements on the prototype cell
+//  in the storyboard.
 //
-#define RADIAN_VALUE_FOR_45_DEGREES (0.785398163f)
 
-//  Tag values for elements in the storyboard
+static int tag_icon         = 1337;
+static int tag_icon_name    = 1338;
+static int tag_last_tap     = 1339;
+static int tag_total_taps   = 1340;
+
+
+//  "Hah, I am so oaklandish"
+//      ~ Me, quoting that line from that Kayne West song...
+//        though I don't think it was Mr. West who said that.
+//        <internetting...>  It was:
+//  http://genius.com/1365236/Kanye-west-so-appalled/Hah-i-am-so-outrageous
 //
-static int tag_DisclosureArrow = 1342;
-static int tag_LastOccurence   = 1337;
-static int tag_MapKepColorH    = 1338;
-static int tag_MapKepColorH2   = 1343;
-static int tag_MapKepColorV    = 1341;
-static int tag_MapKepTitle     = 1339;
-static int tag_TotalCount      = 1340;
-
+//  (I'm hitting the hell out of the [no longer] green button
+//  today... I have to decide what icon to use... hmm.)
+//
 
 @interface StatsOverviewViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) NSDate * lastDataLoad;
 @property (nonatomic, strong) NSMutableArray * mapkepObjects;
 @property (nonatomic, strong) IBOutlet UITableView * mapkepTable;
+@property BOOL sortIsRecentlyTapped;
+@property (nonatomic, strong) IBOutlet UIButton * sortMostTappedButton;
+@property (nonatomic, strong) IBOutlet UIButton * sortRecentlyTappedButton;
 
 @end
 
@@ -46,6 +55,8 @@ static int tag_TotalCount      = 1340;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.sortIsRecentlyTapped = YES;
 	
     [self loadData];
     
@@ -58,15 +69,23 @@ static int tag_TotalCount      = 1340;
                                              selector:@selector(refreshUI)
                                                  name:kNotification_MapkepContextUpdated
                                                object:nil];
+    
+    
+    // Underline the text for the sort not currently
+    // active (which is the 'most' text as we default
+    //  to 'recent')
+    
+    [self underlineButtonLabel:self.sortMostTappedButton];
 }
 
 
-//  Taking a page from UITableViewController's book
-//  and un-highlighting the selected row here.
-//
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    //  Taking a page from UITableViewController's book
+    //  and un-highlighting the selected row here
+    
     [self.mapkepTable deselectRowAtIndexPath:[self.mapkepTable indexPathForSelectedRow]
                                     animated:YES];
 }
@@ -87,6 +106,40 @@ static int tag_TotalCount      = 1340;
 - (void)refreshUI
 {
     [self.mapkepTable reloadData];
+}
+
+
+- (void)removeUnderlineFromButton:(UIButton *)button
+{
+    NSMutableAttributedString * attr_text = [button.titleLabel.attributedText mutableCopy];
+    
+    [attr_text removeAttribute:NSUnderlineStyleAttributeName
+                         range:NSMakeRange(0, [button.titleLabel.text length])];
+    
+    [button setAttributedTitle:attr_text
+                      forState:UIControlStateNormal];
+}
+
+
+- (void)underlineButtonLabel:(UIButton *)button
+{
+    NSMutableAttributedString * attr_text = [[NSMutableAttributedString alloc] initWithString:button.titleLabel.text];
+    
+    [attr_text addAttribute:NSUnderlineStyleAttributeName
+                      value:[NSNumber numberWithInteger:NSUnderlineStyleSingle]
+                      range:NSMakeRange(0, [attr_text length])];
+    
+    // I heart internet.  The color was changing when I underlined
+    // my text, luckily a quick search yeilded an answer that lead
+    // to the addAttribute below:
+    // http://stackoverflow.com/a/15930032/686871
+    
+    [attr_text addAttribute:NSForegroundColorAttributeName
+                      value:[COLOR_1 toUIColor]
+                      range:NSMakeRange(0, [attr_text length])];
+    
+    [button setAttributedTitle:attr_text
+                      forState:UIControlStateNormal];
 }
 
 
@@ -112,11 +165,59 @@ static int tag_TotalCount      = 1340;
         NSManagedObjectContext * context = [appDelegate managedObjectContext];
         
         [self setMapkepObjects:[[Mapkep allWithManagedObjectContext:context] mutableCopy]];
+        if (self.sortIsRecentlyTapped)
+        {
+            [self sortByRecentlyTapped];
+        }
+        else
+        {
+            [self sortByMostTapped];
+        }
         
         self.lastDataLoad = [[NSDate alloc] init];
         
         [self.mapkepTable reloadData];
     }
+}
+
+
+- (void)sortByMostTapped
+{
+    self.mapkepObjects = [[self.mapkepObjects sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+    {
+        NSUInteger record_count_for_a = ([(Mapkep *)a has_many_occurances] != nil) ?
+                                            [(Mapkep *)a has_many_occurances].count :
+                                            0;
+        NSUInteger record_count_for_b = ([(Mapkep *)b has_many_occurances] != nil) ?
+                                            [(Mapkep *)b has_many_occurances].count :
+                                            0;
+        
+        // compare them
+        
+        if (record_count_for_a > record_count_for_b) return NSOrderedAscending;
+        if (record_count_for_a < record_count_for_b) return NSOrderedDescending;
+        return NSOrderedSame;
+    }] mutableCopy];
+}
+
+
+- (void)sortByRecentlyTapped
+{
+    self.mapkepObjects = [[self.mapkepObjects sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+    {
+        NSDate * date_for_a = ([(Mapkep *)a has_many_occurances] != nil) ?
+                                [(Occurance *)[[(Mapkep *)a has_many_occurances] lastObject] createdAt] :
+                                nil;
+        NSDate * date_for_b = ([(Mapkep *)b has_many_occurances] != nil) ?
+                                [(Occurance *)[[(Mapkep *)b has_many_occurances] lastObject] createdAt] :
+                                nil;
+        
+        // compare them
+        
+        if (date_for_a == nil) return NSOrderedDescending;
+        if (date_for_b == nil) return NSOrderedAscending;
+        return [date_for_b compare:date_for_a];
+    }] mutableCopy];
 }
 
 
@@ -126,11 +227,37 @@ static int tag_TotalCount      = 1340;
 //  See AddMapkepViewControllers's "cancel" if you're
 //  wondering why I'm doing this instead of using a segue.
 //
-- (IBAction)home:(id)sender
+- (IBAction)back:(id)sender
 {
     // Let us leave this place.
     //
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (IBAction)sortByMostTapped:(id)sender
+{
+    if (self.sortIsRecentlyTapped)
+    {
+        self.sortIsRecentlyTapped = NO;
+        [self removeUnderlineFromButton:self.sortMostTappedButton];
+        [self underlineButtonLabel:self.sortRecentlyTappedButton];
+        [self sortByMostTapped];
+        [self.mapkepTable reloadData];
+    }
+}
+
+
+- (IBAction)sortByRecentlyTapped:(id)sender
+{
+    if (!self.sortIsRecentlyTapped)
+    {
+        self.sortIsRecentlyTapped = YES;
+        [self removeUnderlineFromButton:self.sortRecentlyTappedButton];
+        [self underlineButtonLabel:self.sortMostTappedButton];
+        [self sortByRecentlyTapped];
+        [self.mapkepTable reloadData];
+    }
 }
 
 
@@ -155,90 +282,56 @@ static int tag_TotalCount      = 1340;
 {
     //  This needs to match the string in the prototype cell's
     //  reuse identifier in our story board or else... it won't work.
-    //
+    
 	UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MapKepStatCell"];
 	cell.tag = indexPath.row;
     
     
+    //  The Backing Data
+    
     Mapkep * mapkep = (Mapkep *)self.mapkepObjects[indexPath.row];
     
     
-    //  These tags are set up in the storyboard, and, although
-    //  we can't reference the contants in the storyboard, the
-    //  Constants file is where these exist just in case we add
-    //  features in the future that also require unique tags we
-    //  may quickly see the tags already in use.
+    //  The Icon
     
-    
-    //  The (Color) Header/Side/Footer
-    //
-    [[cell viewWithTag:tag_MapKepColorH] setBackgroundColor:[mapkep.hexColorCode toUIColor]];
-    [[cell viewWithTag:tag_MapKepColorH2] setBackgroundColor:[mapkep.hexColorCode toUIColor]];
-    [[cell viewWithTag:tag_MapKepColorV] setBackgroundColor:[mapkep.hexColorCode toUIColor]];
+    UILabel * iconLabel = (UILabel *)[cell viewWithTag:tag_icon];
+    iconLabel.font = FA_ICONS_FONT_HALF_SIZE;
+    iconLabel.text = [NSString awesomeIcon:(int)mapkep.faUInt];
     
     
     //  The Name
-    //
-    UILabel * nameLabel = (UILabel *)[cell viewWithTag:tag_MapKepTitle];
-    [nameLabel setText:[mapkep name]];
+    
+    UILabel * nameLabel = (UILabel *)[cell viewWithTag:tag_icon_name];
+    if (mapkep.name != nil && ![mapkep.name isEqual: @""])
+    {
+        [nameLabel setText:[NSString stringWithFormat:@"\"%@\"", mapkep.name]];
+    }
+    else
+    {
+        [nameLabel setText:@""];
+    }
     
     
     //  The Last Occurence
-    //
+    
     Occurance * lastOccurence = (mapkep.has_many_occurances != nil) ?
     mapkep.has_many_occurances.lastObject :
     nil;
     NSString * occurenceText = (lastOccurence != nil) ? [lastOccurence relativeTimeSinceLastOccerence] : @"never";
-    [(UILabel *)[cell viewWithTag:tag_LastOccurence] setText:occurenceText];
-    
+    [(UILabel *)[cell viewWithTag:tag_last_tap] setText:occurenceText];
     
     
     //  The Total
-    //
+    
     NSString * total = (mapkep.has_many_occurances != nil) ?
                             [NSString stringWithFormat:@"%lu", (unsigned long)mapkep.has_many_occurances.count] :
                             @"0";
-    [(UILabel *)[cell viewWithTag:tag_TotalCount] setText:total];
+    [(UILabel *)[cell viewWithTag:tag_total_taps] setText:total];
     
     
-    //  The Disclosure Arrow
-    //
-    if ([cell viewWithTag:tag_DisclosureArrow] == nil)
-    {
-        UIView * disclosureArrow = [[UIView alloc] initWithFrame:CGRectMake(291.0f, 48.0f, 10.0f, 10.0f)];
-        disclosureArrow.tag = tag_DisclosureArrow;
-        disclosureArrow.backgroundColor = [UIColor whiteColor];
-        disclosureArrow.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIAN_VALUE_FOR_45_DEGREES);
-        [cell addSubview:disclosureArrow];
-    }
-    
-    
+    // The Return
     
     return cell;
-}
-
-
-//  You mean to tell me it's this easy to delete something?
-//  Shut the front door!
-//
--  (void)tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
- forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        Mapkep * mapkep = (Mapkep *)self.mapkepObjects[indexPath.row];
-        NSError * error;
-        if (![mapkep deleteSelf:error])
-        {
-            AlwaysLog(@"I'm a mog, half man, half dog.  I'm my own best friend!");
-        }
-        
-        [self.mapkepObjects removeObjectAtIndex:indexPath.row];
-        
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                         withRowAnimation:UITableViewRowAnimationFade];
-    }
 }
 
 

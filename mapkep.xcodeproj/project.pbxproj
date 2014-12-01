@@ -15,6 +15,7 @@
 		9412D66D18A70F8C00EED4B4 /* Mapkep.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412D66C18A70F8C00EED4B4 /* Mapkep.m */; };
 		94155C2018CFE5F3004279FC /* StatsOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */; };
 		94155C2118CFE5F3004279FC /* StatsOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */; };
+		94277AE81A2C40E90042D92F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94277AE71A2C40E90042D92F /* AboutViewController.m */; };
 		948EA2A0198F16390029E7D8 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 948EA29F198F16390029E7D8 /* fontawesome-webfont.ttf */; };
 		9491EE8919173F1800B89CDD /* MapkepOccurencesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9491EE8819173F1800B89CDD /* MapkepOccurencesTableViewController.m */; };
 		9498AC391904EAF2009ECDE1 /* StatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9498AC381904EAF2009ECDE1 /* StatDetailViewController.m */; };
@@ -61,6 +62,8 @@
 		9412D66C18A70F8C00EED4B4 /* Mapkep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mapkep.m; sourceTree = "<group>"; };
 		94155C1E18CFE5F3004279FC /* StatsOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsOverviewViewController.h; sourceTree = "<group>"; };
 		94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsOverviewViewController.m; sourceTree = "<group>"; };
+		94277AE61A2C40E90042D92F /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		94277AE71A2C40E90042D92F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		948EA29F198F16390029E7D8 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		9491EE8719173F1800B89CDD /* MapkepOccurencesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkepOccurencesTableViewController.h; sourceTree = "<group>"; };
 		9491EE8819173F1800B89CDD /* MapkepOccurencesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkepOccurencesTableViewController.m; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 			children = (
 				94FE788B18B04F3C00D2C295 /* AddMapkepViewController.h */,
 				94FE788C18B04F3D00D2C295 /* AddMapkepViewController.m */,
+				94277AE61A2C40E90042D92F /* AboutViewController.h */,
+				94277AE71A2C40E90042D92F /* AboutViewController.m */,
 				94B9C5CF188B20FA00FD317A /* HomeViewController.h */,
 				94B9C5D0188B20FA00FD317A /* HomeViewController.m */,
 				9491EE8719173F1800B89CDD /* MapkepOccurencesTableViewController.h */,
@@ -440,6 +445,7 @@
 				94B9C5D1188B20FA00FD317A /* HomeViewController.m in Sources */,
 				94155C2018CFE5F3004279FC /* StatsOverviewViewController.m in Sources */,
 				94B9C5CB188B20FA00FD317A /* AppDelegate.m in Sources */,
+				94277AE81A2C40E90042D92F /* AboutViewController.m in Sources */,
 				94B9C5C7188B20FA00FD317A /* main.m in Sources */,
 				94B8D2C3188CA0DD002E52A1 /* NSObject+utils.m in Sources */,
 				9412D66718A7075A00EED4B4 /* MapkepModel.xcdatamodeld in Sources */,

@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "Mapkep.h"
 #import "MapkepOccurencesTableViewController.h"
+#import "NSString+FontAwesome.h"
 #import "NSString+utils.h"
 #import "Occurance.h"
 
@@ -56,6 +57,9 @@ static int tag_z2_title = 2339;
 @property (nonatomic, strong) NSMutableDictionary * occurencesByDay;
 @property (nonatomic, strong) NSMutableArray * occurencesByDayKeys;
 
+@property (nonatomic, strong) IBOutlet UIButton * editButton;
+@property (nonatomic, strong) IBOutlet UIButton * viewAllTapsButton;
+
 @end
 
 
@@ -75,6 +79,37 @@ static int tag_z2_title = 2339;
     self.daysWithOccurencesInLast30.text = [self daysWithOccurenceInPreviousX:30];
     self.lastTimeLabel.text = [self theLastTime];
     self.lastLastTimeLabel.text = [self theLastLastTime];
+    
+    
+    // Underline our back button text
+    
+    NSMutableAttributedString * edit_text = [[NSMutableAttributedString alloc] initWithString:self.editButton.titleLabel.text];
+    
+    [edit_text addAttribute:NSUnderlineStyleAttributeName
+                      value:[NSNumber numberWithInteger:NSUnderlineStyleSingle]
+                      range:NSMakeRange(0, [edit_text length])];
+    
+    [edit_text addAttribute:NSForegroundColorAttributeName
+                      value:[COLOR_1 toUIColor]
+                      range:NSMakeRange(0, [edit_text length])];
+    
+    [self.editButton setAttributedTitle:edit_text
+                               forState:UIControlStateNormal];
+    
+    // and our view all button text
+    
+    NSMutableAttributedString * view_text = [[NSMutableAttributedString alloc] initWithString:self.viewAllTapsButton.titleLabel.text];
+    
+    [view_text addAttribute:NSUnderlineStyleAttributeName
+                      value:[NSNumber numberWithInteger:NSUnderlineStyleSingle]
+                      range:NSMakeRange(0, [view_text length])];
+    
+    [view_text addAttribute:NSForegroundColorAttributeName
+                      value:[COLOR_1 toUIColor]
+                      range:NSMakeRange(0, [view_text length])];
+    
+    [self.viewAllTapsButton setAttributedTitle:view_text
+                                      forState:UIControlStateNormal];
 }
 
 
@@ -274,10 +309,10 @@ static int tag_z2_title = 2339;
 #pragma mark -
 #pragma mark You Can't Touch This
 
-//  See AddMapkepViewControllers's "cancel" if you're
+//  See AddMapkepViewControllers's "back" if you're
 //  wondering why I'm doing this instead of using a segue.
 //
-- (IBAction)stats:(id)sender
+- (IBAction)back:(id)sender
 {
     // 88mph
     //

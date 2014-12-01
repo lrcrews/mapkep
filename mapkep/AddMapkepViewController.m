@@ -16,8 +16,7 @@
 #import "UIColor+utils.h"
 
 
-#define FA_BASE_HEX     0xf000
-#define FA_ICONS_FONT   [UIFont fontWithName:@"FontAwesome" size:100.0f];
+#define FA_BASE_HEX 0xf000
 
 
 //  The Doctor is in
@@ -25,7 +24,6 @@
 
 @property (nonatomic, strong) IBOutlet UIButton * addButton;
 @property (nonatomic, strong) IBOutlet UIView * addStepTwoContainer;
-@property (nonatomic, strong) IBOutlet UIButton * backButton;
 @property (nonatomic, strong) IBOutlet UIButton * cancelButton;
 @property (nonatomic, strong) IBOutlet UILabel * chosenIcon;
 @property (nonatomic, strong) IBOutlet UICollectionView * mapkepCollectionView;
@@ -50,22 +48,16 @@
                            action:@selector(textFieldFinished:)
                  forControlEvents:UIControlEventEditingDidEndOnExit];
     
+    
     // Set the font for the chosen icon
     
     self.chosenIcon.font = FA_ICONS_FONT;
     self.chosenIcon.text = [NSString awesomeIcon:FaCircle];
     
+    
     // Set up the non-mapkep button(s)
     
-    UIFont * fa_font = [UIFont fontWithName:@"FontAwesome"
-                                       size:50.0f];
-    
-    // The "back" button
-    
-    self.backButton.titleLabel.font = fa_font;
-    
-    [self.backButton setTitle:[NSString awesomeIcon:FaAngleLeft]
-                     forState:UIControlStateNormal];
+    UIFont * fa_font = FA_ICONS_FONT_HALF_SIZE;
     
     // The "cancel" button (visible in step two overlay)
     
