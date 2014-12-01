@@ -80,6 +80,7 @@
 #define FA_ICONS_FONT               [UIFont fontWithName:@"FontAwesome" size:100.0f]
 #define FA_ICONS_FONT_HALF_SIZE     [UIFont fontWithName:@"FontAwesome" size:50.0f]
 #define FA_ICONS_FONT_THIRD_SIZE    [UIFont fontWithName:@"FontAwesome" size:36.0f]
+#define FA_ICONS_FONT_TINY_SIZE     [UIFont fontWithName:@"FontAwesome" size:18.0f]
 
 
 @interface Constants : NSObject

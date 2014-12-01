@@ -9,6 +9,7 @@
 #import "StatDetailViewController.h"
 
 #import "Constants.h"
+#import "EditMapkepViewController.h"
 #import "Mapkep.h"
 #import "MapkepOccurencesTableViewController.h"
 #import "NSString+FontAwesome.h"
@@ -454,8 +455,8 @@ static int tag_z2_title = 2339;
         //
         //  ~ Cap'n Mal
         //
-        //AddEditMapkepViewController * controller = (AddEditMapkepViewController *)segue.destinationViewController;
-        //controller.mapkep = self.primaryMapkep;
+        EditMapkepViewController * controller = (EditMapkepViewController *)segue.destinationViewController;
+        controller.mapkep = self.primaryMapkep;
     }
 }
 

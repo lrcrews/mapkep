@@ -26,7 +26,6 @@
 @property (nonatomic, strong) IBOutlet UIView * addStepTwoContainer;
 @property (nonatomic, strong) IBOutlet UIButton * cancelButton;
 @property (nonatomic, strong) IBOutlet UILabel * chosenIcon;
-@property (nonatomic, strong) IBOutlet UICollectionView * mapkepCollectionView;
 @property (nonatomic, strong) IBOutlet UITextField * nameTextField;
 
 @property (nonatomic) int32_t chosenIconIntCode;
@@ -97,7 +96,7 @@
     mapkep.faUInt = self.chosenIconIntCode;
     mapkep.hexColorCode = [Mapkep defaultColorAsHexString];
     
-    DebugLog(@"Adding/Updating mapkep with name \"%@\", color \"%@\", and icon code \"%lx\"", mapkep.name, mapkep.hexColorCode, (unsigned long)mapkep.faUInt);
+    DebugLog(@"Adding mapkep with name \"%@\", color \"%@\", and icon code \"%lx\"", mapkep.name, mapkep.hexColorCode, (unsigned long)mapkep.faUInt);
     
     //  ...you know... save it.  Then we can...
     //
@@ -203,7 +202,6 @@
 {
     self.chosenIconIntCode = [FA_ICON_HEX_VALUES[ [(UIButton *)sender tag] ] intValue];
     
-    self.chosenIcon.font = FA_ICONS_FONT;
     self.chosenIcon.text = [NSString awesomeIcon:(int)self.chosenIconIntCode];
     
     self.addStepTwoContainer.hidden = false;

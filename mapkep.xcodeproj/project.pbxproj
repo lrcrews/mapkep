@@ -16,6 +16,7 @@
 		94155C2018CFE5F3004279FC /* StatsOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */; };
 		94155C2118CFE5F3004279FC /* StatsOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */; };
 		94277AE81A2C40E90042D92F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94277AE71A2C40E90042D92F /* AboutViewController.m */; };
+		94277AEB1A2C5A430042D92F /* EditMapkepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94277AEA1A2C5A430042D92F /* EditMapkepViewController.m */; };
 		948EA2A0198F16390029E7D8 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 948EA29F198F16390029E7D8 /* fontawesome-webfont.ttf */; };
 		9491EE8919173F1800B89CDD /* MapkepOccurencesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9491EE8819173F1800B89CDD /* MapkepOccurencesTableViewController.m */; };
 		9498AC391904EAF2009ECDE1 /* StatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9498AC381904EAF2009ECDE1 /* StatDetailViewController.m */; };
@@ -64,6 +65,8 @@
 		94155C1F18CFE5F3004279FC /* StatsOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsOverviewViewController.m; sourceTree = "<group>"; };
 		94277AE61A2C40E90042D92F /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		94277AE71A2C40E90042D92F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		94277AE91A2C5A430042D92F /* EditMapkepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMapkepViewController.h; sourceTree = "<group>"; };
+		94277AEA1A2C5A430042D92F /* EditMapkepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMapkepViewController.m; sourceTree = "<group>"; };
 		948EA29F198F16390029E7D8 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		9491EE8719173F1800B89CDD /* MapkepOccurencesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkepOccurencesTableViewController.h; sourceTree = "<group>"; };
 		9491EE8819173F1800B89CDD /* MapkepOccurencesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkepOccurencesTableViewController.m; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 				94FE788C18B04F3D00D2C295 /* AddMapkepViewController.m */,
 				94277AE61A2C40E90042D92F /* AboutViewController.h */,
 				94277AE71A2C40E90042D92F /* AboutViewController.m */,
+				94277AE91A2C5A430042D92F /* EditMapkepViewController.h */,
+				94277AEA1A2C5A430042D92F /* EditMapkepViewController.m */,
 				94B9C5CF188B20FA00FD317A /* HomeViewController.h */,
 				94B9C5D0188B20FA00FD317A /* HomeViewController.m */,
 				9491EE8719173F1800B89CDD /* MapkepOccurencesTableViewController.h */,
@@ -437,6 +442,7 @@
 			files = (
 				94FE788D18B04F3D00D2C295 /* AddMapkepViewController.m in Sources */,
 				9498AC391904EAF2009ECDE1 /* StatDetailViewController.m in Sources */,
+				94277AEB1A2C5A430042D92F /* EditMapkepViewController.m in Sources */,
 				9412D66D18A70F8C00EED4B4 /* Mapkep.m in Sources */,
 				9412D66A18A70F8B00EED4B4 /* Occurance.m in Sources */,
 				9491EE8919173F1800B89CDD /* MapkepOccurencesTableViewController.m in Sources */,
@@ -577,13 +583,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Leonard Crews (GAA39PZY93)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Leonard Crews (GAA39PZY93)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mapkep/mapkep-Prefix.pch";
 				INFOPLIST_FILE = "mapkep/mapkep-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "B1097F7C-1C99-43F0-AEB7-B89AD53D0D31";
+				PROVISIONING_PROFILE = "2EE0064E-FC70-4DC5-8831-23736CDD904C";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -594,13 +600,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Leonard Crews (GAA39PZY93)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Leonard Crews (GAA39PZY93)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mapkep/mapkep-Prefix.pch";
 				INFOPLIST_FILE = "mapkep/mapkep-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "B1097F7C-1C99-43F0-AEB7-B89AD53D0D31";
+				PROVISIONING_PROFILE = "2EE0064E-FC70-4DC5-8831-23736CDD904C";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
