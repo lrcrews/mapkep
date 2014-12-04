@@ -91,6 +91,7 @@ static int tag_z2_title = 2339;
     UIFont * fa_font = FA_ICONS_FONT_THIRD_SIZE;
     
     self.iconLabel.font = fa_font;
+    if (self.primaryMapkep.faUInt == 0) self.primaryMapkep.faUInt = [Mapkep defaultFAUInt];
     self.iconLabel.text = [NSString awesomeIcon:self.primaryMapkep.faUInt];
     
     

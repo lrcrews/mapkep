@@ -88,9 +88,9 @@
 }
 
 
-+ (NSUInteger)defaultFAUInt;
++ (int)defaultFAUInt;
 {
-    return FaCircleO;
+    return FaCircle;
 }
 
 

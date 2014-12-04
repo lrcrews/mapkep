@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Mapkep" representedClassName="Mapkep" syncable="YES">
+        <attribute name="faUInt" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="hexColorCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ordinal" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -11,7 +12,7 @@
         <relationship name="belongs_to_mapkep" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Mapkep" inverseName="has_many_occurances" inverseEntity="Mapkep" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Mapkep" positionX="-36" positionY="-250" width="137" height="105"/>
+        <element name="Mapkep" positionX="-36" positionY="-250" width="137" height="120"/>
         <element name="Occurance" positionX="-27" positionY="-90" width="128" height="73"/>
     </elements>
 </model>

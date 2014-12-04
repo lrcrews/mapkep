@@ -28,7 +28,7 @@
 + (NSArray *)allWithManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (NSString *)defaultColorAsHexString;
-+ (NSUInteger)defaultFAUInt;
++ (int)defaultFAUInt;
 
 
 @end

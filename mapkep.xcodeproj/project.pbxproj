@@ -67,6 +67,7 @@
 		94277AE71A2C40E90042D92F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		94277AE91A2C5A430042D92F /* EditMapkepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMapkepViewController.h; sourceTree = "<group>"; };
 		94277AEA1A2C5A430042D92F /* EditMapkepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMapkepViewController.m; sourceTree = "<group>"; };
+		94277AEC1A2D9C080042D92F /* MapkepModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MapkepModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		948EA29F198F16390029E7D8 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		9491EE8719173F1800B89CDD /* MapkepOccurencesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkepOccurencesTableViewController.h; sourceTree = "<group>"; };
 		9491EE8819173F1800B89CDD /* MapkepOccurencesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkepOccurencesTableViewController.m; sourceTree = "<group>"; };
@@ -523,7 +524,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Leonard Crews (GAA39PZY93)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Leonard Crews (GAA39PZY93)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -541,6 +543,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "74e136fb-d0a9-4e89-83d2-2f826916797b";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -561,7 +564,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Leonard Crews (GAA39PZY93)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Leonard Crews (GAA39PZY93)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -572,6 +576,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "74e136fb-d0a9-4e89-83d2-2f826916797b";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -589,7 +594,7 @@
 				GCC_PREFIX_HEADER = "mapkep/mapkep-Prefix.pch";
 				INFOPLIST_FILE = "mapkep/mapkep-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2EE0064E-FC70-4DC5-8831-23736CDD904C";
+				PROVISIONING_PROFILE = "74e136fb-d0a9-4e89-83d2-2f826916797b";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -606,7 +611,7 @@
 				GCC_PREFIX_HEADER = "mapkep/mapkep-Prefix.pch";
 				INFOPLIST_FILE = "mapkep/mapkep-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2EE0064E-FC70-4DC5-8831-23736CDD904C";
+				PROVISIONING_PROFILE = "74e136fb-d0a9-4e89-83d2-2f826916797b";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -687,9 +692,10 @@
 		9412D66518A7075A00EED4B4 /* MapkepModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				94277AEC1A2D9C080042D92F /* MapkepModel 2.xcdatamodel */,
 				9412D66618A7075A00EED4B4 /* MapkepModel.xcdatamodel */,
 			);
-			currentVersion = 9412D66618A7075A00EED4B4 /* MapkepModel.xcdatamodel */;
+			currentVersion = 94277AEC1A2D9C080042D92F /* MapkepModel 2.xcdatamodel */;
 			path = MapkepModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

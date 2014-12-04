@@ -43,6 +43,7 @@
     // Set the font for the current icon
     
     self.currentIcon.font = FA_ICONS_FONT_TINY_SIZE;
+    if (self.mapkep.faUInt == 0) self.mapkep.faUInt = [Mapkep defaultFAUInt];
     self.currentIcon.text = [NSString awesomeIcon:self.mapkep.faUInt];
     
     self.chosenIconIntCode = self.mapkep.faUInt;

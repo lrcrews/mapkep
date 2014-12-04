@@ -296,7 +296,9 @@ static int tag_total_taps   = 1340;
     
     UILabel * iconLabel = (UILabel *)[cell viewWithTag:tag_icon];
     iconLabel.font = FA_ICONS_FONT_HALF_SIZE;
+    if (mapkep.faUInt == 0) mapkep.faUInt = [Mapkep defaultFAUInt];
     iconLabel.text = [NSString awesomeIcon:(int)mapkep.faUInt];
+    iconLabel.textColor = [mapkep.hexColorCode toUIColor];
     
     
     //  The Name

@@ -216,6 +216,8 @@ static int tag_stats    = 1339;
     
     button.titleLabel.font = FA_ICONS_FONT;
     
+    if (mapkep.faUInt == 0) mapkep.faUInt = [Mapkep defaultFAUInt];
+    
     [button setTitle:[NSString awesomeIcon:(int)mapkep.faUInt]
             forState:UIControlStateNormal];
     
