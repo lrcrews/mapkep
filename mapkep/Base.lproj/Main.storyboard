@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLZ-un-hRo" userLabel="Button - &lt; (back)">
-                                <rect key="frame" x="16" y="28" width="50" height="50"/>
+                                <rect key="frame" x="266" y="28" width="50" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <state key="normal" title="X">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -29,65 +29,99 @@
                                     <action selector="back:" destination="a9X-ai-0NL" eventType="touchUpInside" id="ImO-3V-fQQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHh-RB-iMq" userLabel="Button - git hub link">
-                                <rect key="frame" x="254" y="28" width="50" height="50"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <state key="normal" title="c">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="navigateToCode:" destination="a9X-ai-0NL" eventType="touchUpInside" id="Fyy-U7-NiU"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4m-pU-0JI" userLabel="Button - blog link">
-                                <rect key="frame" x="196" y="28" width="50" height="50"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <state key="normal" title="b">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="navigateToBlog:" destination="a9X-ai-0NL" eventType="touchUpInside" id="8TY-Mq-f7X"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to MapKep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uo-cl-qUN">
-                                <rect key="frame" x="16" y="86" width="288" height="42"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="28"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MapKep allows you to track anything you want at anytime." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ie8-6B-gub">
-                                <rect key="frame" x="16" y="149" width="288" height="46"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You choose and name icons to add your dashboard." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Nk-x1-Fzj">
-                                <rect key="frame" x="16" y="203" width="288" height="46"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBt-pr-q9p">
-                                <rect key="frame" x="16" y="257" width="288" height="116"/>
-                                <string key="text">Icons are a great way to visaully track anything you want. Label your icons so you'll know exactly what it stands for or keep it label-less so only you know. Once you add your icons they will appear in the dashboard where you can see daily, weekly, and monthly stats.</string>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Just tap on any icon when ever you feel like you want to track." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Za2-aX-9yQ">
-                                <rect key="frame" x="16" y="381" width="288" height="46"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gYT-cr-7E3">
+                                <rect key="frame" x="0.0" y="80" width="320" height="434"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to MapKep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uo-cl-qUN">
+                                        <rect key="frame" x="16" y="0.0" width="288" height="42"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MapKep allows you to track anything you want at anytime." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ie8-6B-gub">
+                                        <rect key="frame" x="16" y="50" width="288" height="46"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You choose and name icons to add your dashboard." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Nk-x1-Fzj">
+                                        <rect key="frame" x="16" y="104" width="288" height="46"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBt-pr-q9p">
+                                        <rect key="frame" x="16" y="158" width="288" height="116"/>
+                                        <string key="text">Icons are a great way to visaully track anything you want. Label your icons so you'll know exactly what it stands for or keep it label-less so only you know. Once you add your icons they will appear in the dashboard where you can see daily, weekly, and monthly stats.</string>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Just tap on any icon when ever you feel like you want to track." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Za2-aX-9yQ">
+                                        <rect key="frame" x="16" y="282" width="288" height="46"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="434" id="Ed0-K3-d17"/>
+                                    <constraint firstAttribute="width" constant="320" id="ssB-eI-5MH"/>
+                                </constraints>
+                            </scrollView>
+                            <view tag="1336" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ntz-7r-A3M" userLabel="View - actions container">
+                                <rect key="frame" x="0.0" y="513" width="320" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1337" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvN-Df-8vI" userLabel="Button - add">
+                                        <rect key="frame" x="106" y="0.0" width="109" height="55"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <state key="normal" title="b">
+                                            <color key="titleColor" red="0.066666666669999999" green="0.5450980392" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="navigateToBlog:" destination="a9X-ai-0NL" eventType="touchUpInside" id="b4l-EI-EEy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1339" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeG-48-AVr" userLabel="Button - stats">
+                                        <rect key="frame" x="214" y="0.0" width="108" height="55"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <state key="normal" title="c">
+                                            <color key="titleColor" red="0.066666666669999999" green="0.5450980392" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="navigateToCode:" destination="a9X-ai-0NL" eventType="touchUpInside" id="slZ-Ls-E0H"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1338" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zaE-3g-Zps" userLabel="Button - about">
+                                        <rect key="frame" x="-1" y="0.0" width="108" height="55"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.066666666669999999" green="0.5450980392" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="iCN-A4-xWn"/>
+                                    <constraint firstAttribute="height" constant="55" id="t1j-yq-yLE"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.066666666669999999" green="0.5450980392" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="gYT-cr-7E3" secondAttribute="bottom" constant="54" id="9Mv-TT-Ahj"/>
+                            <constraint firstItem="ntz-7r-A3M" firstAttribute="bottom" secondItem="Kk0-9S-X8l" secondAttribute="bottomMargin" id="J1V-Hx-g5Z"/>
+                            <constraint firstItem="gYT-cr-7E3" firstAttribute="top" secondItem="9Pa-wG-e8m" secondAttribute="bottom" constant="60" id="KEK-Uc-TfN"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="blogButton" destination="m4m-pU-0JI" id="thb-7d-dFQ"/>
-                        <outlet property="codeButton" destination="DHh-RB-iMq" id="Leu-xd-egA"/>
+                        <outlet property="backButton" destination="tLZ-un-hRo" id="795-48-juY"/>
+                        <outlet property="blogButton" destination="CvN-Df-8vI" id="yid-GV-O0F"/>
+                        <outlet property="codeButton" destination="NeG-48-AVr" id="bxP-Yp-814"/>
+                        <outlet property="emptyButton" destination="zaE-3g-Zps" id="0lf-cP-SxJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kez-m3-D2I" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -676,7 +710,7 @@
                                 <rect key="frame" x="0.0" y="513" width="320" height="55"/>
                                 <subviews>
                                     <button opaque="NO" tag="1338" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0x-S7-Ouf" userLabel="Button - about">
-                                        <rect key="frame" x="-1" y="0.0" width="109" height="55"/>
+                                        <rect key="frame" x="-1" y="0.0" width="108" height="55"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                         <state key="normal" title="a">
                                             <color key="titleColor" red="0.066666666666666666" green="0.54509803921568623" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
@@ -687,7 +721,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1337" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kj3-gl-uIx" userLabel="Button - add">
-                                        <rect key="frame" x="107" y="0.0" width="108" height="55"/>
+                                        <rect key="frame" x="106" y="0.0" width="109" height="55"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                         <state key="normal" title="b">
                                             <color key="titleColor" red="0.066666666669999999" green="0.5450980392" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -698,7 +732,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1339" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Du-8q-1xs" userLabel="Button - stats">
-                                        <rect key="frame" x="214" y="0.0" width="109" height="55"/>
+                                        <rect key="frame" x="214" y="0.0" width="108" height="55"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                         <state key="normal" title="c">
                                             <color key="titleColor" red="0.066666666669999999" green="0.5450980392" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>

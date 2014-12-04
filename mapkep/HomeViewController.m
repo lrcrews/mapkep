@@ -57,6 +57,9 @@ static int tag_stats    = 1339;
     UIButton * git_and_stuff_button = (UIButton *)[self.view viewWithTag:tag_git];
     UIButton * stats_button = (UIButton *)[self.view viewWithTag:tag_stats];
     
+    // TODO: should really break out the bottom nav into
+    // a reusable view that takes in three uibutton references
+    
     // the left button (remove mapkep)
     
     git_and_stuff_button.titleLabel.font = fa_font;
