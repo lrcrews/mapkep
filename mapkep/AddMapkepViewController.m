@@ -24,6 +24,7 @@
 
 @property (nonatomic, strong) IBOutlet UIButton * addButton;
 @property (nonatomic, strong) IBOutlet UIView * addStepTwoContainer;
+@property (nonatomic, strong) IBOutlet UIButton * backButton;
 @property (nonatomic, strong) IBOutlet UIButton * cancelButton;
 @property (nonatomic, strong) IBOutlet UILabel * chosenIcon;
 @property (nonatomic, strong) IBOutlet UITextField * nameTextField;
@@ -57,6 +58,15 @@
     // Set up the non-mapkep button(s)
     
     UIFont * fa_font = FA_ICONS_FONT_HALF_SIZE;
+    
+    
+    // Back that screen up
+    
+    self.backButton.titleLabel.font = fa_font;
+    
+    [self.backButton setTitle:[NSString awesomeIcon:FaTimesCircle]
+                     forState:UIControlStateNormal];
+    
     
     // The "cancel" button (visible in step two overlay)
     

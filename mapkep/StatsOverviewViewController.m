@@ -39,6 +39,8 @@ static int tag_total_taps   = 1340;
 
 @interface StatsOverviewViewController () <UITableViewDelegate>
 
+@property (nonatomic, strong) IBOutlet UIButton * backButton;
+@property (nonatomic, strong) IBOutlet UIButton * emptyButton;
 @property (nonatomic, strong) NSDate * lastDataLoad;
 @property (nonatomic, strong) NSMutableArray * mapkepObjects;
 @property (nonatomic, strong) IBOutlet UITableView * mapkepTable;
@@ -71,11 +73,38 @@ static int tag_total_taps   = 1340;
                                                object:nil];
     
     
-    // Underline the text for the sort not currently
-    // active (which is the 'most' text as we default
-    //  to 'recent')
+    // Underline the text for the sort that is currently
+    // active (which is the 'recent' option)
     
-    [self underlineButtonLabel:self.sortMostTappedButton];
+    [self underlineButtonLabel:self.sortRecentlyTappedButton];
+    
+    
+    // Yo, grab that awesome font
+    
+    UIFont * fa_font = FA_ICONS_FONT_HALF_SIZE;
+    
+    
+    // Iconify ze back button
+    
+    self.backButton.titleLabel.font = fa_font;
+    
+    [self.backButton setTitle:[NSString awesomeIcon:FaTimesCircle]
+                     forState:UIControlStateNormal];
+    
+    
+    // Draw some lines on our action buttons
+    
+    CALayer * empty_layer = [self.emptyButton layer];
+    empty_layer.borderWidth = 1.0f;
+    empty_layer.borderColor = [COLOR_1 toUIColor].CGColor;
+    
+    CALayer * most_layer = [self.sortMostTappedButton layer];
+    most_layer.borderWidth = 1.0f;
+    most_layer.borderColor = [COLOR_1 toUIColor].CGColor;
+    
+    CALayer * recent_layer = [self.sortRecentlyTappedButton layer];
+    recent_layer.borderWidth = 1.0f;
+    recent_layer.borderColor = [COLOR_1 toUIColor].CGColor;
 }
 
 
@@ -105,7 +134,8 @@ static int tag_total_taps   = 1340;
 
 - (void)refreshUI
 {
-    [self.mapkepTable reloadData];
+    self.lastDataLoad = nil;
+    [self loadData];
 }
 
 
@@ -240,8 +270,8 @@ static int tag_total_taps   = 1340;
     if (self.sortIsRecentlyTapped)
     {
         self.sortIsRecentlyTapped = NO;
-        [self removeUnderlineFromButton:self.sortMostTappedButton];
-        [self underlineButtonLabel:self.sortRecentlyTappedButton];
+        [self removeUnderlineFromButton:self.sortRecentlyTappedButton];
+        [self underlineButtonLabel:self.sortMostTappedButton];
         [self sortByMostTapped];
         [self.mapkepTable reloadData];
     }
@@ -253,8 +283,8 @@ static int tag_total_taps   = 1340;
     if (!self.sortIsRecentlyTapped)
     {
         self.sortIsRecentlyTapped = YES;
-        [self removeUnderlineFromButton:self.sortRecentlyTappedButton];
-        [self underlineButtonLabel:self.sortMostTappedButton];
+        [self removeUnderlineFromButton:self.sortMostTappedButton];
+        [self underlineButtonLabel:self.sortRecentlyTappedButton];
         [self sortByRecentlyTapped];
         [self.mapkepTable reloadData];
     }

@@ -50,16 +50,24 @@ static int tag_z2_title = 2339;
 
 @property (nonatomic, strong) NSDateFormatter * dateFormatter;
 @property (nonatomic, strong) NSDateFormatter * dateAndTimeFormatter;
-@property (nonatomic, strong) IBOutlet UILabel * daysWithOccurencesInLast30;
 @property (nonatomic, strong) IBOutlet UICollectionView * historyCollectionView;
-@property (nonatomic, strong) IBOutlet UILabel * iconLabel;
-@property (nonatomic, strong) IBOutlet UILabel * lastLastTimeLabel;
-@property (nonatomic, strong) IBOutlet UILabel * lastTimeLabel;
 @property (nonatomic, strong) IBOutlet UIScrollView * mainScrollView;
-@property (nonatomic, strong) IBOutlet UILabel * nameLabel;
 @property (nonatomic, strong) NSMutableDictionary * occurencesByDay;
 @property (nonatomic, strong) NSMutableArray * occurencesByDayKeys;
 
+@property (nonatomic, strong) IBOutlet UIView * confirmDeleteContainer;
+
+@property (nonatomic, strong) IBOutlet UILabel * daysWithOccurencesInLast30;
+@property (nonatomic, strong) IBOutlet UILabel * iconLabel;
+@property (nonatomic, strong) IBOutlet UILabel * iconLabelForDelete;
+@property (nonatomic, strong) IBOutlet UILabel * lastLastTimeLabel;
+@property (nonatomic, strong) IBOutlet UILabel * lastTimeLabel;
+@property (nonatomic, strong) IBOutlet UILabel * nameLabel;
+
+@property (nonatomic, strong) IBOutlet UIButton * backButton;
+@property (nonatomic, strong) IBOutlet UIButton * cancelDeleteButton;
+@property (nonatomic, strong) IBOutlet UIButton * confirmDeleteButton;
+@property (nonatomic, strong) IBOutlet UIButton * deleteButton;
 @property (nonatomic, strong) IBOutlet UIButton * editButton;
 @property (nonatomic, strong) IBOutlet UIButton * viewAllTapsButton;
 
@@ -88,42 +96,46 @@ static int tag_z2_title = 2339;
     
     self.nameLabel.text = self.primaryMapkep.name;
     
-    UIFont * fa_font = FA_ICONS_FONT_THIRD_SIZE;
+    UIFont * fa_font = FA_ICONS_FONT_HALF_SIZE;
     
     self.iconLabel.font = fa_font;
     if (self.primaryMapkep.faUInt == 0) self.primaryMapkep.faUInt = [Mapkep defaultFAUInt];
     self.iconLabel.text = [NSString awesomeIcon:self.primaryMapkep.faUInt];
     
     
-    // Underline our back button text
+    // And set the delete confirmation version of the icon
     
-    NSMutableAttributedString * edit_text = [[NSMutableAttributedString alloc] initWithString:self.editButton.titleLabel.text];
+    UIFont * fa_font_large = FA_ICONS_FONT;
     
-    [edit_text addAttribute:NSUnderlineStyleAttributeName
-                      value:[NSNumber numberWithInteger:NSUnderlineStyleSingle]
-                      range:NSMakeRange(0, [edit_text length])];
+    self.iconLabelForDelete.font = fa_font_large;
+    self.iconLabelForDelete.text = [NSString awesomeIcon:self.primaryMapkep.faUInt];
     
-    [edit_text addAttribute:NSForegroundColorAttributeName
-                      value:[COLOR_1 toUIColor]
-                      range:NSMakeRange(0, [edit_text length])];
     
-    [self.editButton setAttributedTitle:edit_text
-                               forState:UIControlStateNormal];
+    // Real artists ship
     
-    // and our view all button text
+    self.backButton.titleLabel.font = fa_font;
     
-    NSMutableAttributedString * view_text = [[NSMutableAttributedString alloc] initWithString:self.viewAllTapsButton.titleLabel.text];
+    [self.backButton setTitle:[NSString awesomeIcon:FaTimesCircle]
+                     forState:UIControlStateNormal];
     
-    [view_text addAttribute:NSUnderlineStyleAttributeName
-                      value:[NSNumber numberWithInteger:NSUnderlineStyleSingle]
-                      range:NSMakeRange(0, [view_text length])];
     
-    [view_text addAttribute:NSForegroundColorAttributeName
-                      value:[COLOR_1 toUIColor]
-                      range:NSMakeRange(0, [view_text length])];
+    // The "cancel" button (visible in confirm delete overlay)
     
-    [self.viewAllTapsButton setAttributedTitle:view_text
-                                      forState:UIControlStateNormal];
+    self.cancelDeleteButton.titleLabel.font = fa_font;
+    
+    [self.cancelDeleteButton setTitle:[NSString awesomeIcon:FaTimesCircle]
+                             forState:UIControlStateNormal];
+    
+    
+    // Border patrol
+    
+    CALayer * edit_layer = [self.editButton layer];
+    edit_layer.borderWidth = 1.0f;
+    edit_layer.borderColor = [COLOR_1 toUIColor].CGColor;
+    
+    CALayer * view_all_layer = [self.viewAllTapsButton layer];
+    view_all_layer.borderWidth = 1.0f;
+    view_all_layer.borderColor = [COLOR_1 toUIColor].CGColor;
 }
 
 
@@ -330,6 +342,52 @@ static int tag_z2_title = 2339;
 {
     // 88mph
     //
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+//  no... I've changed my mind
+//
+- (IBAction)cancelDelete:(id)sender
+{
+    [UIView animateWithDuration:1.0
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.confirmDeleteContainer.alpha = 0.0f;
+                     }
+                     completion:^(BOOL finished) {
+                         self.confirmDeleteContainer.hidden = true;
+                     }];
+}
+
+
+//  exterminate?
+//
+- (IBAction)confirmDelete:(id)sender
+{
+    self.confirmDeleteContainer.hidden = false;
+    
+    [UIView animateWithDuration:1.0
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.confirmDeleteContainer.alpha = 1.0f;
+                     }
+                     completion:nil];
+}
+
+
+//  EXTERMINATE
+//
+- (IBAction)delete:(id)sender
+{
+    NSError * error;
+    if (![self.primaryMapkep deleteSelf:error])
+    {
+        AlwaysLog(@"I'm a mog, half man, half dog.  I'm my own best friend!");
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
