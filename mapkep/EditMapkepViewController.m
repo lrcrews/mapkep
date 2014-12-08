@@ -12,10 +12,12 @@
 #import "Constants.h"
 #import "Mapkep.h"
 #import "NSString+FontAwesome.h"
+#import "NSString+utils.h"
 
 
 @interface EditMapkepViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
+@property (nonatomic, strong) IBOutlet UIButton * backButton;
 @property (nonatomic, strong) IBOutlet UILabel * currentIcon;
 @property (nonatomic, strong) IBOutlet UITextField * nameTextField;
 @property (nonatomic, strong) IBOutlet UIButton * saveButton;
@@ -54,11 +56,24 @@
     self.nameTextField.text = self.mapkep.name;
     
     
-    // Make the save button pretty
+    // Set up the non-mapkep button(s)
     
-    self.saveButton.titleLabel.font = FA_ICONS_FONT_HALF_SIZE;
-    [self.saveButton setTitle:[NSString awesomeIcon:FaCheck]
+    UIFont * fa_font = FA_ICONS_FONT_HALF_SIZE;
+    
+    
+    // Back that screen up
+    
+    self.backButton.titleLabel.font = fa_font;
+    
+    [self.backButton setTitle:[NSString awesomeIcon:FaTimesCircle]
                      forState:UIControlStateNormal];
+    
+    
+    // Just do the things you want to do, and other things too
+    
+    CALayer * save_layer = [self.saveButton layer];
+    save_layer.borderWidth = 1.0f;
+    save_layer.borderColor = [COLOR_1 toUIColor].CGColor;
 }
 
 
