@@ -524,8 +524,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Leonard Crews (GAA39PZY93)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Leonard Crews (GAA39PZY93)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -543,7 +543,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "74e136fb-d0a9-4e89-83d2-2f826916797b";
+				PROVISIONING_PROFILE = "B1097F7C-1C99-43F0-AEB7-B89AD53D0D31";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -564,8 +564,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Leonard Crews (GAA39PZY93)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Leonard Crews (GAA39PZY93)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -576,7 +576,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "74e136fb-d0a9-4e89-83d2-2f826916797b";
+				PROVISIONING_PROFILE = "B1097F7C-1C99-43F0-AEB7-B89AD53D0D31";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -588,13 +588,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Leonard Crews (GAA39PZY93)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Leonard Crews (GAA39PZY93)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mapkep/mapkep-Prefix.pch";
 				INFOPLIST_FILE = "mapkep/mapkep-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "74e136fb-d0a9-4e89-83d2-2f826916797b";
+				PROVISIONING_PROFILE = "B1097F7C-1C99-43F0-AEB7-B89AD53D0D31";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -605,13 +605,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Leonard Crews (GAA39PZY93)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Leonard Crews (GAA39PZY93)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Leonard Crews (29MY446ZCR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mapkep/mapkep-Prefix.pch";
 				INFOPLIST_FILE = "mapkep/mapkep-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "74e136fb-d0a9-4e89-83d2-2f826916797b";
+				PROVISIONING_PROFILE = "B1097F7C-1C99-43F0-AEB7-B89AD53D0D31";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
