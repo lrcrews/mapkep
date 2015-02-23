@@ -334,30 +334,17 @@ static int tag_total_taps   = 1340;
     //  The Name
     
     UILabel * nameLabel = (UILabel *)[cell viewWithTag:tag_icon_name];
-    if (mapkep.name != nil && ![mapkep.name isEqual: @""])
-    {
-        [nameLabel setText:[NSString stringWithFormat:@"\"%@\"", mapkep.name]];
-    }
-    else
-    {
-        [nameLabel setText:@""];
-    }
+    [nameLabel setText:[NSString stringWithFormat:@"%@", mapkep.name]];
     
     
     //  The Last Occurence
     
-    Occurance * lastOccurence = (mapkep.has_many_occurances != nil) ?
-    mapkep.has_many_occurances.lastObject :
-    nil;
-    NSString * occurenceText = (lastOccurence != nil) ? [lastOccurence relativeTimeSinceLastOccerence] : @"never";
-    [(UILabel *)[cell viewWithTag:tag_last_tap] setText:occurenceText];
+    [(UILabel *)[cell viewWithTag:tag_last_tap] setText:[mapkep.lastOccurence relativeTimeSinceLastOccerence]];
     
     
     //  The Total
     
-    NSString * total = (mapkep.has_many_occurances != nil) ?
-                            [NSString stringWithFormat:@"%lu", (unsigned long)mapkep.has_many_occurances.count] :
-                            @"0";
+    NSString * total = [NSString stringWithFormat:@"%d", mapkep.totalOccurences];
     [(UILabel *)[cell viewWithTag:tag_total_taps] setText:total];
     
     

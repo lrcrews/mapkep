@@ -17,52 +17,22 @@
 #import "Occurance.h"
 
 
-
-// TODO:
-//  need to break out each view into a custom view to allow for
-//  easy adding / removing of stats views from the community.
-//  Along with any performance requirements they must also be
-//  implemented in such a way that they have a title label
-//  called "titleLabel" so that a single call below may set the
-//  color of that label to the MapKep color (to help the user
-//  remember which detail section they're in).
-//
-//  and you know, actually externalize your own shit down there.
-
-
-// TODO:
-//  with the above done, insert a seperator between each stat
-//  view.  a 10px tall section, with a 2px tall 'black' separator.
-
-
-
-//  Tag values for elements in the storyboard
-//
-static int tag_day      = 1337;
-static int tag_month    = 1338;
-static int tag_year     = 1339;
-static int tag_z_legend = 2337;
-static int tag_z_title  = 2338;
-static int tag_z2_title = 2339;
+#define HISTORY_CELL_BAR_HEIGHT 93.0f
+#define HISTORY_CELL_BAR_TAG 1337
+#define HISTORY_CELL_DAY_TAG 1338
+#define HISTORY_CELL_FILL_TAG 1339
 
 
 @interface StatDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSDateFormatter * dateFormatter;
 @property (nonatomic, strong) NSDateFormatter * dateAndTimeFormatter;
-@property (nonatomic, strong) IBOutlet UICollectionView * historyCollectionView;
-@property (nonatomic, strong) IBOutlet UIScrollView * mainScrollView;
-@property (nonatomic, strong) NSMutableDictionary * occurencesByDay;
-@property (nonatomic, strong) NSMutableArray * occurencesByDayKeys;
+@property (nonatomic, strong) NSDateFormatter * historyCellDayFormatter;
+@property (nonatomic, strong) NSDateFormatter * historyMonthYearFormatter;
+@property (nonatomic, strong) NSDateFormatter * occurencesKeyDateFormatter;
 
-@property (nonatomic, strong) IBOutlet UIView * confirmDeleteContainer;
+@property (nonatomic, strong) NSMutableArray * occurencesByDay;
 
-@property (nonatomic, strong) IBOutlet UILabel * daysWithOccurencesInLast30;
-@property (nonatomic, strong) IBOutlet UILabel * iconLabel;
-@property (nonatomic, strong) IBOutlet UILabel * iconLabelForDelete;
-@property (nonatomic, strong) IBOutlet UILabel * lastLastTimeLabel;
-@property (nonatomic, strong) IBOutlet UILabel * lastTimeLabel;
-@property (nonatomic, strong) IBOutlet UILabel * nameLabel;
+@property (nonatomic, strong) NSTimer * countdownTimer;
 
 @property (nonatomic, strong) IBOutlet UIButton * backButton;
 @property (nonatomic, strong) IBOutlet UIButton * cancelDeleteButton;
@@ -70,6 +40,33 @@ static int tag_z2_title = 2339;
 @property (nonatomic, strong) IBOutlet UIButton * deleteButton;
 @property (nonatomic, strong) IBOutlet UIButton * editButton;
 @property (nonatomic, strong) IBOutlet UIButton * viewAllTapsButton;
+
+@property (nonatomic, strong) IBOutlet UICollectionView * historyCollectionView;
+
+@property (nonatomic, strong) IBOutlet UILabel * averagePerDayLabel;
+@property (nonatomic, strong) IBOutlet UILabel * averagePerMonthLabel;
+@property (nonatomic, strong) IBOutlet UILabel * averagePerWeekLabel;
+@property (nonatomic, strong) IBOutlet UILabel * countdownLabel;
+@property (nonatomic, strong) IBOutlet UILabel * historyGeneralTimeLabel;
+@property (nonatomic, strong) IBOutlet UILabel * historyMaxValueLabel;
+@property (nonatomic, strong) IBOutlet UILabel * historyMidValueLabel;
+@property (nonatomic, strong) IBOutlet UILabel * iconLabel;
+@property (nonatomic, strong) IBOutlet UILabel * iconLabelForDelete;
+@property (nonatomic, strong) IBOutlet UILabel * lastThreeTapsOfTotalTapsLabel;
+@property (nonatomic, strong) IBOutlet UILabel * nameLabel;
+@property (nonatomic, strong) IBOutlet UILabel * recentMostLabel;
+@property (nonatomic, strong) IBOutlet UILabel * recentSecondMostLabel;
+@property (nonatomic, strong) IBOutlet UILabel * recentThirdMostLabel;
+
+@property (nonatomic, strong) IBOutlet UIScrollView * mainScrollView;
+
+@property (nonatomic, strong) IBOutlet UIView * confirmDeleteContainer;
+
+@property (nonatomic) NSInteger average_seconds_between;
+@property (nonatomic) NSInteger seconds_since_tap;
+@property (nonatomic) NSInteger tap_should_occur_in;
+
+@property (nonatomic) int highest_occurence_count_for_a_day;
 
 @end
 
@@ -80,16 +77,6 @@ static int tag_z2_title = 2339;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    ((UILabel *)[self.view viewWithTag:tag_z_title]).textColor = [self.primaryMapkep.hexColorCode toUIColor];
-    ((UILabel *)[self.view viewWithTag:tag_z2_title]).textColor = [self.primaryMapkep.hexColorCode toUIColor];
-    [self.view viewWithTag:tag_z_legend].backgroundColor = [self.primaryMapkep.hexColorCode toUIColor];
-    
-    [self createOccurencesByDayHash];
-    
-    self.daysWithOccurencesInLast30.text = [self daysWithOccurenceInPreviousX:30];
-    self.lastTimeLabel.text = [self theLastTime];
-    self.lastLastTimeLabel.text = [self theLastLastTime];
     
     
     // Set the icon and the name
@@ -103,7 +90,23 @@ static int tag_z2_title = 2339;
     self.iconLabel.text = [NSString awesomeIcon:self.primaryMapkep.faUInt];
     
     
-    // And set the delete confirmation version of the icon
+    // Set the three most recent occurences and their header
+    
+    self.lastThreeTapsOfTotalTapsLabel.text = [NSString stringWithFormat:@"last few taps of your %d total taps", self.primaryMapkep.totalOccurences];
+    
+    self.recentMostLabel.text = [self.dateAndTimeFormatter stringFromDate:[[self.primaryMapkep recentOccurenceWithOffset:0] createdAt]];
+    
+    self.recentSecondMostLabel.text = [self.dateAndTimeFormatter stringFromDate:[[self.primaryMapkep recentOccurenceWithOffset:1] createdAt]];
+    
+    self.recentThirdMostLabel.text = [self.dateAndTimeFormatter stringFromDate:[[self.primaryMapkep recentOccurenceWithOffset:2] createdAt]];
+    
+    
+    // Set the averages labels
+    
+    [self setAveragesLabels];
+    
+    
+    // Set the delete confirmation version of the icon
     
     UIFont * fa_font_large = FA_ICONS_FONT;
     
@@ -145,7 +148,7 @@ static int tag_z2_title = 2339;
     
     if (self.occurencesByDay.count > 1)
     {
-        [self.historyCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.occurencesByDayKeys.count - 1
+        [self.historyCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.occurencesByDay.count - 1
                                                                                inSection:0]
                                            atScrollPosition:UICollectionViewScrollPositionLeft
                                                    animated:YES];
@@ -153,25 +156,36 @@ static int tag_z2_title = 2339;
 }
 
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self startCountdown];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self stopCountdown];
+    
+    [super viewWillDisappear:animated];
+}
+
+
+#pragma mark -
+#pragma mark A Shiny Classic Car
+
 //  "Create it when you need it!"  ~ Lazy Initialization
 //
 //  This is a pattern where the creation (and in this case
 //  a configuration) isn't done until it is needed.  After
-//  the first call '_dateFormatter', the wonderful instance
-//  variable of our property dateFormatter, will be created,
-//  then every subsequent call will simply return what was
-//  made in that first call.
+//  the first call '_historyCellDayFormatter', the wonderful
+//  instance variable of our property dateFormatter, will be
+//  created, then every subsequent call will simply return
+//  what was made in that first call.
 //
-- (NSDateFormatter *)dateFormatter
-{
-    if (_dateFormatter == nil)
-    {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateStyle:NSDateFormatterShortStyle];
-    }
-    
-    return _dateFormatter;
-}
+//  This is true for the folowwing methods, three formatters
+//  and a data set.
 
 
 - (NSDateFormatter *)dateAndTimeFormatter
@@ -186,149 +200,194 @@ static int tag_z2_title = 2339;
 }
 
 
-#pragma mark -
-#pragma mark Right at the Barn
-
-- (void)createOccurencesByDayHash
+- (NSDateFormatter *)historyCellDayFormatter
 {
-    // This will track how many occurences
-    // occured in each hour of a day.
-    //
-    NSArray * occurencesByHours = @[ @0, @0, @0, @0, @0, @0, @0, @0, @0, @0, @0, @0,
-                                     @0, @0, @0, @0, @0, @0, @0, @0, @0, @0, @0, @0];
-    
-    // This primes our sets
-    //
-    self.occurencesByDay = [@{} mutableCopy];
-    self.occurencesByDayKeys = [@[] mutableCopy];
-    
-    for (Occurance * occurence in self.primaryMapkep.has_many_occurances)
+    if (_historyCellDayFormatter == nil)
     {
-        // Stringify Date as it will be a key
-        // in our hash.
-        //
-        NSString * date_as_string = [self.dateFormatter stringFromDate:occurence.createdAt];
-        
-        // Add the base data for the date if needed.
-        //
-        if (self.occurencesByDay[date_as_string] == nil)
-        {
-            self.occurencesByDay[date_as_string] = [occurencesByHours mutableCopy];
-            [self.occurencesByDayKeys addObject:date_as_string];
-        }
-        
-        // Determine the hour so...
-        //
-        NSCalendar * calendar = [NSCalendar currentCalendar];
-        NSDateComponents * components = [calendar components:NSHourCalendarUnit
-                                                    fromDate:occurence.createdAt];
-        NSInteger hour = [components hour];
-        
-        // ...we may increment that value.
-        //
-        [self incrementOccurenceCountInArray:self.occurencesByDay[date_as_string]
-                                     atIndex:hour];
+        _historyCellDayFormatter = [[NSDateFormatter alloc] init];
+        [_historyCellDayFormatter setDateFormat:@"d"];
     }
+    
+    return _historyCellDayFormatter;
 }
 
 
-- (void)incrementOccurenceCountInArray:(NSMutableArray *)occurenceHours
-                               atIndex:(NSInteger)index
+- (NSDateFormatter *)historyMonthYearFormatter
 {
-    int currentCount = [(NSNumber *)occurenceHours[ index ] intValue];
-    currentCount++;
-    occurenceHours[ index ] = [NSNumber numberWithInt:currentCount];
+    if (_historyMonthYearFormatter == nil)
+    {
+        _historyMonthYearFormatter = [[NSDateFormatter alloc] init];
+        [_historyMonthYearFormatter setDateFormat:@"MMMM | y"];
+    }
+    
+    return _historyMonthYearFormatter;
+}
+
+
+- (NSDateFormatter *)occurencesKeyDateFormatter
+{
+    if (_occurencesKeyDateFormatter == nil)
+    {
+        _occurencesKeyDateFormatter = [[NSDateFormatter alloc] init];
+        [_occurencesKeyDateFormatter setDateFormat:@"yyyy_MMM_d"];
+    }
+    
+    return _occurencesKeyDateFormatter;
+}
+
+
+- (NSMutableArray *)occurencesByDay
+{
+    if (_occurencesByDay == nil)
+    {
+        self.highest_occurence_count_for_a_day = 2; // defualt to 2 so UI is never too short
+        self.occurencesByDay = [@[] mutableCopy];
+        
+        if (self.primaryMapkep.firstOccurence.createdAt != nil)
+        {
+            // set up the dates/calendar/components we'll use in our loop
+            
+            NSDate * today = [[NSDate alloc] init];
+            
+            NSCalendar * calendar = [NSCalendar currentCalendar];
+            
+            NSDateComponents * components = [calendar components:( NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit )
+                                                        fromDate:self.primaryMapkep.firstOccurence.createdAt];
+            [components setMinute:0];
+            [components setHour:0];
+            
+            NSDateComponents * offset_components = [[NSDateComponents alloc] init];
+            [offset_components setDay:1];
+            
+            // create the first occurence date
+            
+            NSDate * occurence_date = [calendar dateFromComponents:components];
+            
+            // loop through each day between then and today
+            
+            while ([occurence_date compare:today] < 0)
+            {
+                NSString * key = [self.occurencesKeyDateFormatter stringFromDate:occurence_date];
+                NSArray * occurences = [self.primaryMapkep occurancesForDate:occurence_date];
+                
+                [self.occurencesByDay addObject:@{ key : occurences }];
+                
+                if (occurences.count > self.highest_occurence_count_for_a_day)
+                {
+                    self.highest_occurence_count_for_a_day = (int)occurences.count;
+                }
+                
+                // incrementing the date (technically creating a new date and
+                // setting it, but you know what I mean)
+                
+                occurence_date = [calendar dateByAddingComponents:offset_components
+                                                           toDate:occurence_date
+                                                          options:0];
+            }
+        }
+        
+        // Set the two labels whose values are now known (and will remain unchanged)
+        
+        self.historyMaxValueLabel.text = [NSString stringWithFormat:@"%d", self.highest_occurence_count_for_a_day];
+        
+        self.historyMidValueLabel.text = [NSString stringWithFormat:@"%.01f", (float)self.highest_occurence_count_for_a_day / 2.0f];
+    }
+    
+    return _occurencesByDay;
+}
+
+
+#pragma mark -
+#pragma mark Then a Right at the Barn
+
+- (void)setAveragesLabels
+{
+    float daily_average = (float)self.primaryMapkep.totalOccurences / (float)self.occurencesByDay.count;
+    
+    if (isnan(daily_average)) daily_average = 0;
+    
+    self.averagePerDayLabel.text = [NSString stringWithFormat:@"%.02f a day", daily_average];
+    
+    self.averagePerWeekLabel.text = [NSString stringWithFormat:@"%.02f a week", daily_average * 7.0f];
+    
+    self.averagePerMonthLabel.text = [NSString stringWithFormat:@"%.02f a month", daily_average * 30.0f];
 }
 
 
 #pragma mark -
 #pragma mark And A Big Red Button
 
-//  This relies on self.occurencesByDay existing
-//  (so, you know, don't call it before that's built)
-//
-- (NSString *)daysWithOccurenceInPreviousX:(NSInteger)days
+- (NSInteger)average_seconds_between
 {
-    BOOL dailyActivity = NO;
-    
-    NSDate * currentDate = [NSDate date];
-    NSDateComponents * dateComponents = [[NSDateComponents alloc] init];
-    
-    // We're going to say 7 days in a row out of the
-    // last 8 (counting today, but not requiring it)
-    // or 25 days total out of the last 30 is a daily
-    // habbit.
-    //
-    NSInteger days_with_occurence_count = 0;
-    for (int i = 0; i < days; i++)
+    if (_average_seconds_between == 0)
     {
-        // Update the date component's day offset
-        //
-        [dateComponents setDay:-i];
-        
-        // Make our test date so we can make a key
-        //
-        NSDate * testDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents
-                                                                          toDate:currentDate
-                                                                         options:0];
-        NSString * testKey = [self.dateFormatter stringFromDate:testDate];
-        
-        // Increment our count (if we should)
-        //
-        if (self.occurencesByDay[ testKey ] != nil)
+        _average_seconds_between = (24 * 60 * 60) / ((float)self.primaryMapkep.totalOccurences / (float)self.occurencesByDay.count);
+    }
+    
+    return _average_seconds_between;
+}
+
+
+- (NSInteger)seconds_since_tap
+{
+    if (_seconds_since_tap == 0)
+    {
+        _seconds_since_tap = [[[NSDate alloc] init] timeIntervalSinceDate:self.primaryMapkep.lastOccurence.createdAt];
+    }
+    
+    return _seconds_since_tap;
+}
+
+
+- (void)setCountdownText;
+{
+    self.tap_should_occur_in--;
+    
+    if (self.tap_should_occur_in < 0)
+    {
+        if (self.seconds_since_tap > 0)
         {
-            days_with_occurence_count++;
+            self.countdownLabel.text = [NSString stringWithFormat:@"wow, it's been %.02f days since your last tap", ((self.seconds_since_tap / 60.0f) / 60.0f) / 24.0f];
         }
+        else
+        {
+            self.countdownLabel.text = @"perhaps... soon?";
+        }
+    }
+    else
+    {
+        int days = (int)self.tap_should_occur_in / 86400; // 86400 = 60 * 60 * 24
+        int hours = (self.tap_should_occur_in % 86400) / 3600; // 3600 = 60 * 60
+        int minutes = ((self.tap_should_occur_in % 86400) % 3600) / 60;
+        int seconds = ((self.tap_should_occur_in % 86400) % 3600) % 60;
         
-        // See if it passes our critia
-        //
-        if ( (i == 6 || i == 7) && days_with_occurence_count == 7)  dailyActivity = YES;
-        if (days_with_occurence_count >= 25)                        dailyActivity = YES;
-    }
-    
-    // Let's write something
-    //
-    //  It's a daily thing
-    //
-    if (dailyActivity) return [NSString stringWithFormat:@"You've tapped this %ld different days over the previous %ld days, it's looking like a daily thing.", (long)days_with_occurence_count, (long)days];
-    
-    //  It's a 'not a daily thing' thing
-    //
-    return [NSString stringWithFormat:@"You tapped this little button %ld different days in the last %ld day.", (long)days_with_occurence_count, (long)days];
-}
-
-
-- (NSString *)theLastTime
-{
-    if (self.primaryMapkep.has_many_occurances.count > 0)
-    {
-        Occurance * lastOccurence = self.primaryMapkep.has_many_occurances.lastObject;
-        return [NSString stringWithFormat:@"The last time you tapped this button was %@", [self.dateAndTimeFormatter stringFromDate:lastOccurence.createdAt]];
-    }
-    else
-    {
-        return @"You've never tapped this button.";
+        NSString * days_string =  days > 0 ? [NSString stringWithFormat:@"%d days, ", days] : @"";
+        NSString * hours_string =  hours > 0 ? [NSString stringWithFormat:@"%d hours, ", hours] : @"";
+        NSString * minutes_string =  minutes > 0 ? [NSString stringWithFormat:@"%d minutes, ", minutes] : @"";
+        NSString * seconds_string = [NSString stringWithFormat:@"%d seconds", seconds];
+        
+        self.countdownLabel.text = [NSString stringWithFormat:@"%@%@%@%@", days_string, hours_string, minutes_string, seconds_string];
     }
 }
 
 
-- (NSString *)theLastLastTime
+- (void)startCountdown;
 {
-    NSInteger occurenceCount = self.primaryMapkep.has_many_occurances.count;
+    self.tap_should_occur_in = self.average_seconds_between - self.seconds_since_tap;
     
-    if (occurenceCount > 1)
-    {
-        Occurance * lastLastOccurence = self.primaryMapkep.has_many_occurances[ occurenceCount - 2 ];
-        return [NSString stringWithFormat:@"The last time you tapped this, before the last time you tapped this, was %@", [self.dateAndTimeFormatter stringFromDate:lastLastOccurence.createdAt]];
-    }
-    else if (occurenceCount == 1)
-    {
-        return @"You've only tapped this button once.";
-    }
-    else
-    {
-        return @"";
-    }
+    self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                           target:self
+                                                         selector:@selector(setCountdownText)
+                                                         userInfo:nil
+                                                          repeats:YES];
+}
+
+
+- (void)stopCountdown;
+{
+    [self.countdownTimer invalidate];
+    self.average_seconds_between = 0;
+    self.seconds_since_tap = 0;
 }
 
 
@@ -341,7 +400,6 @@ static int tag_z2_title = 2339;
 - (IBAction)back:(id)sender
 {
     // 88mph
-    //
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -395,7 +453,6 @@ static int tag_z2_title = 2339;
 #pragma mark -
 #pragma mark UICollectionView Datasource
 
-// 1
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section
 {
@@ -403,87 +460,69 @@ static int tag_z2_title = 2339;
 }
 
 
-// 2
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
 }
 
 
-// 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // HistoryCell is the name set on the prototype cell in the storyboard.
-    //
+    
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HistoryCell"
                                                                             forIndexPath:indexPath];
     
+    // Grab the occurences for this index
     
-    // Get the occurences out of their Russian Nesting Doll.
-    //
-    NSArray * occurencesByHour = self.occurencesByDay[ self.occurencesByDayKeys[ indexPath.row ] ];
+    NSDictionary * occurences_hash = self.occurencesByDay[indexPath.row];
     
+    NSString * key = occurences_hash.allKeys.firstObject;
+    NSArray * occurences = occurences_hash[key];
     
-    // Paint the town.
-    //
-    //      we start the tags at 100 instead of 0 to avoid the
-    //      issue that arises due to UIView tags defaulting to
-    //      0.  (viewWithTag:0 returns unwanted uiviews).
-    //
-    NSInteger tagOfView = 100;
-    for (NSNumber * occurences in occurencesByHour)
+    // Calculate some stuff
+    
+    float ratio = (float)occurences.count / (float)self.highest_occurence_count_for_a_day;
+    CGFloat y_position = HISTORY_CELL_BAR_HEIGHT - HISTORY_CELL_BAR_HEIGHT * ratio;
+    
+    // Grab our fill view (or make it if needed)
+    
+    UIView * bar = [cell.contentView viewWithTag:HISTORY_CELL_BAR_TAG];
+    UIView * fill = [bar viewWithTag:HISTORY_CELL_FILL_TAG];
+    
+    if (fill == nil)
     {
-        // Get the count
-        int count = [occurences intValue];
-        // Get the UIView
-        UIView * hourCell = [cell viewWithTag:tagOfView];
-        // Set the background color
-        switch (count) {
-            case 0:
-                hourCell.backgroundColor = [UIColor whiteColor];
-                break;
-                
-            case 1:
-                hourCell.backgroundColor = [self.primaryMapkep.hexColorCode toUIColor];
-                break;
-                
-            case 2:
-                hourCell.backgroundColor = [UIColor lightGrayColor];
-                break;
-                
-            case 3:
-                hourCell.backgroundColor = [UIColor darkGrayColor];
-                break;
-                
-            default:
-                hourCell.backgroundColor = [UIColor blackColor];
-                break;
-        }
-        // Up the tagOfView value
-        tagOfView++;
+        fill = [[UIView alloc] init];
+        fill.alpha = 0.85;
+        fill.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        fill.backgroundColor = [COLOR_1 toUIColor];
+        fill.opaque = false;
+        fill.tag = HISTORY_CELL_FILL_TAG;
+        
+        CALayer * fill_layer = [fill layer];
+        fill_layer.borderWidth = 1.0f;
+        fill_layer.borderColor = [UIColor whiteColor].CGColor;
+        
+        [bar addSubview:fill];
     }
     
+    // Size the fill view
     
-    // Make sure the day/month/year labels are correct
-    //
-    NSDate * date = [self.dateFormatter dateFromString:self.occurencesByDayKeys[ indexPath.row ]];
-    NSCalendar * calendar = [NSCalendar currentCalendar];
-    NSDateComponents * components = [calendar components:( NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit )
-                                                fromDate:date];
-    //  day
-    UILabel * dayLabel = (UILabel *)[cell viewWithTag:tag_day];
-    dayLabel.text = [NSString stringWithFormat:@"%ld", (long)components.day];
-    //  month
-    UILabel * monthLabel = (UILabel *)[cell viewWithTag:tag_month];
-    monthLabel.text = [NSString stringWithFormat:@"%ld", (long)components.month];
-    //  year
-    UILabel * yearLabel = (UILabel *)[cell viewWithTag:tag_year];
-    yearLabel.text = [NSString stringWithFormat:@"%ld", (long)components.year];
+    fill.frame = CGRectMake(0.0f, y_position + 1.0f, 50.0f, HISTORY_CELL_BAR_HEIGHT * ratio);
     
+    // Update the text denoting the day of this bar
+    
+    UILabel * day = (UILabel *)[cell.contentView viewWithTag:HISTORY_CELL_DAY_TAG];
+    day.text = [self.historyCellDayFormatter stringFromDate:[self.occurencesKeyDateFormatter dateFromString:key]];
+    
+    // Update the text denoting the approxiamate Month and Year of
+    // the visible bars
+    
+    self.historyGeneralTimeLabel.text = [self.historyMonthYearFormatter stringFromDate:[self.occurencesKeyDateFormatter dateFromString:key]];
     
     // Always groups of five.
-    //
+    
     return cell;
 }
 
@@ -499,11 +538,11 @@ static int tag_z2_title = 2339;
     //  ahhh.... I just copy-pasted this from somewhere else
     //  read this note while highlighting it to replace it,
     //  and realized 'hah, I need to do that'.
-    //
+    
     if ([segue.identifier isEqualToString:k_segue_to_history_table])
     {
         //  I aim to misbehave
-        //
+        
         MapkepOccurencesTableViewController * controller = (MapkepOccurencesTableViewController *)segue.destinationViewController;
         controller.occurences = [self.primaryMapkep.has_many_occurances array];
     }
@@ -513,7 +552,7 @@ static int tag_z2_title = 2339;
         //  have the guts to do it to my face.
         //
         //  ~ Cap'n Mal
-        //
+        
         EditMapkepViewController * controller = (EditMapkepViewController *)segue.destinationViewController;
         controller.mapkep = self.primaryMapkep;
     }

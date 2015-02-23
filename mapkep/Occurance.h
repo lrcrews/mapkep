@@ -32,4 +32,6 @@
 - (BOOL)save:(NSError *)error;
 - (NSString *)relativeTimeSinceLastOccerence;
 
++ (Occurance *)emptyOccurance;
+
 @end

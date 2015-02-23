@@ -131,13 +131,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		94323108190B8B26003A918B /* stat detail views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "stat detail views";
-			sourceTree = "<group>";
-		};
 		948EA2A1198F17F30029E7D8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,7 +210,6 @@
 				94B9C5EF188B21EA00FD317A /* controllers */,
 				94B9C5F0188B220700FD317A /* models */,
 				94B9C5F2188B223B00FD317A /* modules */,
-				94B9C5F1188B222E00FD317A /* views */,
 				94B9C5C9188B20FA00FD317A /* AppDelegate.h */,
 				94B9C5CA188B20FA00FD317A /* AppDelegate.m */,
 				94B8D2C5188CA15F002E52A1 /* Constants.h */,
@@ -288,14 +280,6 @@
 				9412D66918A70F8B00EED4B4 /* Occurance.m */,
 			);
 			name = models;
-			sourceTree = "<group>";
-		};
-		94B9C5F1188B222E00FD317A /* views */ = {
-			isa = PBXGroup;
-			children = (
-				94323108190B8B26003A918B /* stat detail views */,
-			);
-			name = views;
 			sourceTree = "<group>";
 		};
 		94B9C5F2188B223B00FD317A /* modules */ = {

@@ -117,18 +117,8 @@ static int tag_stats    = 1339;
 
 - (IBAction)buttonPressed:(id)sender
 {
-    NSLog(@"sender tag %ld", (long)[sender tag]);
-    //  Let's grab our coredata context so we can...
-    //
-    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext * context = [appDelegate managedObjectContext];
-    
-    //  ...create a new instance of our event's occurance
-    //  that knows how to save itself so we can...
-    //
-    Occurance * newOccurance = [NSEntityDescription insertNewObjectForEntityForName:kKey_OccurenceEntityName
-                                                             inManagedObjectContext:context];
-    newOccurance.createdAt = [NSDate date];
+    Occurance * newOccurance = [Occurance emptyOccurance];
+    newOccurance.createdAt = [[NSDate alloc] init];
     
     //  ...add the relationship to the tapped Mapkep
     //  and then...
@@ -136,14 +126,14 @@ static int tag_stats    = 1339;
     //  (in my opinion this reads better than the helper
     //  method coredata provides 'add<child>Object:' on
     //  the parent).
-    //
+    
     Mapkep * tappedMapkep = self.mapkepObjects[[sender tag]];
     newOccurance.belongs_to_mapkep = tappedMapkep;
     
     DebugLog(@"Adding occurence to mapkep with name \"%@\" and color \"%@\"", tappedMapkep.name, tappedMapkep.hexColorCode);
     
     //  ...you know... save it.  Then we can...
-    //
+    
     NSError * error;
     if (![newOccurance save:error])
     {
@@ -151,7 +141,7 @@ static int tag_stats    = 1339;
     }
     
     //  ...let the user know the button led to magic, hooray!
-    //
+    
     [self displaySuccessMessageWithColor:[tappedMapkep.hexColorCode toUIColor]];
 }
 

@@ -22,8 +22,16 @@
 @property (nonatomic, retain) NSOrderedSet * has_many_occurances;
 
 
+- (NSOrderedSet *)occurances;
+- (NSArray *)occurancesForDate:(NSDate *)date;
+
 - (BOOL)save:(NSError *)error;
 - (BOOL)deleteSelf:(NSError *)error;
+
+- (Occurance *)firstOccurence;
+- (Occurance *)lastOccurence;
+- (Occurance *)recentOccurenceWithOffset:(NSInteger)most_recent_minus_this;
+- (int)totalOccurences;
 
 + (NSArray *)allWithManagedObjectContext:(NSManagedObjectContext *)context;
 
