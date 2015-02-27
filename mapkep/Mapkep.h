@@ -15,11 +15,15 @@
 
 @interface Mapkep : NSManagedObject
 
+
 @property (nonatomic) int32_t faUInt;
+
+@property (nonatomic, retain) NSNumber * ordinal;
+
+@property (nonatomic, retain) NSOrderedSet * has_many_occurances;
+
 @property (nonatomic, retain) NSString * hexColorCode;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * ordinal;
-@property (nonatomic, retain) NSOrderedSet * has_many_occurances;
 
 
 - (NSOrderedSet *)occurances;

@@ -43,19 +43,18 @@
 {
     if (self.createdAt == nil)
     {
-        //  What the hell am I looking at? When does this happen in the movie?
+        // What the hell am I looking at? When does this happen in the movie?
         
         return @"never";
     }
     else
     {
-        //  Now. You're looking at now, sir.
-        //  Everything that happens now, is happening now.
+        // Now. You're looking at now, sir.
+        // Everything that happens now, is happening now.
         
         NSDate * now = [[NSDate alloc] init];
         
-        
-        //  What happened to then?
+        // What happened to then?
         
         NSTimeInterval secondsBetween   = [now timeIntervalSinceDate:self.createdAt];
         CGFloat minutesBetween          = secondsBetween / 60.0f;
@@ -65,13 +64,11 @@
         CGFloat monthsBetween           = weeksBetween / 4.3f;      // eh, close enough
         CGFloat yearsBetween            = monthsBetween / 12.1f;    // ditto
         
-        
         //  We passed then.
         
         if (yearsBetween > 2)   return @"long, long ago";
         if (yearsBetween > 1.1) return @"more than a year ago";
         if (yearsBetween > 0.9) return @"about a year ago";
-        
         
         //  When?
         
@@ -82,14 +79,12 @@
         if (monthsBetween > 2)      return @"a couple of months ago";
         if (monthsBetween > 0.9)    return @"about a month ago";
         
-        
         //  Just now. We're at now now.
         
         if (weeksBetween > 4)   return @"about a month ago";
         if (weeksBetween > 3)   return @"a few weeks ago";
         if (weeksBetween > 2)   return @"a coulpe of weeks ago";
         if (weeksBetween > 0.9) return @"about a week ago";
-        
         
         //  Go back to then.
         
@@ -98,7 +93,6 @@
         if (daysBetween > 3)    return @"a few days ago";
         if (daysBetween > 2)    return @"a couple of days ago";
         if (daysBetween > 1)    return @"more than a day ago";
-        
         
         //  When?
         
@@ -118,7 +112,6 @@
         if (hoursBetween > 1.15)    return @"over a hour ago";
         if (hoursBetween > 0.85)    return @"about a hour ago";
         
-        
         //  Now.
         
         if (minutesBetween > 45)    return @"almost a hour ago";
@@ -137,18 +130,15 @@
         if (minutesBetween > 2)     return @"a couple of minutes ago";
         if (minutesBetween > 0.85)  return @"about a minute ago";
         
-        
         //  Now?
         
         if (secondsBetween > 45)    return @"almost a minute ago";
         if (secondsBetween > 30)    return @"half a minute ago";
         if (secondsBetween > 10)    return @"just a few seconds ago";
         
-        
         //  Now.
         
         if (secondsBetween > 0) return @"now";
-        
         
         //  I can't.
         
@@ -162,15 +152,15 @@
 
 + (Occurance *)emptyOccurance;
 {
-    //  Let's grab our coredata context so we can...
+    // Let's grab our coredata context so we can...
     
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext * context = [appDelegate managedObjectContext];
     
-    //  ...create a new instance of our event's occurance
-    //  that knows how to save itself so we can...
+    // ...create a new instance of our event's occurance
+    // that knows how to save itself so we can...
     
-    return [NSEntityDescription insertNewObjectForEntityForName:kKey_OccurenceEntityName
+    return [NSEntityDescription insertNewObjectForEntityForName:KEY_OCCURENCE_ENTITY_NAME
                                          inManagedObjectContext:context];
 }
 

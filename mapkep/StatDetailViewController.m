@@ -25,6 +25,12 @@
 
 @interface StatDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
+@property (nonatomic) int highestOccurenceCountForADay;
+
+@property (nonatomic) NSInteger averageSecondsBetween;
+@property (nonatomic) NSInteger secondsSinceTap;
+@property (nonatomic) NSInteger tapShouldOccurIn;
+
 @property (nonatomic, strong) NSDateFormatter * dateAndTimeFormatter;
 @property (nonatomic, strong) NSDateFormatter * historyCellDayFormatter;
 @property (nonatomic, strong) NSDateFormatter * historyMonthYearFormatter;
@@ -62,12 +68,6 @@
 
 @property (nonatomic, strong) IBOutlet UIView * confirmDeleteContainer;
 
-@property (nonatomic) NSInteger average_seconds_between;
-@property (nonatomic) NSInteger seconds_since_tap;
-@property (nonatomic) NSInteger tap_should_occur_in;
-
-@property (nonatomic) int highest_occurence_count_for_a_day;
-
 @end
 
 
@@ -78,17 +78,15 @@
 {
     [super viewDidLoad];
     
-    
     // Set the icon and the name
     
     self.nameLabel.text = self.primaryMapkep.name;
     
-    UIFont * fa_font = FA_ICONS_FONT_HALF_SIZE;
+    UIFont * faFont = FA_ICONS_FONT_HALF_SIZE;
     
-    self.iconLabel.font = fa_font;
+    self.iconLabel.font = faFont;
     if (self.primaryMapkep.faUInt == 0) self.primaryMapkep.faUInt = [Mapkep defaultFAUInt];
     self.iconLabel.text = [NSString awesomeIcon:self.primaryMapkep.faUInt];
-    
     
     // Set the three most recent occurences and their header
     
@@ -100,45 +98,40 @@
     
     self.recentThirdMostLabel.text = [self.dateAndTimeFormatter stringFromDate:[[self.primaryMapkep recentOccurenceWithOffset:2] createdAt]];
     
-    
     // Set the averages labels
     
     [self setAveragesLabels];
     
-    
     // Set the delete confirmation version of the icon
     
-    UIFont * fa_font_large = FA_ICONS_FONT;
+    UIFont * faFontLarge = FA_ICONS_FONT;
     
-    self.iconLabelForDelete.font = fa_font_large;
+    self.iconLabelForDelete.font = faFontLarge;
     self.iconLabelForDelete.text = [NSString awesomeIcon:self.primaryMapkep.faUInt];
-    
     
     // Real artists ship
     
-    self.backButton.titleLabel.font = fa_font;
+    self.backButton.titleLabel.font = faFont;
     
     [self.backButton setTitle:[NSString awesomeIcon:FaTimesCircle]
                      forState:UIControlStateNormal];
     
-    
     // The "cancel" button (visible in confirm delete overlay)
     
-    self.cancelDeleteButton.titleLabel.font = fa_font;
+    self.cancelDeleteButton.titleLabel.font = faFont;
     
     [self.cancelDeleteButton setTitle:[NSString awesomeIcon:FaTimesCircle]
                              forState:UIControlStateNormal];
     
-    
     // Border patrol
     
-    CALayer * edit_layer = [self.editButton layer];
-    edit_layer.borderWidth = 1.0f;
-    edit_layer.borderColor = [COLOR_1 toUIColor].CGColor;
+    CALayer * editLayer = [self.editButton layer];
+    editLayer.borderWidth = 1.0f;
+    editLayer.borderColor = [COLOR_1 toUIColor].CGColor;
     
-    CALayer * view_all_layer = [self.viewAllTapsButton layer];
-    view_all_layer.borderWidth = 1.0f;
-    view_all_layer.borderColor = [COLOR_1 toUIColor].CGColor;
+    CALayer * viewAllLayer = [self.viewAllTapsButton layer];
+    viewAllLayer.borderWidth = 1.0f;
+    viewAllLayer.borderColor = [COLOR_1 toUIColor].CGColor;
 }
 
 
@@ -186,7 +179,6 @@
 //
 //  This is true for the folowwing methods, three formatters
 //  and a data set.
-
 
 - (NSDateFormatter *)dateAndTimeFormatter
 {
@@ -240,7 +232,7 @@
 {
     if (_occurencesByDay == nil)
     {
-        self.highest_occurence_count_for_a_day = 2; // defualt to 2 so UI is never too short
+        self.highestOccurenceCountForADay = 2; // defualt to 2 so UI is never too short
         self.occurencesByDay = [@[] mutableCopy];
         
         if (self.primaryMapkep.firstOccurence.createdAt != nil)
@@ -256,41 +248,41 @@
             [components setMinute:0];
             [components setHour:0];
             
-            NSDateComponents * offset_components = [[NSDateComponents alloc] init];
-            [offset_components setDay:1];
+            NSDateComponents * offsetComponents = [[NSDateComponents alloc] init];
+            [offsetComponents setDay:1];
             
             // create the first occurence date
             
-            NSDate * occurence_date = [calendar dateFromComponents:components];
+            NSDate * occurenceDate = [calendar dateFromComponents:components];
             
             // loop through each day between then and today
             
-            while ([occurence_date compare:today] < 0)
+            while ([occurenceDate compare:today] < 0)
             {
-                NSString * key = [self.occurencesKeyDateFormatter stringFromDate:occurence_date];
-                NSArray * occurences = [self.primaryMapkep occurancesForDate:occurence_date];
+                NSString * key = [self.occurencesKeyDateFormatter stringFromDate:occurenceDate];
+                NSArray * occurences = [self.primaryMapkep occurancesForDate:occurenceDate];
                 
                 [self.occurencesByDay addObject:@{ key : occurences }];
                 
-                if (occurences.count > self.highest_occurence_count_for_a_day)
+                if (occurences.count > self.highestOccurenceCountForADay)
                 {
-                    self.highest_occurence_count_for_a_day = (int)occurences.count;
+                    self.highestOccurenceCountForADay = (int)occurences.count;
                 }
                 
                 // incrementing the date (technically creating a new date and
                 // setting it, but you know what I mean)
                 
-                occurence_date = [calendar dateByAddingComponents:offset_components
-                                                           toDate:occurence_date
+                occurenceDate = [calendar dateByAddingComponents:offsetComponents
+                                                           toDate:occurenceDate
                                                           options:0];
             }
         }
         
         // Set the two labels whose values are now known (and will remain unchanged)
         
-        self.historyMaxValueLabel.text = [NSString stringWithFormat:@"%d", self.highest_occurence_count_for_a_day];
+        self.historyMaxValueLabel.text = [NSString stringWithFormat:@"%d", self.highestOccurenceCountForADay];
         
-        self.historyMidValueLabel.text = [NSString stringWithFormat:@"%.01f", (float)self.highest_occurence_count_for_a_day / 2.0f];
+        self.historyMidValueLabel.text = [NSString stringWithFormat:@"%.01f", (float)self.highestOccurenceCountForADay / 2.0f];
     }
     
     return _occurencesByDay;
@@ -302,52 +294,52 @@
 
 - (void)setAveragesLabels
 {
-    float daily_average = (float)self.primaryMapkep.totalOccurences / (float)self.occurencesByDay.count;
+    float dailyAverage = (float)self.primaryMapkep.totalOccurences / (float)self.occurencesByDay.count;
     
-    if (isnan(daily_average)) daily_average = 0;
+    if (isnan(dailyAverage)) dailyAverage = 0;
     
-    self.averagePerDayLabel.text = [NSString stringWithFormat:@"%.02f a day", daily_average];
+    self.averagePerDayLabel.text = [NSString stringWithFormat:@"%.02f a day", dailyAverage];
     
-    self.averagePerWeekLabel.text = [NSString stringWithFormat:@"%.02f a week", daily_average * 7.0f];
+    self.averagePerWeekLabel.text = [NSString stringWithFormat:@"%.02f a week", dailyAverage * 7.0f];
     
-    self.averagePerMonthLabel.text = [NSString stringWithFormat:@"%.02f a month", daily_average * 30.0f];
+    self.averagePerMonthLabel.text = [NSString stringWithFormat:@"%.02f a month", dailyAverage * 30.0f];
 }
 
 
 #pragma mark -
 #pragma mark And A Big Red Button
 
-- (NSInteger)average_seconds_between
+- (NSInteger)averageSecondsBetween
 {
-    if (_average_seconds_between == 0)
+    if (_averageSecondsBetween == 0)
     {
-        _average_seconds_between = (24 * 60 * 60) / ((float)self.primaryMapkep.totalOccurences / (float)self.occurencesByDay.count);
+        _averageSecondsBetween = (24 * 60 * 60) / ((float)self.primaryMapkep.totalOccurences / (float)self.occurencesByDay.count);
     }
     
-    return _average_seconds_between;
+    return _averageSecondsBetween;
 }
 
 
-- (NSInteger)seconds_since_tap
+- (NSInteger)secondsSinceTap
 {
-    if (_seconds_since_tap == 0)
+    if (_secondsSinceTap == 0)
     {
-        _seconds_since_tap = [[[NSDate alloc] init] timeIntervalSinceDate:self.primaryMapkep.lastOccurence.createdAt];
+        _secondsSinceTap = [[[NSDate alloc] init] timeIntervalSinceDate:self.primaryMapkep.lastOccurence.createdAt];
     }
     
-    return _seconds_since_tap;
+    return _secondsSinceTap;
 }
 
 
 - (void)setCountdownText;
 {
-    self.tap_should_occur_in--;
+    self.tapShouldOccurIn--;
     
-    if (self.tap_should_occur_in < 0)
+    if (self.tapShouldOccurIn < 0)
     {
-        if (self.seconds_since_tap > 0)
+        if (self.secondsSinceTap > 0)
         {
-            self.countdownLabel.text = [NSString stringWithFormat:@"wow, it's been %.02f days since your last tap", ((self.seconds_since_tap / 60.0f) / 60.0f) / 24.0f];
+            self.countdownLabel.text = [NSString stringWithFormat:@"wow, it's been %.02f days since your last tap", ((self.secondsSinceTap / 60.0f) / 60.0f) / 24.0f];
         }
         else
         {
@@ -356,24 +348,24 @@
     }
     else
     {
-        int days = (int)self.tap_should_occur_in / 86400; // 86400 = 60 * 60 * 24
-        int hours = (self.tap_should_occur_in % 86400) / 3600; // 3600 = 60 * 60
-        int minutes = ((self.tap_should_occur_in % 86400) % 3600) / 60;
-        int seconds = ((self.tap_should_occur_in % 86400) % 3600) % 60;
+        int days = (int)self.tapShouldOccurIn / 86400; // 86400 = 60 * 60 * 24
+        int hours = (self.tapShouldOccurIn % 86400) / 3600; // 3600 = 60 * 60
+        int minutes = ((self.tapShouldOccurIn % 86400) % 3600) / 60;
+        int seconds = ((self.tapShouldOccurIn % 86400) % 3600) % 60;
         
-        NSString * days_string =  days > 0 ? [NSString stringWithFormat:@"%d days, ", days] : @"";
-        NSString * hours_string =  hours > 0 ? [NSString stringWithFormat:@"%d hours, ", hours] : @"";
-        NSString * minutes_string =  minutes > 0 ? [NSString stringWithFormat:@"%d minutes, ", minutes] : @"";
-        NSString * seconds_string = [NSString stringWithFormat:@"%d seconds", seconds];
+        NSString * daysString =  days > 0 ? [NSString stringWithFormat:@"%d days, ", days] : @"";
+        NSString * hoursString =  hours > 0 ? [NSString stringWithFormat:@"%d hours, ", hours] : @"";
+        NSString * minutesString =  minutes > 0 ? [NSString stringWithFormat:@"%d minutes, ", minutes] : @"";
+        NSString * secondsString = [NSString stringWithFormat:@"%d seconds", seconds];
         
-        self.countdownLabel.text = [NSString stringWithFormat:@"%@%@%@%@", days_string, hours_string, minutes_string, seconds_string];
+        self.countdownLabel.text = [NSString stringWithFormat:@"%@%@%@%@", daysString, hoursString, minutesString, secondsString];
     }
 }
 
 
 - (void)startCountdown;
 {
-    self.tap_should_occur_in = self.average_seconds_between - self.seconds_since_tap;
+    self.tapShouldOccurIn = self.averageSecondsBetween - self.secondsSinceTap;
     
     self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                            target:self
@@ -386,8 +378,8 @@
 - (void)stopCountdown;
 {
     [self.countdownTimer invalidate];
-    self.average_seconds_between = 0;
-    self.seconds_since_tap = 0;
+    self.averageSecondsBetween = 0;
+    self.secondsSinceTap = 0;
 }
 
 
@@ -400,7 +392,8 @@
 - (IBAction)back:(id)sender
 {
     // 88mph
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 
@@ -469,22 +462,22 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // HistoryCell is the name set on the prototype cell in the storyboard.
+    // "HistoryCell" is the name set on the prototype cell in the storyboard.
     
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HistoryCell"
                                                                             forIndexPath:indexPath];
     
     // Grab the occurences for this index
     
-    NSDictionary * occurences_hash = self.occurencesByDay[indexPath.row];
+    NSDictionary * occurencesHash = self.occurencesByDay[indexPath.row];
     
-    NSString * key = occurences_hash.allKeys.firstObject;
-    NSArray * occurences = occurences_hash[key];
+    NSString * key = occurencesHash.allKeys.firstObject;
+    NSArray * occurences = occurencesHash[key];
     
     // Calculate some stuff
     
-    float ratio = (float)occurences.count / (float)self.highest_occurence_count_for_a_day;
-    CGFloat y_position = HISTORY_CELL_BAR_HEIGHT - HISTORY_CELL_BAR_HEIGHT * ratio;
+    float ratio = (float)occurences.count / (float)self.highestOccurenceCountForADay;
+    CGFloat yPosition = HISTORY_CELL_BAR_HEIGHT - HISTORY_CELL_BAR_HEIGHT * ratio;
     
     // Grab our fill view (or make it if needed)
     
@@ -509,7 +502,7 @@
     
     // Size the fill view
     
-    fill.frame = CGRectMake(0.0f, y_position + 1.0f, 50.0f, HISTORY_CELL_BAR_HEIGHT * ratio);
+    fill.frame = CGRectMake(0.0f, yPosition + 1.0f, 50.0f, HISTORY_CELL_BAR_HEIGHT * ratio);
     
     // Update the text denoting the day of this bar
     
@@ -521,7 +514,7 @@
     
     self.historyGeneralTimeLabel.text = [self.historyMonthYearFormatter stringFromDate:[self.occurencesKeyDateFormatter dateFromString:key]];
     
-    // Always groups of five.
+    // Always groups of five...
     
     return cell;
 }
@@ -539,19 +532,19 @@
     //  read this note while highlighting it to replace it,
     //  and realized 'hah, I need to do that'.
     
-    if ([segue.identifier isEqualToString:k_segue_to_history_table])
+    if ([segue.identifier isEqualToString:SEGUE_TO_HISTORY_TABLE])
     {
-        //  I aim to misbehave
+        // I aim to misbehave
         
         MapkepOccurencesTableViewController * controller = (MapkepOccurencesTableViewController *)segue.destinationViewController;
         controller.occurences = [self.primaryMapkep.has_many_occurances array];
     }
-    else if ([segue.identifier isEqualToString:k_segue_to_edit_page])
+    else if ([segue.identifier isEqualToString:SEGUE_TO_EDIT_PAGE])
     {
-        //  The next time you decide to stab me in the back,
-        //  have the guts to do it to my face.
+        // The next time you decide to stab me in the back,
+        // have the guts to do it to my face.
         //
-        //  ~ Cap'n Mal
+        // ~ Cap'n Mal
         
         EditMapkepViewController * controller = (EditMapkepViewController *)segue.destinationViewController;
         controller.mapkep = self.primaryMapkep;

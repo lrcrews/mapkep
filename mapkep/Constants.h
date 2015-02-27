@@ -2,8 +2,6 @@
 //  Constants.h
 //  mapkep
 //
-//  7
-//
 //  Created by L Ryan Crews on 1/19/14.
 //  Copyright (c) 2014 lrcrews. All rights reserved.
 //
@@ -21,35 +19,15 @@
 //
 //      i refuse to use capital letters, periods, and oxford commas?
 
-#define kKey_MapkepEntityName (@"Mapkep")
+#define KEY_MAPKEP_ENTITY_NAME (@"Mapkep")
 //
 //  This constant name is the only place I spell "Occurence"
 //  correctly (for now).
 //
-#define kKey_OccurenceEntityName (@"Occurance")
-//
-//  You know, I really do like underscores better
-//  than camelcase.  You can read it so much quicker.
-//  I might go through and update all my stuff.  Plus,
-//  if I do all these macros and variable names with
-//  underscores and leave methods as camelcaes (as is
-//  the objective c convention) I'll be able to add
-//  more meaning to the already verbose code since the
-//  different styles will immediately point out everything
-//  as either a method or a variable.  Well maybe not
-//  cases where it could be a variable or method, but
-//  it's only one word.  There's a chance I shouldn't be
-//  coding right now...
-//
-//  Hey!  This!  It's the name to use for any segue
-//  going to the detail page of a Mapkep so we can hook
-//  into the detail controller with prepare for segue
-//  and set the Mapkep it's going to be detailing.
-//
-#define kSegue_ToMapkepDetail       (@"segue_to_mapkep_detail")
-#define k_segue_to_edit_page        (@"segue_to_edit")
-#define k_segue_to_history_table    (@"segue_to_history_table")
-
+#define KEY_OCCURENCE_ENTITY_NAME (@"Occurance")
+#define SEGUE_TO_MAPKEP_DETAIL    (@"segue_to_mapkep_detail")
+#define SEGUE_TO_EDIT_PAGE        (@"segue_to_edit")
+#define SEGUE_TO_HISTORY_TABLE    (@"segue_to_history_table")
 
 
 // LOGGING MACROS
@@ -66,7 +44,7 @@
 
 // NOTIFICATIONS
 
-#define kNotification_MapkepContextUpdated  (@"notification_mapkepContextUpdated")
+#define NOTIFICATION_MAPKEP_CONTEXT_UPDATED  (@"notification_mapkepContextUpdated")
 
 
 // FONTAWESOME ARRAY OF enum VALUES
@@ -87,20 +65,6 @@
 @end
 
 
-//
-//
-//  If it's good enough for life, the universe, and everything, it's
-//  good enough for my primary font color.
-//  http://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker's_Guide_to_the_Galaxy
-//
-//  Frank Castle is
-//  http://www.tumblr.com/tagged/frank-castle
-//
-//  A Style Guide is many things.  I specifically meant a guide
-//  to the visual aspects of the app, but it is not uncommon to have
-//  guides for coding styles, naming conventions, and so on.  Here's
-//  a page from Github's style guide:
-//  https://github.com/styleguide/css/11.0
 //
 //  It's false.  There are not capital letters nor periods, but there
 //  is an Oxford comma.  That's the one preceeding the and in a chain.

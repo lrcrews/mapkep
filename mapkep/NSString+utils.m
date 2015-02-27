@@ -2,8 +2,6 @@
 //  NSString+utils.m
 //  mapkep
 //
-//  9
-//
 //  Created by L Ryan Crews on 1/19/14.
 //  Copyright (c) 2014 lrcrews. All rights reserved.
 //
@@ -19,7 +17,7 @@
 //  (the first two results being highly voted stackoverflow answers) is amazing.
 //  You'll hear people scoff at the future, "Who cares that you can pull your phone out
 //  and find out the name of the wrestler who played Mario in some live action Mario Brothers
-//  show that noone even knows about?".  Well I do.  I do becuase this is the 'practical'
+//  show that noone even knows about?".  Well, I do.  I do becuase this is the 'practical'
 //  extension of that.  This is the future mother fuckers, appreciate it.
 //
 //  So... ya, this allows you to do things like:
@@ -32,11 +30,11 @@
 - (UIColor *)toUIColor;
 {
     //  Safety first, a lesson from Men Without Hats
-    //
+    
     if (self.length == 0) return [UIColor clearColor];
     
     //  The actual greatness
-    //
+    
     unsigned int c;
     
     if ([self characterAtIndex:0] == '#')

@@ -18,28 +18,10 @@ static int tag_occurence_time = 1337;
 
 
 @interface MapkepOccurencesTableViewController ()
-
 @end
 
 
 @implementation MapkepOccurencesTableViewController
-
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self)
-    {
-        // Custom initialization
-    }
-    return self;
-}
-
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
 
 
 #pragma mark -
@@ -51,7 +33,7 @@ static int tag_occurence_time = 1337;
 - (void)backToStatDetail
 {
     // May the 4th be with you
-    //
+    
     [self dismissViewControllerAnimated:YES
                              completion:nil];
     // < and also with you >?

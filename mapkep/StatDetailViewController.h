@@ -8,14 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-
 @class Mapkep;
-
 
 @interface StatDetailViewController : UIViewController
 
-
 @property (nonatomic, strong) Mapkep * primaryMapkep;
-
 
 @end

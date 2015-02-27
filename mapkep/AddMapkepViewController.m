@@ -23,11 +23,14 @@
 @interface AddMapkepViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) IBOutlet UIButton * addButton;
-@property (nonatomic, strong) IBOutlet UIView * addStepTwoContainer;
 @property (nonatomic, strong) IBOutlet UIButton * backButton;
 @property (nonatomic, strong) IBOutlet UIButton * cancelButton;
+
 @property (nonatomic, strong) IBOutlet UILabel * chosenIcon;
+
 @property (nonatomic, strong) IBOutlet UITextField * nameTextField;
+
+@property (nonatomic, strong) IBOutlet UIView * addStepTwoContainer;
 
 @property (nonatomic) int32_t chosenIconIntCode;
 
@@ -57,12 +60,12 @@
     
     // Set up the non-mapkep button(s)
     
-    UIFont * fa_font = FA_ICONS_FONT_HALF_SIZE;
+    UIFont * faFont = FA_ICONS_FONT_HALF_SIZE;
     
     
     // Back that screen up
     
-    self.backButton.titleLabel.font = fa_font;
+    self.backButton.titleLabel.font = faFont;
     
     [self.backButton setTitle:[NSString awesomeIcon:FaTimesCircle]
                      forState:UIControlStateNormal];
@@ -70,7 +73,7 @@
     
     // The "cancel" button (visible in step two overlay)
     
-    self.cancelButton.titleLabel.font = fa_font;
+    self.cancelButton.titleLabel.font = faFont;
     
     [self.cancelButton setTitle:[NSString awesomeIcon:FaTimesCircle]
                        forState:UIControlStateNormal];
@@ -81,7 +84,7 @@
 {
     [super viewWillDisappear:animated];
     
-    //  Mos Def
+    // Mos Def
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -91,15 +94,15 @@
 
 - (IBAction)addMapkep:(id)sender
 {
-    //  Let's grab our coredata context so we can...
-    //
+    // Let's grab our coredata context so we can...
+    
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext * context = [appDelegate managedObjectContext];
     
-    //  ...create the instance of our object that knows how
-    //  to save itself so we can...
-    //
-    Mapkep * mapkep = [NSEntityDescription insertNewObjectForEntityForName:kKey_MapkepEntityName
+    // ...create the instance of our object that knows how
+    // to save itself so we can...
+    
+    Mapkep * mapkep = [NSEntityDescription insertNewObjectForEntityForName:KEY_MAPKEP_ENTITY_NAME
                                                     inManagedObjectContext:context];
 
     mapkep.name = self.nameTextField.text;
@@ -108,70 +111,18 @@
     
     DebugLog(@"Adding mapkep with name \"%@\", color \"%@\", and icon code \"%lx\"", mapkep.name, mapkep.hexColorCode, (unsigned long)mapkep.faUInt);
     
-    //  ...you know... save it.  Then we can...
-    //
+    // ...you know... save it.  Then we can...
+    
     NSError * error;
     if (![mapkep save:error])
     {
         AlwaysLog(@"Danger Will Robinson, mapkep creation failed.");
     }
     
-    //  ... tell others what we saw here today, which
-    //  means all that's left is to...
-    //
-    //  It's been removed??!?  Why Lisa, Why?
-    //
-    //  Well, because it was silly.  This controller should
-    //  not be the one responsible for sending the notification
-    //  for updating the core data context, the model should.
-    //
-    //  I see why it didn't occur to me when all I had was the
-    //  ability to add a Mapkep object; I just had one notification,
-    //  "kNotification_MapkepAdded".  This is where I added it,
-    //  so this is where I put that.  It worked, I moved on.
-    //
-    //  And that's all well in good.  Goal defined, goal achieved,
-    //  continue towards the MVP.  But this brings up a good
-    //  practice that so many avoid; the refactor.
-    //
-    //  Refactoring is just looking at an existing pattern in
-    //  your code and realizing that it can be improved in some
-    //  way towards some end.  In this case, proper separation
-    //  of concerns will prevent the need for additional code
-    //  later.
-    //
-    //  First, my naming was odd.  "kNotification_MapkepAdded"
-    //  would imply I now need a "Deleted" (the functionality
-    //  I'm adding right now) and may latter need an "Edited".
-    //  Why do I need those?  So UI will update of course.  Wait.
-    //  If my current (and foreseeable future) use is just to
-    //  refresh UI why have three notification names.  Hence,
-    //  "kNotification_MapkepContextUpdated" now exists.
-    //
-    //  Secondly, its location (previously here) is wrong.  You
-    //  might think there's some rather deep theoretical reason
-    //  for this, and there surely is, but the best reason I
-    //  can think of is a simple one: if the Model (Mapkep) sends
-    //  the notification, then I don't ever have to write that
-    //  line of code again.  If I create some new flow that creates
-    //  a Mapkep object, it will automatically post the notification.
-    //  I don't have to think about it anymore.  Beauty.
-    //
-    //  Thirdly, well, there is no thirdly, secondly really does
-    //  the trick, but you read a lot, so you earned a reward.
-    //  Recomendations for reading!  That's cool... right?  Let's
-    //  give it a theme... Lucifer.
-    //
-    //  First, from Neil Gaiman's Sandman world we have "Lucifer",
-    //  written by Mike Carey it is a fantastic read with great
-    //  art (from various artists). Then There's "I, Lucifer" by
-    //  Glen Duncan.  A proper book.  It tells the tale of the
-    //  tailed fallen angel as he posses a writer... Glen Duncan.  Fun!
+    // ...transition away.  Hooray!
     
-    
-    //  ...transition away.  Hooray!
-    //
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 
@@ -186,8 +137,9 @@
 - (IBAction)back:(id)sender
 {
     // Let us leave this place.
-    //
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 
@@ -251,8 +203,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //  mapkepAddCell is the name set on the prototype cell in the storyboard.
-    //
+    // mapkepAddCell is the name set on the prototype cell in the storyboard.
+    
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"mapkepAddCell"
                                                                             forIndexPath:indexPath];
     
@@ -264,8 +216,8 @@
     //FaIcon faHexValue = FA_BASE_HEX + (int)indexPath.row;
     
     
-    //  Get the subview we need from the cell
-    //
+    // Get the subview we need from the cell
+    
     UIButton * button = nil;
     
     for (UIView * view in cell.contentView.subviews)
@@ -278,7 +230,7 @@
     
     
     //  Set the hex code needed to display the icon
-    //
+    
     [button setTag:indexPath.row];
     
     button.titleLabel.font = FA_ICONS_FONT;
@@ -287,8 +239,8 @@
             forState:UIControlStateNormal];
     
     
-    //  Give the people what they want
-    //
+    // Give the people what they want
+    
     //return bacon;  // no... not that.
     return cell;
 }

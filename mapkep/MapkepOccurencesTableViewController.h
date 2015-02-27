@@ -8,11 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface MapkepOccurencesTableViewController : UITableViewController
 
-
 @property (nonatomic, strong) NSArray * occurences;
-
 
 @end

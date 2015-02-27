@@ -18,9 +18,11 @@
 @interface EditMapkepViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) IBOutlet UIButton * backButton;
-@property (nonatomic, strong) IBOutlet UILabel * currentIcon;
-@property (nonatomic, strong) IBOutlet UITextField * nameTextField;
 @property (nonatomic, strong) IBOutlet UIButton * saveButton;
+
+@property (nonatomic, strong) IBOutlet UILabel * currentIcon;
+
+@property (nonatomic, strong) IBOutlet UITextField * nameTextField;
 
 @property (nonatomic) int32_t chosenIconIntCode;
 
@@ -50,30 +52,26 @@
     
     self.chosenIconIntCode = self.mapkep.faUInt;
     
-    
     // Set the text feild text to the name
     
     self.nameTextField.text = self.mapkep.name;
     
-    
     // Set up the non-mapkep button(s)
     
-    UIFont * fa_font = FA_ICONS_FONT_HALF_SIZE;
-    
+    UIFont * faFont = FA_ICONS_FONT_HALF_SIZE;
     
     // Back that screen up
     
-    self.backButton.titleLabel.font = fa_font;
+    self.backButton.titleLabel.font = faFont;
     
     [self.backButton setTitle:[NSString awesomeIcon:FaTimesCircle]
                      forState:UIControlStateNormal];
     
-    
     // Just do the things you want to do, and other things too
     
-    CALayer * save_layer = [self.saveButton layer];
-    save_layer.borderWidth = 1.0f;
-    save_layer.borderColor = [COLOR_1 toUIColor].CGColor;
+    CALayer * saveLayer = [self.saveButton layer];
+    saveLayer.borderWidth = 1.0f;
+    saveLayer.borderColor = [COLOR_1 toUIColor].CGColor;
 }
 
 
@@ -91,7 +89,8 @@
 
 - (IBAction)back:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 
@@ -113,7 +112,8 @@
     
     // disappear
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 
@@ -150,14 +150,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //  mapkepAddCell is the name set on the prototype cell in the storyboard.
-    //
+    // "mapkepAddCell" is the name set on the prototype cell in the storyboard.
+    
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"mapkepAddCell"
                                                                             forIndexPath:indexPath];
     
+    // Get the subview we need from the cell
     
-    //  Get the subview we need from the cell
-    //
     UIButton * button = nil;
     
     for (UIView * view in cell.contentView.subviews)
@@ -168,9 +167,8 @@
         }
     }
     
+    // Set the hex code needed to display the icon
     
-    //  Set the hex code needed to display the icon
-    //
     [button setTag:indexPath.row];
     
     button.titleLabel.font = FA_ICONS_FONT;
@@ -178,10 +176,8 @@
     [button setTitle:[NSString awesomeIcon:[FA_ICON_HEX_VALUES[indexPath.row] intValue]]
             forState:UIControlStateNormal];
     
-    
-    //  Give the people what they want
-    //
-    //return bacon;  // no... not that.
+    // Give the people what they want
+
     return cell;
 }
 

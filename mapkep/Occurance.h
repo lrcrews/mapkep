@@ -26,12 +26,17 @@
 
 @interface Occurance : NSManagedObject
 
+
 @property (nonatomic, retain) NSDate * createdAt;
+
 @property (nonatomic, retain) Mapkep * belongs_to_mapkep;
 
+
 - (BOOL)save:(NSError *)error;
+
 - (NSString *)relativeTimeSinceLastOccerence;
 
 + (Occurance *)emptyOccurance;
+
 
 @end

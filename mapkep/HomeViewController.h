@@ -9,8 +9,5 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-
 @interface HomeViewController : UIViewController
-
-
 @end

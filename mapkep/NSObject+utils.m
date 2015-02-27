@@ -2,8 +2,6 @@
 //  NSObject+utils.m
 //  mapkep
 //
-//  6
-//
 //  Created by L Ryan Crews on 1/19/14.
 //  Copyright (c) 2014 lrcrews. All rights reserved.
 //
@@ -57,7 +55,6 @@
             return currentObject;
         }
     }
-    
     
     AlwaysLog(@"WARNING: Nib acquasition failed, returning nil!");
     return nil;

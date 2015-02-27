@@ -16,11 +16,7 @@
 //  Copyright (c) 2014 lrcrews. All rights reserved.
 //
 //
-//  Table of contents
-//
-//  - or -
-//
-//  The order I wrote this in.
+//  Well, this isn't a book, but it is code, and that's something!
 //
 
 #import <UIKit/UIKit.h>
@@ -29,11 +25,11 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UIWindow * window;
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (readonly, strong, nonatomic) NSManagedObjectContext * managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel * managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator * persistentStoreCoordinator;
 
 
 - (void)saveContext;

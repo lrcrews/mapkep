@@ -43,25 +43,25 @@
     
     [components setMinute:0];
     [components setHour:0];
-    NSDate * date_begining_of_day = [calendar dateFromComponents:components];
+    NSDate * dateBeginingOfDay = [calendar dateFromComponents:components];
     
     // then the end of the day
     
     [components setMinute:59];
     [components setHour:23];
-    NSDate * date_end_of_day = [calendar dateFromComponents:components];
+    NSDate * dateEndOfDay = [calendar dateFromComponents:components];
     
     // get the context and entity description
     
     NSManagedObjectContext * context = [self managedObjectContext];
     
-    NSEntityDescription * entity = [NSEntityDescription entityForName:kKey_OccurenceEntityName
+    NSEntityDescription * entity = [NSEntityDescription entityForName:KEY_OCCURENCE_ENTITY_NAME
                                                inManagedObjectContext:context];
     
     // build the predicates and the fetch request
     
-    NSPredicate * lowerBound = [NSPredicate predicateWithFormat:@"createdAt > %@", date_begining_of_day];
-    NSPredicate * upperBound = [NSPredicate predicateWithFormat:@"createdAt < %@", date_end_of_day];
+    NSPredicate * lowerBound = [NSPredicate predicateWithFormat:@"createdAt > %@", dateBeginingOfDay];
+    NSPredicate * upperBound = [NSPredicate predicateWithFormat:@"createdAt < %@", dateEndOfDay];
     
     // TODO: question, how do I limit this query to just this mapkep's
     //       children? (keeping in mind there's no mapkep_id on Occurence)
@@ -91,12 +91,14 @@
 - (BOOL)save:(NSError *)error;
 {
     // default to a circle if no icon value is present
+    
     if (self.faUInt == 0)
     {
         self.faUInt = FaCircle;
     }
     
     // get the context and save it
+    
     NSManagedObjectContext * context = [self managedObjectContext];
     if (![context save:&error])
     {
@@ -105,7 +107,8 @@
     }
     
     // let others know (hey, look!  it's the observer pattern!)
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_MapkepContextUpdated
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MAPKEP_CONTEXT_UPDATED
                                                         object:nil];
     
     return true;
@@ -122,7 +125,7 @@
         return false;
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_MapkepContextUpdated
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MAPKEP_CONTEXT_UPDATED
                                                         object:nil];
     
     return true;
@@ -171,7 +174,7 @@
 + (NSArray *)allWithManagedObjectContext:(NSManagedObjectContext *)context;
 {
     NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription * entity = [NSEntityDescription entityForName:kKey_MapkepEntityName
+    NSEntityDescription * entity = [NSEntityDescription entityForName:KEY_MAPKEP_ENTITY_NAME
                                                inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError * error;
