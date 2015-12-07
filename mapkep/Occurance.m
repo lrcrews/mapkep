@@ -33,6 +33,23 @@
     return true;
 }
 
+
+- (BOOL)deleteSelf:(NSError *)error;
+{
+    NSManagedObjectContext * context = [self managedObjectContext];
+    [context deleteObject:self];
+    if (![context save:&error])
+    {
+        AlwaysLog(@"Delete failed: %@", [error localizedDescription]);
+        return false;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MAPKEP_CONTEXT_UPDATED
+                                                        object:nil];
+    
+    return true;
+}
+
 #pragma mark -
 #pragma mark Time Helpers
 

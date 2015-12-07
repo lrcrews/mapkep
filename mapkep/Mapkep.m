@@ -36,7 +36,7 @@
     
     NSCalendar * calendar = [NSCalendar currentCalendar];
     
-    NSDateComponents * components = [calendar components:( NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit )
+    NSDateComponents * components = [calendar components:( NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear )
                                                 fromDate:date];
     
     // first the begining of the day

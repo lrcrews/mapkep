@@ -33,6 +33,7 @@
 
 
 - (BOOL)save:(NSError *)error;
+- (BOOL)deleteSelf:(NSError *)error;
 
 - (NSString *)relativeTimeSinceLastOccerence;
 

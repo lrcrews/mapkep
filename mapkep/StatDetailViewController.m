@@ -11,7 +11,7 @@
 #import "Constants.h"
 #import "EditMapkepViewController.h"
 #import "Mapkep.h"
-#import "MapkepOccurencesTableViewController.h"
+#import "MapkepOccurencesViewController.h"
 #import "NSString+FontAwesome.h"
 #import "NSString+utils.h"
 #import "Occurance.h"
@@ -88,19 +88,10 @@
     if (self.primaryMapkep.faUInt == 0) self.primaryMapkep.faUInt = [Mapkep defaultFAUInt];
     self.iconLabel.text = [NSString awesomeIcon:self.primaryMapkep.faUInt];
     
-    // Set the three most recent occurences and their header
     
-    self.lastThreeTapsOfTotalTapsLabel.text = [NSString stringWithFormat:@"last few taps of your %d total taps", self.primaryMapkep.totalOccurences];
+    // Set the data
+    [self setData];
     
-    self.recentMostLabel.text = [self.dateAndTimeFormatter stringFromDate:[[self.primaryMapkep recentOccurenceWithOffset:0] createdAt]];
-    
-    self.recentSecondMostLabel.text = [self.dateAndTimeFormatter stringFromDate:[[self.primaryMapkep recentOccurenceWithOffset:1] createdAt]];
-    
-    self.recentThirdMostLabel.text = [self.dateAndTimeFormatter stringFromDate:[[self.primaryMapkep recentOccurenceWithOffset:2] createdAt]];
-    
-    // Set the averages labels
-    
-    [self setAveragesLabels];
     
     // Set the delete confirmation version of the icon
     
@@ -146,6 +137,11 @@
                                            atScrollPosition:UICollectionViewScrollPositionLeft
                                                    animated:YES];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshUI)
+                                                 name:NOTIFICATION_MAPKEP_CONTEXT_UPDATED
+                                               object:nil];
 }
 
 
@@ -162,11 +158,37 @@
     [self stopCountdown];
     
     [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
 #pragma mark -
 #pragma mark A Shiny Classic Car
+
+- (void)refreshUI
+{
+    [self.view setNeedsDisplay];
+}
+
+
+- (void)setData
+{
+    // Set the three most recent occurences and their header
+    
+    self.lastThreeTapsOfTotalTapsLabel.text = [NSString stringWithFormat:@"last few taps of your %d total taps", self.primaryMapkep.totalOccurences];
+    
+    self.recentMostLabel.text = [self.dateAndTimeFormatter stringFromDate:[[self.primaryMapkep recentOccurenceWithOffset:0] createdAt]];
+    
+    self.recentSecondMostLabel.text = [self.dateAndTimeFormatter stringFromDate:[[self.primaryMapkep recentOccurenceWithOffset:1] createdAt]];
+    
+    self.recentThirdMostLabel.text = [self.dateAndTimeFormatter stringFromDate:[[self.primaryMapkep recentOccurenceWithOffset:2] createdAt]];
+    
+    // Set the averages labels
+    
+    [self setAveragesLabels];
+}
+
 
 //  "Create it when you need it!"  ~ Lazy Initialization
 //
@@ -243,7 +265,7 @@
             
             NSCalendar * calendar = [NSCalendar currentCalendar];
             
-            NSDateComponents * components = [calendar components:( NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit )
+            NSDateComponents * components = [calendar components:( NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear )
                                                         fromDate:self.primaryMapkep.firstOccurence.createdAt];
             [components setMinute:0];
             [components setHour:0];
@@ -536,8 +558,9 @@
     {
         // I aim to misbehave
         
-        MapkepOccurencesTableViewController * controller = (MapkepOccurencesTableViewController *)segue.destinationViewController;
-        controller.occurences = [self.primaryMapkep.has_many_occurances array];
+        MapkepOccurencesViewController * controller = (MapkepOccurencesViewController *)segue.destinationViewController;
+        controller.occurences = [[self.primaryMapkep.has_many_occurances array] mutableCopy];
+        controller.primaryMapkep = self.primaryMapkep;
     }
     else if ([segue.identifier isEqualToString:SEGUE_TO_EDIT_PAGE])
     {
